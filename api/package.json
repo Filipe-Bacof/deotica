@@ -1,0 +1,19 @@
+{
+  "name": "deotica-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": ""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@prisma/client": "^5.10.2"
+  },
+  "devDependencies": {
+    "prisma": "^5.10.2",
+    "prisma-erd-generator": "^1.11.2"
+  }
+}

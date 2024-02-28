@@ -1,0 +1,96 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+generator erd {
+  provider = "prisma-erd-generator"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model clientes {
+  id        String   @id @default(uuid())
+  nome      String
+  documento String?
+  telefone  String?
+  email     String? // Para a possibilidade da v3 (leia o README)
+  genero    String? // Para possiveis ofertas direcionados a publicos diferentes
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  vendas    vendas[]
+}
+
+model formasDePagamento {
+  id        Int      @id @default(autoincrement())
+  descricao String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  vendas    vendas[]
+}
+
+model perfilUsuario {
+  id         Int        @id @default(autoincrement())
+  nome       String     @unique
+  permissoes String[]
+  createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @updatedAt
+  usuarios   usuarios[]
+}
+
+model produtos {
+  id             String           @id @default(uuid())
+  nome           String
+  quantidade     Int              @default(0)
+  preco          Float
+  status         Boolean
+  codigoDeBarras String?
+  marca          String?
+  modelo         String?
+  tipo           String?
+  genero         String?
+  produtoAtivo   String?
+  createdAt      DateTime         @default(now())
+  updatedAt      DateTime         @updatedAt
+  vendasProdutos vendasProdutos[]
+}
+
+model usuarios {
+  id                  String        @id @default(uuid())
+  nome                String
+  email               String        @unique
+  senha               String
+  perfilId            Int
+  resetSenhaExpiracao String?
+  resetSenhaToken     String?
+  createdAt           DateTime      @default(now())
+  updatedAt           DateTime      @updatedAt
+  perfilUsuario       perfilUsuario @relation(fields: [perfilId], references: [id])
+}
+
+model vendas {
+  id                 String            @id @default(uuid())
+  formaDePagamentoId Int
+  clienteId          String
+  numeroDeParcelas   Int               @default(1)
+  createdAt          DateTime          @default(now())
+  updatedAt          DateTime          @updatedAt
+  vendasProdutos     vendasProdutos[]
+  formaDePagamento   formasDePagamento @relation(fields: [formaDePagamentoId], references: [id])
+  cliente            clientes          @relation(fields: [clienteId], references: [id])
+}
+
+model vendasProdutos {
+  vendaId    String
+  produtoId  String
+  quantidade Int
+  preco      Float
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  venda      vendas   @relation(fields: [vendaId], references: [id])
+  produto    produtos @relation(fields: [produtoId], references: [id])
+
+  @@id([vendaId, produtoId])
+}
