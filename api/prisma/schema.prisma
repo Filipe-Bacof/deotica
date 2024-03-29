@@ -7,28 +7,39 @@ generator erd {
 }
 
 datasource db {
+  // VAMOS MUDAR PRA MONGODB?
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
 model clientes {
-  id        String   @id @default(uuid())
-  nome      String
-  documento String?
-  telefone  String?
-  email     String? // Para a possibilidade da v3 (leia o README)
-  genero    String? // Para possiveis ofertas direcionados a publicos diferentes
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  vendas    vendas[]
+  id          String   @id @default(uuid())
+  nome        String
+  documento   String?
+  telefone    String?
+  email       String? // Para a possibilidade da v3 (leia o README)
+  genero      String? // Para possiveis ofertas direcionados a publicos diferentes
+  cep         String?
+  uf          String?
+  cidade      String?
+  bairro      String?
+  endereco    String?
+  complemento String?
+  createdBy   String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  vendas      vendas[]
+  criador     usuarios @relation(fields: [createdBy], references: [id])
 }
 
 model formasDePagamento {
   id        Int      @id @default(autoincrement())
   descricao String
+  createdBy String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   vendas    vendas[]
+  criador   usuarios @relation(fields: [createdBy], references: [id])
 }
 
 model perfilUsuario {
@@ -52,22 +63,29 @@ model produtos {
   tipo           String?
   genero         String?
   produtoAtivo   String?
+  createdBy      String
   createdAt      DateTime         @default(now())
   updatedAt      DateTime         @updatedAt
   vendasProdutos vendasProdutos[]
+  criador        usuarios         @relation(fields: [createdBy], references: [id])
 }
 
 model usuarios {
-  id                  String        @id @default(uuid())
+  id                  String              @id @default(uuid())
   nome                String
-  email               String        @unique
+  email               String              @unique
   senha               String
   perfilId            Int
   resetSenhaExpiracao String?
   resetSenhaToken     String?
-  createdAt           DateTime      @default(now())
-  updatedAt           DateTime      @updatedAt
-  perfilUsuario       perfilUsuario @relation(fields: [perfilId], references: [id])
+  createdAt           DateTime            @default(now())
+  updatedAt           DateTime            @updatedAt
+  perfilUsuario       perfilUsuario       @relation(fields: [perfilId], references: [id])
+  clientes            clientes[]
+  formasDePagamento   formasDePagamento[]
+  produtos            produtos[]
+  vendas              vendas[]
+  vendasProdutos      vendasProdutos[]
 }
 
 model vendas {
@@ -75,11 +93,13 @@ model vendas {
   formaDePagamentoId Int
   clienteId          String
   numeroDeParcelas   Int               @default(1)
+  createdBy          String
   createdAt          DateTime          @default(now())
   updatedAt          DateTime          @updatedAt
   vendasProdutos     vendasProdutos[]
   formaDePagamento   formasDePagamento @relation(fields: [formaDePagamentoId], references: [id])
   cliente            clientes          @relation(fields: [clienteId], references: [id])
+  criador            usuarios          @relation(fields: [createdBy], references: [id])
 }
 
 model vendasProdutos {
@@ -87,10 +107,12 @@ model vendasProdutos {
   produtoId  String
   quantidade Int
   preco      Float
+  createdBy  String
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
   venda      vendas   @relation(fields: [vendaId], references: [id])
   produto    produtos @relation(fields: [produtoId], references: [id])
+  criador    usuarios @relation(fields: [createdBy], references: [id])
 
   @@id([vendaId, produtoId])
 }
