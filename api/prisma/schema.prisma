@@ -7,28 +7,65 @@ generator erd {
 }
 
 datasource db {
+  // VAMOS MUDAR PRA MONGODB?
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
 model clientes {
-  id        String   @id @default(uuid())
-  nome      String
-  documento String?
-  telefone  String?
-  email     String? // Para a possibilidade da v3 (leia o README)
-  genero    String? // Para possiveis ofertas direcionados a publicos diferentes
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  vendas    vendas[]
+  id             String         @id @default(uuid())
+  nome           String
+  cpf            String         @unique
+  telefone       String?
+  email          String? // Para a possibilidade da v3 (leia o README)
+  dataNascimento DateTime?
+  genero         String? // Para possiveis ofertas direcionados a publicos diferentes
+  cep            String?
+  uf             String?
+  cidade         String?
+  bairro         String?
+  endereco       String?
+  complemento    String?
+  createdBy      String
+  createdAt      DateTime       @default(now())
+  updatedAt      DateTime       @updatedAt
+  vendas         vendas[]
+  criador        usuarios       @relation(fields: [createdBy], references: [id])
+  ordemServico   ordemServico[]
 }
 
 model formasDePagamento {
   id        Int      @id @default(autoincrement())
   descricao String
+  createdBy String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   vendas    vendas[]
+  criador   usuarios @relation(fields: [createdBy], references: [id])
+}
+
+model ordemServico {
+  id             Int       @id @default(autoincrement())
+  numeroDoPedido Int       @unique
+  clienteId      String
+  dataDeEntrega  DateTime?
+  concluido      String    @default("pendente")
+  olhoEsquerdo   String?
+  olhoDireito    String?
+  tipoLente      String?
+  corLente       String?
+  modeloLente    String?
+  tratamentos    String?
+  observacoes    String?
+  armacao        String?
+  tipoArmacao    String?
+  somenteLente   Boolean   @default(false)
+  createdBy      String
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+  cliente        clientes  @relation(fields: [clienteId], references: [id])
+  criador        usuarios  @relation(fields: [createdBy], references: [id])
+  venda          vendas    @relation(fields: [numeroDoPedido], references: [numeroDoPedido])
 }
 
 model perfilUsuario {
@@ -44,7 +81,7 @@ model produtos {
   id             String           @id @default(uuid())
   nome           String
   quantidade     Int              @default(0)
-  preco          Float
+  preco          Decimal          @db.Decimal(10, 2)
   status         Boolean
   codigoDeBarras String?
   marca          String?
@@ -52,41 +89,54 @@ model produtos {
   tipo           String?
   genero         String?
   produtoAtivo   String?
+  createdBy      String
   createdAt      DateTime         @default(now())
   updatedAt      DateTime         @updatedAt
   vendasProdutos vendasProdutos[]
+  criador        usuarios         @relation(fields: [createdBy], references: [id])
 }
 
 model usuarios {
-  id                  String        @id @default(uuid())
+  id                  String              @id @default(uuid())
   nome                String
-  email               String        @unique
+  email               String              @unique
   senha               String
   perfilId            Int
   resetSenhaExpiracao String?
   resetSenhaToken     String?
-  createdAt           DateTime      @default(now())
-  updatedAt           DateTime      @updatedAt
-  perfilUsuario       perfilUsuario @relation(fields: [perfilId], references: [id])
+  createdAt           DateTime            @default(now())
+  updatedAt           DateTime            @updatedAt
+  perfilUsuario       perfilUsuario       @relation(fields: [perfilId], references: [id])
+  clientes            clientes[]
+  formasDePagamento   formasDePagamento[]
+  produtos            produtos[]
+  vendas              vendas[]
+  ordemServico        ordemServico[]
 }
 
 model vendas {
   id                 String            @id @default(uuid())
+  numeroDoPedido     Int               @unique
   formaDePagamentoId Int
   clienteId          String
   numeroDeParcelas   Int               @default(1)
+  valorDeEntrada     Decimal           @db.Decimal(10, 2)
+  desconto           Decimal           @db.Decimal(10, 2)
+  createdBy          String
   createdAt          DateTime          @default(now())
   updatedAt          DateTime          @updatedAt
   vendasProdutos     vendasProdutos[]
   formaDePagamento   formasDePagamento @relation(fields: [formaDePagamentoId], references: [id])
   cliente            clientes          @relation(fields: [clienteId], references: [id])
+  criador            usuarios          @relation(fields: [createdBy], references: [id])
+  ordemServico       ordemServico?
 }
 
 model vendasProdutos {
   vendaId    String
   produtoId  String
   quantidade Int
-  preco      Float
+  preco      Decimal  @db.Decimal(10, 2)
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
   venda      vendas   @relation(fields: [vendaId], references: [id])
