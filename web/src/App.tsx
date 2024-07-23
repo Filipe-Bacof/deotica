@@ -1,3 +1,11 @@
+import Router from "./routes/Router";
+import Toast from "./Toast";
+
 export default function App() {
-  return <p className="">Olá Deótica</p>;
+  return (
+    <>
+      <Router />
+      <Toast />
+    </>
+  );
 }
