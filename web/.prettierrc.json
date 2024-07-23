@@ -1,0 +1,17 @@
+{
+
+  "overrides": [
+    {
+      "files": "*.ts",
+      "options": {
+        "parser": "typescript",
+        "trailingComma": "all",
+        "importOrder": ["^\\u0000", "^@\\w", "^[./]"],
+        "importOrderSeparation": true
+      }
+    }
+  ],
+  "plugins": [
+    "prettier-plugin-tailwindcss"
+  ]
+}

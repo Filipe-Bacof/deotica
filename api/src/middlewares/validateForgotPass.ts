@@ -33,16 +33,15 @@ const verifyTokenForgotPass = async (
       message:
         "A senha deve conter pelo menos 8 caracteres, incluindo pelo menos uma letra maiúscula ou minúscula e um número.",
     };
+  try {
+    const foundUser = await authRepository.getByEmail(email);
 
-  const foundUser = await authRepository.getByEmail(email);
+    if (!foundUser)
+      throw {
+        status: 400,
+        message: "Ocorreu um erro ao tentar buscar o usuário, tente novamente.",
+      };
 
-  if (!foundUser)
-    throw {
-      status: 400,
-      message: "Ocorreu um erro, tente novamente.",
-    };
-
-  if (!bcrypt.compareSync("vidaia123", foundUser.senha)) {
     if (foundUser.resetSenhaToken !== token)
       throw {
         status: 400,
@@ -54,9 +53,14 @@ const verifyTokenForgotPass = async (
         status: 400,
         message: "O token informado expirou, tente gerar novamente.",
       };
-  }
 
-  next();
+    next();
+  } catch (error) {
+    throw {
+      status: 400,
+      message: "Ocorreu um erro ao tentar buscar o usuário, tente novamente",
+    };
+  }
 };
 
 export default verifyTokenForgotPass;
