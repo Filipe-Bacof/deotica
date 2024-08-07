@@ -7,7 +7,6 @@ generator erd {
 }
 
 datasource db {
-  // VAMOS MUDAR PRA MONGODB? NÃO!
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
