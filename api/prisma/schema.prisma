@@ -7,7 +7,7 @@ generator erd {
 }
 
 datasource db {
-  // VAMOS MUDAR PRA MONGODB?
+  // VAMOS MUDAR PRA MONGODB? NÃO!
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
@@ -17,9 +17,9 @@ model clientes {
   nome           String
   cpf            String         @unique
   telefone       String?
-  email          String? // Para a possibilidade da v3 (leia o README)
+  email          String?
   dataNascimento DateTime?
-  genero         String? // Para possiveis ofertas direcionados a publicos diferentes
+  genero         String?
   cep            String?
   uf             String?
   cidade         String?
