@@ -50,6 +50,6 @@ export async function newPass(req: Request, res: Response) {
 
 export async function getUserData(req: Request, res: Response) {
   const { id } = req.params;
-  const infoUser = await authService.getUserData(Number(id));
+  const infoUser = await authService.getUserData(id);
   res.status(200).send(infoUser);
 }

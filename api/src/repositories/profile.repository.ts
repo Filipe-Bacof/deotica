@@ -4,7 +4,21 @@ import { prisma } from "../config/database";
 async function insert(data: Perfil) {
   console.log(data);
   return prisma.perfilUsuario.create({
-    data,
+    data: {
+      nome: data.nome,
+      permissoes: data.permissoes,
+    },
+  });
+}
+
+async function edit(data: Perfil) {
+  console.log(data);
+  return prisma.perfilUsuario.update({
+    where: { id: data.id },
+    data: {
+      nome: data.nome,
+      permissoes: data.permissoes,
+    },
   });
 }
 
@@ -24,6 +38,7 @@ async function getOne(id: number) {
 
 const profileRepository = {
   insert,
+  edit,
   getAll,
   getOne,
 };
