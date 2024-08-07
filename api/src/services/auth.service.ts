@@ -4,7 +4,6 @@ import authRepository from "../repositories/auth.repository";
 import { generateToken } from "../utils/token";
 import mailer from "../modules/mailer";
 import { SignIn, SignUp, Usuario } from "../interfaces/auth.interface";
-import { urlDecode, urlEncode } from "../utils/UrlDecode";
 import {
   templateEsqueciMinhaSenha,
   templatePrimeiroLogin,
@@ -44,8 +43,8 @@ async function signUp(data: SignUp) {
   mailer.sendMail(
     {
       to: data.email,
-      from: `'Deótica' <${process.env.MAIL_SENDER}>`,
-      subject: "Boas Vindas a Deótica",
+      from: `'Deotica' <${process.env.MAIL_USERNAME}>`,
+      subject: "Deotica - Boas Vindas",
       html: templatePrimeiroLogin(dataUsuario),
     },
     (err, res) => {
@@ -99,7 +98,7 @@ async function forgot(email: string) {
       };
     }
 
-    const token = crypto.randomBytes(20).toString("hex");
+    const token = crypto.randomBytes(6).toString("hex");
 
     const now = new Date();
 
@@ -116,14 +115,13 @@ async function forgot(email: string) {
         message: `Ocorreu um erro, tente novamente.`,
       };
     }
-    const emailEncode = urlEncode(email);
 
     const resutMail = mailer.sendMail(
       {
         to: email,
-        from: `'Vidaia Recuperação de Senha' <${process.env.MAIL_SENDER}>`,
-        subject: "Token para resetar a senha",
-        html: templateEsqueciMinhaSenha(token, emailEncode),
+        from: `'Deotica' <${process.env.MAIL_USERNAME}>`,
+        subject: "Deotica - Token para resetar a senha",
+        html: templateEsqueciMinhaSenha(token),
       },
       (err, res) => {
         if (err) {

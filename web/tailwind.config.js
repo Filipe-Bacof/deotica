@@ -9,6 +9,9 @@ export default {
       fontFamily: {
         "inter": ["Inter", "sans-serif"],
         "montserrat": ["Montserrat", "sans-serif"],
+      },
+      colors: {
+        blueDeotica: "#0284d6"
       }
     },
   },
