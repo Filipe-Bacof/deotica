@@ -21,7 +21,7 @@ export function generateToken(userID: string) {
 }
 
 type returnUserId = {
-  userID: number;
+  userID: string;
   iat: number;
   exp: number;
 };

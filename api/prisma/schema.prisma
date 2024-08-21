@@ -18,7 +18,7 @@ model clientes {
   telefone       String?
   email          String?
   dataNascimento DateTime?
-  genero         String?
+  genero         String         @default("nao-informado")
   cep            String?
   uf             String?
   cidade         String?
