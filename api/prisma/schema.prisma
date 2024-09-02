@@ -90,12 +90,12 @@ model produtos {
   nome           String
   quantidade     Int              @default(0)
   preco          Decimal          @db.Decimal(10, 2)
-  status         Boolean
+  status         Boolean          @default(true)
   codigoDeBarras String?
   marca          String?
   modelo         String?
   tipo           String?
-  genero         String?
+  genero         String           @default("nao-informado")
   produtoAtivo   String?
   createdBy      String
   createdAt      DateTime         @default(now())
