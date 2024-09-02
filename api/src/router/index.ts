@@ -6,6 +6,7 @@ import paymentRouter from "./payment.router";
 import promoEmailRouter from "./promoEmail.router";
 import productRouter from "./product.router";
 import saleRouter from "./sale.router";
+import serviceOrderRouter from "./serviceOrder.router";
 
 const router = Router();
 
@@ -16,5 +17,6 @@ router.use(paymentRouter);
 router.use(promoEmailRouter);
 router.use(productRouter);
 router.use(saleRouter);
+router.use(serviceOrderRouter);
 
 export default router;

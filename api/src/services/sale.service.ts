@@ -1,6 +1,7 @@
 import { CriarVenda } from "../interfaces/sale.interface";
 import saleRepository from "../repositories/sale.repository";
 import salesProductsService from "./salesProducts.service";
+import serviceOrderService from "./serviceOrder.service";
 
 async function getAll() {
   const result = await saleRepository.getAll();
@@ -26,7 +27,19 @@ async function insert(data: CriarVenda, userID: string) {
     )
   );
 
+  console.log("✅ Produtos de cada venda informados com sucesso!");
   console.log(produtos);
+
+  if (data.ordemServico) {
+    const ordemDeServico = await serviceOrderService.insert({
+      ...data.ordemServico,
+      vendaId: venda.id,
+      clienteId: venda.clienteId,
+      createdBy: userID,
+    });
+    console.log("✅ Ordem de serviço criada com sucesso!");
+    console.log(ordemDeServico);
+  }
 
   return venda;
 }

@@ -1,4 +1,5 @@
 import { VendaProduto } from "./product.interface";
+import { CriarOS } from "./serviceOrder.interface";
 
 export interface Venda {
   id: string;
@@ -14,4 +15,5 @@ export type InserirVenda = Omit<Venda, "id">;
 
 export type CriarVenda = Omit<InserirVenda, "createdBy"> & {
   produtos: VendaProduto[];
+  ordemServico?: CriarOS;
 };

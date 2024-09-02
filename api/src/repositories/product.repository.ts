@@ -51,7 +51,7 @@ async function deleteProduct(id: string) {
   return result;
 }
 
-const clientRepository = {
+const productRepository = {
   getAll,
   getById,
   insert,
@@ -60,4 +60,4 @@ const clientRepository = {
   deleteProduct,
 };
 
-export default clientRepository;
+export default productRepository;
