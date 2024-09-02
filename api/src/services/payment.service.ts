@@ -3,6 +3,7 @@ import {
   EditarFormaDePagamento,
 } from "../interfaces/payment.interface";
 import paymentRepository from "../repositories/payment.repository";
+import saleRepository from "../repositories/sale.repository";
 
 async function getAll() {
   const result = await paymentRepository.getAll();
@@ -34,10 +35,17 @@ async function deletePayment(id: number) {
     };
   }
 
-  // Adicionar validação quando criar o módulo de vendas
-  // Ao tentar deletar uma forma de pagamento
-  // Caso tenha pelo menos uma venda feita por essa forma de pagamento
-  // Impedir o deletamento e retornar mensagem de erro
+  const sales = await saleRepository.countSalesByPaymentMethod(id);
+
+  if (sales !== 0) {
+    throw {
+      status: 409,
+      message:
+        sales === 1
+          ? `Não é possível deletar essa forma de pagamento, pois foi efetuada 1 venda nessa forma de pagamento.`
+          : `Não é possível deletar essa forma de pagamento, pois foram efetuadas ${sales} vendas nessa forma de pagamento.`,
+    };
+  }
 
   const result = await paymentRepository.deletePayment(id);
   return result;
