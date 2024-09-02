@@ -53,27 +53,27 @@ model formasDePagamento {
 }
 
 model ordemServico {
-  id             Int       @id @default(autoincrement())
-  numeroDoPedido Int       @unique
-  clienteId      String
-  dataDeEntrega  DateTime?
-  concluido      String    @default("pendente")
-  olhoEsquerdo   String?
-  olhoDireito    String?
-  tipoLente      String?
-  corLente       String?
-  modeloLente    String?
-  tratamentos    String?
-  observacoes    String?
-  armacao        String?
-  tipoArmacao    String?
-  somenteLente   Boolean   @default(false)
-  createdBy      String
-  createdAt      DateTime  @default(now())
-  updatedAt      DateTime  @updatedAt
-  cliente        clientes  @relation(fields: [clienteId], references: [id])
-  criador        usuarios  @relation(fields: [createdBy], references: [id])
-  venda          vendas    @relation(fields: [numeroDoPedido], references: [numeroDoPedido])
+  id            Int       @id @default(autoincrement())
+  vendaId       String    @unique
+  clienteId     String
+  dataDeEntrega DateTime?
+  concluido     String    @default("pendente")
+  olhoEsquerdo  String?
+  olhoDireito   String?
+  tipoLente     String?
+  corLente      String?
+  modeloLente   String?
+  tratamentos   String?
+  observacoes   String?
+  armacao       String?
+  tipoArmacao   String?
+  somenteLente  Boolean   @default(false)
+  createdBy     String
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  cliente       clientes  @relation(fields: [clienteId], references: [id])
+  criador       usuarios  @relation(fields: [createdBy], references: [id])
+  venda         vendas    @relation(fields: [vendaId], references: [id])
 }
 
 model perfilUsuario {
@@ -124,7 +124,6 @@ model usuarios {
 
 model vendas {
   id                 String            @id @default(uuid())
-  numeroDoPedido     Int               @unique
   formaDePagamentoId Int
   clienteId          String
   numeroDeParcelas   Int               @default(1)

@@ -1,4 +1,11 @@
 import { prisma } from "../config/database";
+import { CriarVendaProduto } from "../interfaces/salesProducts.interface";
+
+async function insert(data: CriarVendaProduto) {
+  return prisma.vendasProdutos.create({
+    data: data,
+  });
+}
 
 async function countAllByProductId(produtoId: string) {
   return prisma.vendasProdutos.count({
@@ -13,6 +20,7 @@ async function countAllBySaleId(vendaId: string) {
 }
 
 const salesProductsRepository = {
+  insert,
   countAllByProductId,
   countAllBySaleId,
 };

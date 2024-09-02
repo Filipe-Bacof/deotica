@@ -26,3 +26,9 @@ export type InserirProduto = Omit<Produto, "id"> & {
 };
 
 export type EditarProduto = Partial<Omit<Produto, "id" | "createdBy">>;
+
+export interface VendaProduto {
+  id: string;
+  preco: number;
+  quantidade: number;
+}
