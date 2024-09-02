@@ -12,6 +12,18 @@ async function getAll() {
   return prisma.emailsPromocionais.findMany({});
 }
 
+async function getAllActive() {
+  return prisma.emailsPromocionais.findMany({
+    where: { ativo: { equals: true } },
+  });
+}
+
+async function getAllInactive() {
+  return prisma.emailsPromocionais.findMany({
+    where: { ativo: { equals: false } },
+  });
+}
+
 async function getOneById(id: string) {
   const result = await prisma.emailsPromocionais.findUnique({
     where: { id },
@@ -40,6 +52,8 @@ async function updateStatus(id: string, status: boolean) {
 const profileRepository = {
   insert,
   getAll,
+  getAllActive,
+  getAllInactive,
   getOneById,
   getOneByEmail,
   updateStatus,
