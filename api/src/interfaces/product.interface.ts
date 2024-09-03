@@ -15,11 +15,11 @@ export interface Produto {
 
 export type AtualizarQuantidadeProduto = Pick<Produto, "quantidade">;
 
-export type InserirProduto = Omit<Produto, "id"> &
+export type InserirProduto = Omit<Produto, "id" | "status" | "quantidade"> &
   Partial<Pick<Produto, "status" | "quantidade">>;
 
 export type CriarProduto = Omit<InserirProduto, "createdBy">;
 
-export type EditarProduto = Partial<Omit<Produto, "id" | "createdBy">>;
+export type EditarProduto = Partial<CriarProduto>;
 
 export type VendaProduto = Pick<Produto, "id" | "preco" | "quantidade">;

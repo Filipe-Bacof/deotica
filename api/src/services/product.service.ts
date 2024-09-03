@@ -53,6 +53,22 @@ async function removeQuantityFromStock(id: string, quantidade: number) {
   return result;
 }
 
+async function addQuantityFromStock(id: string, quantidade: number) {
+  if (!id) {
+    throw {
+      status: 401,
+      message: "É preciso informar o ID para atualizar.",
+    };
+  }
+
+  const product = await productRepository.getById(id);
+
+  const newQuantity = product.quantidade + quantidade;
+
+  const result = await productRepository.updateQuantity(id, newQuantity);
+  return result;
+}
+
 async function updateQuantity(id: string, quantidade: number) {
   if (!id) {
     throw {
@@ -95,6 +111,7 @@ const productService = {
   insert,
   edit,
   removeQuantityFromStock,
+  addQuantityFromStock,
   updateQuantity,
   deleteProduct,
 };

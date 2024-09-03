@@ -412,6 +412,201 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "Produtos",
+			"item": [
+				{
+					"name": "Criar Produto",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Lente xyz\",\r\n    \"quantidade\": 50,\r\n    \"preco\": 79.90,\r\n    \"status\": true,\r\n    \"codigoDeBarras\": \"7891234567890\",\r\n    \"marca\": \"PoloWear\",\r\n    \"modelo\": \"Slim Fit\",\r\n    \"tipo\": \"Camisa\",\r\n    \"genero\": \"masculino\",\r\n    \"produtoAtivo\": \"Sim\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/product",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"product"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Editar Produto",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Lente xyz\",\r\n    \"quantidade\": 50,\r\n    \"preco\": 89.90,\r\n    \"status\": true,\r\n    \"codigoDeBarras\": \"7891234567890\",\r\n    \"marca\": \"PoloWear\",\r\n    \"modelo\": \"Slim Fit\",\r\n    \"tipo\": \"Camisa\",\r\n    \"genero\": \"masculino\",\r\n    \"produtoAtivo\": \"Sim\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/product/1242141",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"product",
+								"1242141"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remover Quantidade",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"quantidade\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/product/minus/1242141",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"product",
+								"minus",
+								"1242141"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Adicionar Quantidade",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"quantidade\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/product/plus/1242141",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"product",
+								"plus",
+								"1242141"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar Quantidade Total",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"quantidade\": 260\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/product/count/1242141",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"product",
+								"count",
+								"1242141"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar Produto",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/product/1242141",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"product",
+								"1242141"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Todos os Produtos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/product",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"product"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Produto por ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/product/1242141",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"product",
+								"1242141"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	],
 	"auth": {

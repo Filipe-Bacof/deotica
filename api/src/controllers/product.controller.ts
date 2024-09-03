@@ -47,6 +47,15 @@ export async function productPATCHMINUS(req: Request, res: Response) {
   res.status(200).send(result);
 }
 
+export async function productPATCHPLUS(req: Request, res: Response) {
+  const { id } = req.params;
+  const data: AtualizarQuantidadeProduto = req.body;
+  // Aqui é informado a quantidade para adcionar no banco!
+
+  const result = await productService.addQuantityFromStock(id, data.quantidade);
+  res.status(200).send(result);
+}
+
 export async function productPATCHVALUE(req: Request, res: Response) {
   const { id } = req.params;
   const data: AtualizarQuantidadeProduto = req.body;

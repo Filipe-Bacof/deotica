@@ -5,12 +5,17 @@ import {
   productPOST,
   productPUT,
   productPATCHMINUS,
+  productPATCHPLUS,
   productPATCHVALUE,
   productDELETE,
 } from "../controllers/product.controller";
 import { validateHeaderToken } from "../middlewares/validateToken";
 import { validateSchema } from "../middlewares/validateSchema";
-import { newProductSchema } from "../schemas/product.schema";
+import {
+  editProductSchema,
+  newProductSchema,
+  updateQuantityProductSchema,
+} from "../schemas/product.schema";
 
 const productRouter = Router();
 
@@ -25,17 +30,31 @@ productRouter.post(
   productPOST
 );
 
-productRouter.put("/product/:id", validateHeaderToken, productPUT);
+productRouter.put(
+  "/product/:id",
+  validateHeaderToken,
+  validateSchema(editProductSchema),
+  productPUT
+);
 
 productRouter.patch(
   "/product/minus/:id",
   validateHeaderToken,
+  validateSchema(updateQuantityProductSchema),
   productPATCHMINUS
+);
+
+productRouter.patch(
+  "/product/plus/:id",
+  validateHeaderToken,
+  validateSchema(updateQuantityProductSchema),
+  productPATCHPLUS
 );
 
 productRouter.patch(
   "/product/count/:id",
   validateHeaderToken,
+  validateSchema(updateQuantityProductSchema),
   productPATCHVALUE
 );
 
