@@ -4,8 +4,8 @@ export interface FormaDePagamento {
   createdBy: string;
 }
 
-export type CriarFormaDePagamento = Omit<FormaDePagamento, "id" | "createdBy">;
-
 export type InserirFormaDePagamento = Omit<FormaDePagamento, "id">;
 
-export type EditarFormaDePagamento = Omit<FormaDePagamento, "id" | "createdBy">;
+export type CriarFormaDePagamento = Omit<InserirFormaDePagamento, "createdBy">;
+
+export type EditarFormaDePagamento = CriarFormaDePagamento;

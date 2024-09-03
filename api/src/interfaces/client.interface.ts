@@ -1,20 +1,5 @@
-export interface NovoCliente {
-  nome: string;
-  cpf: string;
-  telefone?: string;
-  email?: string;
-  dataNascimento?: Date;
-  genero?: string;
-  cep?: string;
-  uf?: string;
-  cidade?: string;
-  bairro?: string;
-  endereco?: string;
-  complemento?: string;
-  // createdBy: string; // O ID do usuário vai vir do token de autenticação
-}
-
-export interface InserirNovoCliente {
+export interface Cliente {
+  id: string;
   nome: string;
   cpf: string;
   telefone?: string;
@@ -30,17 +15,8 @@ export interface InserirNovoCliente {
   createdBy: string;
 }
 
-export interface EditarCliente {
-  nome?: string;
-  cpf?: string;
-  telefone?: string;
-  email?: string;
-  dataNascimento?: Date;
-  genero?: string;
-  cep?: string;
-  uf?: string;
-  cidade?: string;
-  bairro?: string;
-  endereco?: string;
-  complemento?: string;
-}
+export type InserirCliente = Omit<Cliente, "id">;
+
+export type CriarCliente = Omit<InserirCliente, "createdBy">;
+
+export type EditarCliente = Partial<CriarCliente>;

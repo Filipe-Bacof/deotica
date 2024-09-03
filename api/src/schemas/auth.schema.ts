@@ -1,7 +1,11 @@
 import Joi from "joi";
-import { NewPass, SignIn, SignUp } from "../interfaces/auth.interface";
+import {
+  NewPass,
+  SignIn,
+  SignUpConfirmPass,
+} from "../interfaces/auth.interface";
 
-export const authRegisterSchema = Joi.object<SignUp>({
+export const authRegisterSchema = Joi.object<SignUpConfirmPass>({
   nome: Joi.string().required().messages({
     "string.empty": `O nome do usuário não pode estar vazio`,
     "any.required": `O nome do usuário é obrigatório`,

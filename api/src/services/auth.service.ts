@@ -3,15 +3,19 @@ import crypto from "crypto";
 import authRepository from "../repositories/auth.repository";
 import { generateToken } from "../utils/token";
 import mailer from "../modules/mailer";
-import { SignIn, SignUp, Usuario } from "../interfaces/auth.interface";
+import {
+  SignIn,
+  SignUp,
+  SignUpConfirmPass,
+} from "../interfaces/auth.interface";
 import {
   templateEsqueciMinhaSenha,
   templatePrimeiroLogin,
 } from "../utils/generateTemplates";
 import profileRepository from "../repositories/profile.repository";
 
-async function signUp(data: SignUp) {
-  const dataUsuario: Usuario = {
+async function signUp(data: SignUpConfirmPass) {
+  const dataUsuario: SignUp = {
     nome: data.nome,
     email: data.email,
     senha: data.senha,

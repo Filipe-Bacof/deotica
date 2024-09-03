@@ -1,6 +1,6 @@
-import { Usuario } from "../interfaces/auth.interface";
+import { SignUp } from "../interfaces/auth.interface";
 
-export function templatePrimeiroLogin(dataUsuario: Usuario) {
+export function templatePrimeiroLogin(dataUsuario: SignUp) {
   return `
     <div>
       <h1>Você foi cadastrado na Deótica 🎉</h1>

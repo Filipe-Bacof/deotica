@@ -1,10 +1,7 @@
-import {
-  EditarCliente,
-  InserirNovoCliente,
-} from "../interfaces/client.interface";
+import { EditarCliente, InserirCliente } from "../interfaces/client.interface";
 import { prisma } from "../config/database";
 
-async function insert(data: InserirNovoCliente) {
+async function insert(data: InserirCliente) {
   console.log(data);
   return prisma.clientes.create({
     data: data,

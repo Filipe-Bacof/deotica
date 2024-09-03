@@ -1,4 +1,4 @@
-import { EditarCliente, NovoCliente } from "../interfaces/client.interface";
+import { EditarCliente, CriarCliente } from "../interfaces/client.interface";
 import clientRepository from "../repositories/client.repository";
 
 async function getAll() {
@@ -16,7 +16,7 @@ async function getById(id: string) {
   return result;
 }
 
-async function insert(data: NovoCliente, userID: string) {
+async function insert(data: CriarCliente, userID: string) {
   const result = await clientRepository.insert({ ...data, createdBy: userID });
   return result;
 }

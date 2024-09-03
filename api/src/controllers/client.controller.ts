@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import clientService from "../services/client.service";
-import { NovoCliente, EditarCliente } from "../interfaces/client.interface";
+import { CriarCliente, EditarCliente } from "../interfaces/client.interface";
 import { getUserIDbyToken } from "../utils/token";
 
 export async function clientGETALL(_req: Request, res: Response) {
@@ -21,7 +21,7 @@ export async function clientGETBYID(req: Request, res: Response) {
 }
 
 export async function clientPOST(req: Request, res: Response) {
-  const data: NovoCliente = req.body;
+  const data: CriarCliente = req.body;
   const { authorization } = req.headers;
   const { userID } = getUserIDbyToken(authorization);
 

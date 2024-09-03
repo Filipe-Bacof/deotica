@@ -1,7 +1,7 @@
 import Joi from "joi";
-import { NovoCliente } from "../interfaces/client.interface";
+import { CriarCliente } from "../interfaces/client.interface";
 
-export const newClientSchema = Joi.object<NovoCliente>({
+export const newClientSchema = Joi.object<CriarCliente>({
   nome: Joi.string().required().messages({
     "string.empty": `O nome do usuário não pode estar vazio`,
     "any.required": `O nome do usuário é obrigatório`,

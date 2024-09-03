@@ -1,9 +1,9 @@
 import { Request, Response } from "express";
 import authService from "../services/auth.service";
-import { SignIn, SignUp } from "../interfaces/auth.interface";
+import { SignIn, SignUpConfirmPass } from "../interfaces/auth.interface";
 
 export async function signUp(req: Request, res: Response) {
-  const data: SignUp = req.body;
+  const data: SignUpConfirmPass = req.body;
   const result = await authService.signUp(data);
   res.status(200).json({
     message: "Usuário criado com sucesso",

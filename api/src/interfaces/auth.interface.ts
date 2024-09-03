@@ -1,32 +1,23 @@
-export interface SignIn {
-  email: string;
-  senha: string;
-}
-
-export interface SignUp {
-  nome: string;
-  email: string;
-  senha: string;
-  confirmarSenha: string;
-  perfilId: number;
-}
-
-export interface CreateUser {
-  nome: string;
-  email: string;
-  senha: string;
-  perfilId: number;
-}
-
 export interface Usuario {
+  id: string;
   nome: string;
   email: string;
   senha: string;
   perfilId: number;
+  resetSenhaExpiracao?: string;
+  resetSenhaToken?: string;
 }
 
-export interface NewPass {
-  email: string;
-  senha: string;
+export type SignIn = Pick<Usuario, "email" | "senha">;
+
+export type CreateUser = SignIn & Pick<Usuario, "nome" | "perfilId">;
+
+export type SignUp = CreateUser;
+
+export type SignUpConfirmPass = SignUp & {
+  confirmarSenha: string;
+};
+
+export type NewPass = SignIn & {
   token: string;
-}
+};

@@ -31,5 +31,5 @@ export const newSaleSchema = Joi.object<CriarVenda>({
   valorDeEntrada: Joi.number().required(),
   desconto: Joi.number().required(),
   produtos: Joi.array().items(productSchema.min(1)).required(),
-  ordemServico: Joi.object(serviceOrderSchema).optional(),
+  // ordemServico: Joi.object(serviceOrderSchema).optional(),
 });
