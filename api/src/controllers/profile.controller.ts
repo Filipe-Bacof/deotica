@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import profileService from "../services/profile.service";
-import { Perfil } from "../interfaces/profile.interface";
+import { CriarPerfil, EditarPerfil } from "../interfaces/profile.interface";
 
 export async function profileGETALL(req: Request, res: Response) {
   const { populate } = req.query;
@@ -10,19 +10,15 @@ export async function profileGETALL(req: Request, res: Response) {
 }
 
 export async function profilePOST(req: Request, res: Response) {
-  const data: Perfil = req.body;
+  const data: CriarPerfil = req.body;
 
   const result = await profileService.insert(data);
   res.status(200).send(result);
 }
 export async function profilePUT(req: Request, res: Response) {
   const { id } = req.params;
-  const data: Perfil = req.body;
+  const data: EditarPerfil = req.body;
 
-  const result = await profileService.edit({
-    id: Number(id),
-    nome: data.nome,
-    permissoes: data.permissoes,
-  });
+  const result = await profileService.edit(Number(id), data);
   res.status(200).send(result);
 }

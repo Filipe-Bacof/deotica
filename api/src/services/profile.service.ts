@@ -1,39 +1,46 @@
-import { Perfil } from "../interfaces/profile.interface";
+import { CriarPerfil, EditarPerfil } from "../interfaces/profile.interface";
 import profileRepository from "../repositories/profile.repository";
 import { isPermission } from "../utils/profiles";
+
+function validatePermissions(permissions: string[]) {
+  if (permissions.some((permission) => !isPermission(permission))) {
+    throw {
+      status: 401,
+      message: "As permissões especificadas não existem.",
+    };
+  }
+}
 
 async function getAll(populateUser: boolean) {
   const result = await profileRepository.getAll(populateUser);
   return result;
 }
 
-async function insert(data: Perfil) {
-  if (data.permissoes.some((permission) => !isPermission(permission))) {
-    throw {
-      status: 401,
-      message: "As permissões especificadas não existem.",
-    };
-  }
+async function insert(data: CriarPerfil) {
+  validatePermissions(data.permissoes);
 
   const result = await profileRepository.insert(data);
   return result;
 }
-async function edit(data: Perfil) {
-  if (data.permissoes.some((permission) => !isPermission(permission))) {
+
+async function edit(id: number, data: EditarPerfil) {
+  if (!data.nome && !data.permissoes) {
     throw {
       status: 401,
-      message: "As permissões especificadas não existem.",
+      message: "Informe pelo menos um dos itens para ser atualizado.",
     };
   }
 
-  if (!data.id) {
+  data.permissoes && validatePermissions(data.permissoes);
+
+  if (!id) {
     throw {
       status: 401,
       message: "É preciso informar o ID para atualizar.",
     };
   }
 
-  const result = await profileRepository.edit(data);
+  const result = await profileRepository.edit(id, data);
   return result;
 }
 

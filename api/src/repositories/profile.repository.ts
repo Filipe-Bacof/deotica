@@ -1,7 +1,7 @@
-import { Perfil } from "../interfaces/profile.interface";
+import { CriarPerfil, EditarPerfil } from "../interfaces/profile.interface";
 import { prisma } from "../config/database";
 
-async function insert(data: Perfil) {
+async function insert(data: CriarPerfil) {
   console.log(data);
   return prisma.perfilUsuario.create({
     data: {
@@ -11,10 +11,10 @@ async function insert(data: Perfil) {
   });
 }
 
-async function edit(data: Perfil) {
+async function edit(id: number, data: EditarPerfil) {
   console.log(data);
   return prisma.perfilUsuario.update({
-    where: { id: data.id },
+    where: { id },
     data: {
       nome: data.nome,
       permissoes: data.permissoes,
