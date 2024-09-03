@@ -1,5 +1,6 @@
 import { EditarCliente, CriarCliente } from "../interfaces/client.interface";
 import clientRepository from "../repositories/client.repository";
+import { isUserAuthorizedToDoThisAction } from "../utils/permissions";
 
 async function getAll() {
   const result = await clientRepository.getAll();
@@ -17,6 +18,22 @@ async function getById(id: string) {
 }
 
 async function insert(data: CriarCliente, userID: string) {
+  const isClientAlreadyRegistered = await clientRepository.getByCpf(data.cpf);
+
+  if (isClientAlreadyRegistered) {
+    throw {
+      status: 409,
+      message: "Já existe um cliente cadastrado com este CPF",
+    };
+  }
+
+  if (!isUserAuthorizedToDoThisAction("CADASTRO_CLIENTE", userID)) {
+    throw {
+      status: 403,
+      message: "Você não tem autorização para cadastrar clientes",
+    };
+  }
+
   const result = await clientRepository.insert({ ...data, createdBy: userID });
   return result;
 }

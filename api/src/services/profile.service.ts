@@ -1,6 +1,6 @@
 import { CriarPerfil, EditarPerfil } from "../interfaces/profile.interface";
 import profileRepository from "../repositories/profile.repository";
-import { isPermission } from "../utils/profiles";
+import { isPermission } from "../utils/permissions";
 
 function validatePermissions(permissions: string[]) {
   if (permissions.some((permission) => !isPermission(permission))) {
