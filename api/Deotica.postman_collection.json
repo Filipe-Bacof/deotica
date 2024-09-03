@@ -91,7 +91,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"nome\": \"\",\r\n    \"email\": \"\",\r\n    \"senha\": \"\",\r\n    \"confirmarSenha\": \"\",\r\n    \"perfilId\": 1\r\n}",
+							"raw": "{\r\n    \"nome\": \"Clenice Francisco\",\r\n    \"email\": \"dhyvargaskr@gmail.com\",\r\n    \"senha\": \"AnotherDhy123!\",\r\n    \"confirmarSenha\": \"AnotherDhy123!\",\r\n    \"perfilId\": 2\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -169,7 +169,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"filipebacof@gmail.com\",\r\n    \"senha\": \"Deotica$Admin2024\",\r\n    \"token\": \"d774c98e141f\"\r\n}",
+							"raw": "{\r\n    \"email\": \"filipebacof@gmail.com\",\r\n    \"senha\": \"Deotica$Admin2024\",\r\n    \"token\": \"92ed11073dca\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -194,13 +194,125 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{URL}}/user/bc971cf0-4dfe-4e48-8268-919f22284719",
+							"raw": "{{URL}}/user/bf8b27d2-6ad1-493f-b9f5-8dfecf6a11b2",
 							"host": [
 								"{{URL}}"
 							],
 							"path": [
 								"user",
-								"bc971cf0-4dfe-4e48-8268-919f22284719"
+								"bf8b27d2-6ad1-493f-b9f5-8dfecf6a11b2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Clientes",
+			"item": [
+				{
+					"name": "Cadastrar Cliente",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"João Silva\",\r\n    \"email\": \"joao.silva@example.com\",\r\n    \"cpf\": \"12345678900\",\r\n    \"telefone\": \"(11) 91234-5678\",\r\n    \"dataNascimento\": \"1996-08-02T00:00:00.000Z\",\r\n    \"genero\": \"masculino\",\r\n    \"cep\": \"12345678\",\r\n    \"uf\": \"SP\",\r\n    \"cidade\": \"São Paulo\",\r\n    \"bairro\": \"Centro\",\r\n    \"endereco\": \"Rua das Flores, 123\",\r\n    \"complemento\": \"Apt 101\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/client",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"client"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Editar Cliente",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"João Silva\",\r\n    \"email\": \"joao.silva@example.com\",\r\n    \"cpf\": \"12345678900\",\r\n    \"telefone\": \"(11) 91234-5678\",\r\n    \"dataNascimento\": \"1996-08-02T00:00:00.000Z\",\r\n    \"genero\": \"masculino\",\r\n    \"cep\": \"12345678\",\r\n    \"uf\": \"SP\",\r\n    \"cidade\": \"São Paulo\",\r\n    \"bairro\": \"Centro\",\r\n    \"endereco\": \"Rua das Flores, 123\",\r\n    \"complemento\": \"Apt 101\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/client",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"client"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Todos os Clientes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/client",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"client"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cliente por CPF",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/client/cpf/03739408073",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"client",
+								"cpf",
+								"03739408073"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cliente por ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/client/id/12312412",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"client",
+								"id",
+								"12312412"
 							]
 						}
 					},
@@ -214,7 +326,7 @@
 		"bearer": [
 			{
 				"key": "token",
-				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiJiYzk3MWNmMC00ZGZlLTRlNDgtODI2OC05MTlmMjIyODQ3MTkiLCJpYXQiOjE3MjMwNTcyNDQsImV4cCI6MTcyMzY2MjA0NH0.HRIXaLdi3H4pLTYknrcPRLktgja2SCDhOq7MPishxZg",
+				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiJiZjhiMjdkMi02YWQxLTQ5M2YtYjlmNS04ZGZlY2Y2YTExYjIiLCJpYXQiOjE3MjMwNjQ2OTMsImV4cCI6MTcyMzY2OTQ5M30.2iQfIjbRsu7xxXbE8N5r_PDI2jlpR6LCGqo10S7f3Uc",
 				"type": "string"
 			}
 		]

@@ -8,7 +8,7 @@ import {
 } from "../controllers/client.controller";
 import { validateHeaderToken } from "../middlewares/validateToken";
 import { validateSchema } from "../middlewares/validateSchema";
-import { newClientSchema } from "../schemas/client.schema";
+import { editClientSchema, newClientSchema } from "../schemas/client.schema";
 
 const clientRouter = Router();
 
@@ -25,6 +25,11 @@ clientRouter.post(
   clientPOST
 );
 
-clientRouter.put("/client/:id", validateHeaderToken, clientPUT);
+clientRouter.put(
+  "/client/:id",
+  validateHeaderToken,
+  validateSchema(editClientSchema),
+  clientPUT
+);
 
 export default clientRouter;
