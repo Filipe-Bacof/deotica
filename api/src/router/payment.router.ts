@@ -20,7 +20,12 @@ paymentRouter.post(
   paymentPOST
 );
 
-paymentRouter.put("/payment/:id", validateHeaderToken, paymentPUT);
+paymentRouter.put(
+  "/payment/:id",
+  validateHeaderToken,
+  validateSchema(newPaymentMethodSchema), // Como é o mesmo corpo de requisição informado nos dois não tem problemas utilizar o mesmo schema
+  paymentPUT
+);
 
 paymentRouter.delete("/payment/:id", validateHeaderToken, paymentDELETE);
 
