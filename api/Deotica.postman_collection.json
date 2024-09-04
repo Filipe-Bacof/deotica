@@ -286,14 +286,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{URL}}/client/cpf/03739408073",
+							"raw": "{{URL}}/client/cpf/12345678900",
 							"host": [
 								"{{URL}}"
 							],
 							"path": [
 								"client",
 								"cpf",
-								"03739408073"
+								"12345678900"
 							]
 						}
 					},
@@ -305,14 +305,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{URL}}/client/id/12312412",
+							"raw": "{{URL}}/client/id/f864b01a-b9f9-4345-9634-68d2c165efbd",
 							"host": [
 								"{{URL}}"
 							],
 							"path": [
 								"client",
 								"id",
-								"12312412"
+								"f864b01a-b9f9-4345-9634-68d2c165efbd"
 							]
 						}
 					},
@@ -330,7 +330,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"descricao\": \"Dinheiro\"\r\n}",
+							"raw": "{\r\n    \"descricao\": \"PIXXX\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -356,7 +356,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"descricao\": \"Dinheiro\"\r\n}",
+							"raw": "{\r\n    \"descricao\": \"PIX\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -364,13 +364,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{URL}}/payment/1",
+							"raw": "{{URL}}/payment/2",
 							"host": [
 								"{{URL}}"
 							],
 							"path": [
 								"payment",
-								"1"
+								"2"
 							]
 						}
 					},
@@ -457,13 +457,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{URL}}/product/1242141",
+							"raw": "{{URL}}/product/6b3676ad-730d-4e8c-b55c-465558309c06",
 							"host": [
 								"{{URL}}"
 							],
 							"path": [
 								"product",
-								"1242141"
+								"6b3676ad-730d-4e8c-b55c-465558309c06"
 							]
 						}
 					},
@@ -484,14 +484,14 @@
 							}
 						},
 						"url": {
-							"raw": "{{URL}}/product/minus/1242141",
+							"raw": "{{URL}}/product/minus/6b3676ad-730d-4e8c-b55c-465558309c06",
 							"host": [
 								"{{URL}}"
 							],
 							"path": [
 								"product",
 								"minus",
-								"1242141"
+								"6b3676ad-730d-4e8c-b55c-465558309c06"
 							]
 						}
 					},
@@ -512,14 +512,14 @@
 							}
 						},
 						"url": {
-							"raw": "{{URL}}/product/plus/1242141",
+							"raw": "{{URL}}/product/plus/6b3676ad-730d-4e8c-b55c-465558309c06",
 							"host": [
 								"{{URL}}"
 							],
 							"path": [
 								"product",
 								"plus",
-								"1242141"
+								"6b3676ad-730d-4e8c-b55c-465558309c06"
 							]
 						}
 					},
@@ -532,7 +532,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"quantidade\": 260\r\n}",
+							"raw": "{\r\n    \"quantidade\": 800\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -540,14 +540,14 @@
 							}
 						},
 						"url": {
-							"raw": "{{URL}}/product/count/1242141",
+							"raw": "{{URL}}/product/count/6b3676ad-730d-4e8c-b55c-465558309c06",
 							"host": [
 								"{{URL}}"
 							],
 							"path": [
 								"product",
 								"count",
-								"1242141"
+								"6b3676ad-730d-4e8c-b55c-465558309c06"
 							]
 						}
 					},
@@ -559,13 +559,13 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{URL}}/product/1242141",
+							"raw": "{{URL}}/product/716bb833-8ea9-4dbd-a5c8-5d2791fb1ea6",
 							"host": [
 								"{{URL}}"
 							],
 							"path": [
 								"product",
-								"1242141"
+								"716bb833-8ea9-4dbd-a5c8-5d2791fb1ea6"
 							]
 						}
 					},
@@ -636,6 +636,32 @@
 						"body": {
 							"mode": "raw",
 							"raw": "{\r\n    \"nome\": \"Filipe Bacof\",\r\n    \"email\": \"filipebacof@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/promoEmail",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"promoEmail"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Desativar Email Promocional",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"filipebacof@gmail.com\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -794,7 +820,7 @@
 		"bearer": [
 			{
 				"key": "token",
-				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiJiZjhiMjdkMi02YWQxLTQ5M2YtYjlmNS04ZGZlY2Y2YTExYjIiLCJpYXQiOjE3MjMwNjQ2OTMsImV4cCI6MTcyMzY2OTQ5M30.2iQfIjbRsu7xxXbE8N5r_PDI2jlpR6LCGqo10S7f3Uc",
+				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiJiZjhiMjdkMi02YWQxLTQ5M2YtYjlmNS04ZGZlY2Y2YTExYjIiLCJpYXQiOjE3MjU0MDYyMDMsImV4cCI6MTcyNjAxMTAwM30.EFa4pMlIRWgJSmHoUCtYDRnFBLzAA_05gtlQjvW59wI",
 				"type": "string"
 			}
 		]

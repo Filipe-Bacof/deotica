@@ -2,7 +2,7 @@ import { CriarEmailPromocional } from "../interfaces/promoEmail.interface";
 import promoEmailRepository from "../repositories/promoEmail.repository";
 
 async function getAll() {
-  const result = await promoEmailRepository.getAll();
+  const result = await promoEmailRepository.getAllActive();
   return result;
 }
 
@@ -14,7 +14,7 @@ async function insert(data: CriarEmailPromocional) {
     if (isAlreadyInserted.ativo) {
       throw {
         status: 422,
-        message: "Esse usuário já foi inserido.",
+        message: "Esse e-mail já foi inserido.",
       };
     } else {
       const updated = await promoEmailRepository.updateStatus(
@@ -29,6 +29,21 @@ async function insert(data: CriarEmailPromocional) {
   }
 }
 
-const promoEmailService = { getAll, insert };
+async function desactivate(email: string) {
+  const result = await promoEmailRepository.getOneByEmail(email);
+
+  if (!result) {
+    throw {
+      status: 404,
+      message: "Esse e-mail não foi encontrado.",
+    };
+  }
+
+  const updated = await promoEmailRepository.updateStatus(result.id, false);
+
+  return updated;
+}
+
+const promoEmailService = { getAll, insert, desactivate };
 
 export default promoEmailService;

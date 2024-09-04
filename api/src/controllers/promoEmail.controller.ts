@@ -13,3 +13,10 @@ export async function promoEmailPOST(req: Request, res: Response) {
   const result = await promoEmailService.insert(data);
   res.status(200).send(result);
 }
+
+export async function promoEmailPATCH(req: Request, res: Response) {
+  const data: { email: string } = req.body;
+
+  const result = await promoEmailService.desactivate(data.email);
+  res.status(200).send(result);
+}

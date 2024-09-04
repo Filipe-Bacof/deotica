@@ -2,10 +2,14 @@ import { Router } from "express";
 import {
   promoEmailGETALL,
   promoEmailPOST,
+  promoEmailPATCH,
 } from "../controllers/promoEmail.controller";
 import { validateHeaderToken } from "../middlewares/validateToken";
 import { validateSchema } from "../middlewares/validateSchema";
-import { promoEmailSchema } from "../schemas/promoEmail.schema";
+import {
+  promoEmailDesactivateSchema,
+  promoEmailSchema,
+} from "../schemas/promoEmail.schema";
 
 const promoEmailRouter = Router();
 
@@ -18,6 +22,12 @@ promoEmailRouter.post(
   "/promoEmail",
   validateSchema(promoEmailSchema),
   promoEmailPOST
+);
+
+promoEmailRouter.patch(
+  "/promoEmail",
+  validateSchema(promoEmailDesactivateSchema),
+  promoEmailPATCH
 );
 
 export default promoEmailRouter;

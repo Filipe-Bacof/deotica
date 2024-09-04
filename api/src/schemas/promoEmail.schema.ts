@@ -12,3 +12,11 @@ export const promoEmailSchema = Joi.object<CriarEmailPromocional>({
     "string.email": `Informe um email válido`,
   }),
 });
+
+export const promoEmailDesactivateSchema = Joi.object<{ email: string }>({
+  email: Joi.string().email().required().messages({
+    "string.empty": `O email não pode estar vazio`,
+    "any.required": `O email é obrigatório`,
+    "string.email": `Informe um email válido`,
+  }),
+});
