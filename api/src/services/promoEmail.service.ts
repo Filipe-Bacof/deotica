@@ -84,6 +84,10 @@ async function isClient(email: string) {
     message,
     ...(isClient && { cliente: isClient }),
     ...(isOnPromotionalEmails && { emailsPromocionais: isOnPromotionalEmails }),
+    tables: {
+      clientTable: isClient ? true : false,
+      promoEmailTable: isOnPromotionalEmails ? true : false,
+    },
   };
 }
 
