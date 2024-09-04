@@ -655,6 +655,33 @@
 					"response": []
 				},
 				{
+					"name": "Verificar se é Cliente",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"filipebacof@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/promoEmail/isClient",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"promoEmail",
+								"isClient"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Desativar Email Promocional",
 					"request": {
 						"method": "PATCH",
@@ -820,6 +847,33 @@
 						"body": {
 							"mode": "raw",
 							"raw": "{\r\n    \"concluido\": \"retirada\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/serviceOrder/1",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"serviceOrder",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Editar Dados OS",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"dataDeEntrega\": \"2024-09-01T00:00:00.000Z\",\r\n    \"concluido\": \"pendente\",\r\n    \"tipoLente\": \"Progresso\",\r\n    \"modeloLente\": \"XYZ\",\r\n    \"tratamentos\": \"Antirreflexo\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"

@@ -20,3 +20,5 @@ export const promoEmailDesactivateSchema = Joi.object<{ email: string }>({
     "string.email": `Informe um email válido`,
   }),
 });
+
+export const isClientSchema = promoEmailDesactivateSchema;

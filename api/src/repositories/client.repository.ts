@@ -42,12 +42,22 @@ async function getById(id: string) {
   return result;
 }
 
+async function getOneByEmail(email: string) {
+  const result = await prisma.clientes.findFirst({
+    where: { email },
+    include: { criador: true },
+  });
+
+  return result;
+}
+
 const clientRepository = {
   insert,
   edit,
   getAll,
   getByCpf,
   getById,
+  getOneByEmail,
 };
 
 export default clientRepository;

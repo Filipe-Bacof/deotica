@@ -3,10 +3,12 @@ import {
   promoEmailGETALL,
   promoEmailPOST,
   promoEmailPATCH,
+  promoEmailIsClient,
 } from "../controllers/promoEmail.controller";
 import { validateHeaderToken } from "../middlewares/validateToken";
 import { validateSchema } from "../middlewares/validateSchema";
 import {
+  isClientSchema,
   promoEmailDesactivateSchema,
   promoEmailSchema,
 } from "../schemas/promoEmail.schema";
@@ -28,6 +30,13 @@ promoEmailRouter.patch(
   "/promoEmail",
   validateSchema(promoEmailDesactivateSchema),
   promoEmailPATCH
+);
+
+promoEmailRouter.post(
+  "/promoEmail/isClient",
+  validateHeaderToken,
+  validateSchema(isClientSchema),
+  promoEmailIsClient
 );
 
 export default promoEmailRouter;
