@@ -727,7 +727,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"formaDePagamentoId\": 1,\r\n    \"clienteId\": \"4f25d5d0-c5eb-4f71-9ebf-3c5b6de4c7d7\",\r\n    \"numeroDeParcelas\": 3,\r\n    \"valorDeEntrada\": 500.00,\r\n    \"desconto\": 50.00,\r\n    \"produtos\": [\r\n        {\r\n            \"id\": \"5d9f9b7e-1c57-4f55-bce2-7b9e648ef56a\",\r\n            \"preco\": 100.00,\r\n            \"quantidade\": 2\r\n        }\r\n    ],\r\n    \"ordemServico\": {\r\n        \"dataDeEntrega\": \"2024-09-01T00:00:00.000Z\",\r\n        \"concluido\": \"pendente\",\r\n        \"tipoLente\": \"Progresso\",\r\n        \"modeloLente\": \"XYZ\",\r\n        \"tratamentos\": \"Antirreflexo\"\r\n    }\r\n}\r\n",
+							"raw": "{\r\n    \"formaDePagamentoId\": 1,\r\n    \"clienteId\": \"f864b01a-b9f9-4345-9634-68d2c165efbd\",\r\n    \"numeroDeParcelas\": 3,\r\n    \"valorDeEntrada\": 500.00,\r\n    \"desconto\": 50.00,\r\n    \"produtos\": [\r\n        {\r\n            \"id\": \"6b3676ad-730d-4e8c-b55c-465558309c06\",\r\n            \"preco\": 100.00,\r\n            \"quantidade\": 5\r\n        }\r\n    ],\r\n    \"ordemServico\": {\r\n        \"dataDeEntrega\": \"2024-09-01T00:00:00.000Z\",\r\n        \"concluido\": \"pendente\",\r\n        \"tipoLente\": \"Progresso\",\r\n        \"modeloLente\": \"XYZ\",\r\n        \"tratamentos\": \"Antirreflexo\"\r\n    }\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -753,7 +753,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"formaDePagamentoId\": 1,\r\n    \"clienteId\": \"4f25d5d0-c5eb-4f71-9ebf-3c5b6de4c7d7\",\r\n    \"numeroDeParcelas\": 3,\r\n    \"valorDeEntrada\": 500.00,\r\n    \"desconto\": 50.00,\r\n    \"produtos\": [\r\n        {\r\n            \"id\": \"5d9f9b7e-1c57-4f55-bce2-7b9e648ef56a\",\r\n            \"preco\": 100.00,\r\n            \"quantidade\": 2\r\n        }\r\n    ]\r\n}\r\n",
+							"raw": "{\r\n    \"formaDePagamentoId\": 1,\r\n    \"clienteId\": \"f864b01a-b9f9-4345-9634-68d2c165efbd\",\r\n    \"numeroDeParcelas\": 3,\r\n    \"valorDeEntrada\": 500.00,\r\n    \"desconto\": 50.00,\r\n    \"produtos\": [\r\n        {\r\n            \"id\": \"6b3676ad-730d-4e8c-b55c-465558309c06\",\r\n            \"preco\": 100.00,\r\n            \"quantidade\": 5\r\n        }\r\n    ]\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -800,13 +800,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{URL}}/serviceOrder/151331",
+							"raw": "{{URL}}/serviceOrder/1",
 							"host": [
 								"{{URL}}"
 							],
 							"path": [
 								"serviceOrder",
-								"151331"
+								"1"
 							]
 						}
 					},
