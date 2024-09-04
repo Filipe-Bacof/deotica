@@ -1,5 +1,5 @@
 import Joi from "joi";
-import { CriarVenda } from "../interfaces/sale.interface";
+import { CriarVenda, CriarVendaRequest } from "../interfaces/sale.interface";
 import { VendaProduto } from "../interfaces/product.interface";
 import { CriarOS } from "../interfaces/serviceOrder.interface";
 
@@ -64,8 +64,7 @@ const serviceOrderSchema = Joi.object<CriarOS>({
     "boolean.base": `O campo "somente lente" deve ser um valor booleano`,
   }),
 });
-
-export const newSaleSchema = Joi.object<CriarVenda>({
+const saleSchema = Joi.object<CriarVenda>({
   formaDePagamentoId: Joi.number().integer().min(1).required().messages({
     "number.base": `O ID da forma de pagamento deve ser um número inteiro válido`,
     "number.min": `O ID da forma de pagamento deve ser maior ou igual a 1`,
@@ -91,6 +90,10 @@ export const newSaleSchema = Joi.object<CriarVenda>({
     "number.base": `O desconto deve ser um número válido com até 2 casas decimais`,
     "any.required": `O desconto é obrigatório`,
   }),
+});
+
+export const newSaleSchema = Joi.object<CriarVendaRequest>({
+  venda: saleSchema.required(),
   produtos: Joi.array().items(productSchema).min(1).required().messages({
     "array.min": `Você deve informar pelo menos um produto`,
     "any.required": `Os produtos são obrigatórios`,

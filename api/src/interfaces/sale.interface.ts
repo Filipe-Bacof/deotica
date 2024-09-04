@@ -13,7 +13,10 @@ export interface Venda {
 
 export type InserirVenda = Omit<Venda, "id">;
 
-export type CriarVenda = Omit<InserirVenda, "createdBy"> & {
+export type CriarVenda = Omit<InserirVenda, "createdBy">;
+
+export type CriarVendaRequest = {
+  venda: CriarVenda;
   produtos: VendaProduto[];
   ordemServico?: CriarOS;
 };

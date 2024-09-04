@@ -1,4 +1,4 @@
-import { CriarVenda, InserirVenda } from "../interfaces/sale.interface";
+import { CriarVendaRequest } from "../interfaces/sale.interface";
 import saleRepository from "../repositories/sale.repository";
 import { isUUID } from "../utils/validations";
 import salesProductsService from "./salesProducts.service";
@@ -26,17 +26,11 @@ async function getById(id: string) {
   return result;
 }
 
-async function insert(data: CriarVenda, userID: string) {
-  const dataVenda: InserirVenda = {
-    clienteId: data.clienteId,
-    desconto: data.desconto,
-    formaDePagamentoId: data.formaDePagamentoId,
-    valorDeEntrada: data.valorDeEntrada,
-    ...(data.numeroDeParcelas && { numeroDeParcelas: data.numeroDeParcelas }),
+async function insert(data: CriarVendaRequest, userID: string) {
+  const venda = await saleRepository.insert({
+    ...data.venda,
     createdBy: userID,
-  };
-
-  const venda = await saleRepository.insert(dataVenda);
+  });
 
   const produtos = await Promise.all(
     data.produtos.map((product) =>
