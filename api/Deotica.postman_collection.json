@@ -811,6 +811,33 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Atualizar Status OS",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"concluido\": \"retirada\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/serviceOrder/1",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"serviceOrder",
+								"1"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		}

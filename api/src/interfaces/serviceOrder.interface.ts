@@ -3,7 +3,7 @@ export interface OrdemServico {
   vendaId: string;
   clienteId: string;
   dataDeEntrega?: Date;
-  concluido?: string;
+  concluido?: "pendente" | "retirada" | "finalizado";
   olhoEsquerdo?: string;
   olhoDireito?: string;
   tipoLente?: string;
@@ -20,3 +20,5 @@ export interface OrdemServico {
 export type InserirOS = Omit<OrdemServico, "id">;
 
 export type CriarOS = Omit<InserirOS, "vendaId" | "clienteId" | "createdBy">;
+
+export type AtualizarStatusOS = Required<Pick<OrdemServico, "concluido">>;
