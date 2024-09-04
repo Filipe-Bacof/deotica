@@ -7,6 +7,19 @@ async function getAll() {
   return result;
 }
 
+async function getOneByEmail(email: string) {
+  const result = await promoEmailRepository.getOneByEmail(email);
+
+  if (!result) {
+    throw {
+      status: 404,
+      message: "Esse e-mail não foi encontrado.",
+    };
+  }
+
+  return result;
+}
+
 async function insert(data: CriarEmailPromocional) {
   const isAlreadyInserted = await promoEmailRepository.getOneByEmail(
     data.email
@@ -82,6 +95,12 @@ async function isClient(email: string) {
   };
 }
 
-const promoEmailService = { getAll, insert, desactivate, isClient };
+const promoEmailService = {
+  getAll,
+  getOneByEmail,
+  insert,
+  desactivate,
+  isClient,
+};
 
 export default promoEmailService;
