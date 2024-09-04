@@ -8,7 +8,7 @@ export default {
     extend: {
       fontFamily: {
         "inter": ["Inter", "sans-serif"],
-        "montserrat": ["Montserrat", "sans-serif"],
+        "deotica": ["Mina", "sans-serif"],
       },
       colors: {
         blueDeotica: "#0284d6"
