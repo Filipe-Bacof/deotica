@@ -46,42 +46,38 @@ async function desactivate(email: string) {
 }
 
 async function isClient(email: string) {
-  const isOnPromotionalEmails = await promoEmailRepository.getOneByEmail(email);
-  const isClient = await clientRepository.getOneByEmail(email);
+  const [isClient, isOnPromotionalEmails] = await Promise.all([
+    clientRepository.getOneByEmail(email),
+    promoEmailRepository.getOneByEmail(email),
+  ]);
 
-  let message = "";
+  const getMessage = () => {
+    if (isClient && isOnPromotionalEmails) {
+      return isOnPromotionalEmails.ativo
+        ? "Esse e-mail está cadastrado como cliente e também para receber e-mails promocionais."
+        : "Esse e-mail está cadastrado como cliente, mas não deve receber e-mails promocionais, pois está com status inativo.";
+    }
 
-  if (isClient && isOnPromotionalEmails) {
-    if (isOnPromotionalEmails.ativo) {
-      message =
-        "Esse e-mail está cadastrado como cliente e também para receber e-mails promocionais.";
-    } else {
-      message =
-        "Esse e-mail está cadastrado como cliente, mas não deve receber e-mails promocionais, pois está com status inativo.";
+    if (isClient) {
+      return "Esse e-mail está cadastrado como cliente, mas não está cadastrado para receber e-mails promocionais.";
     }
-  } else if (isClient) {
-    message =
-      "Esse e-mail está cadastrado como cliente, mas não está cadastrado para receber e-mails promocionais.";
-  } else if (isOnPromotionalEmails) {
-    if (isOnPromotionalEmails.ativo) {
-      message =
-        "Esse e-mail não está cadastrado como cliente, mas está cadastrado para receber e-mails promocionais.";
-    } else {
-      message =
-        "Esse e-mail não está cadastrado como cliente e não deve receber e-mails promocionais, pois está com status inativo.";
+
+    if (isOnPromotionalEmails) {
+      return isOnPromotionalEmails.ativo
+        ? "Esse e-mail não está cadastrado como cliente, mas está cadastrado para receber e-mails promocionais."
+        : "Esse e-mail não está cadastrado como cliente e não deve receber e-mails promocionais, pois está com status inativo.";
     }
-  } else {
-    message =
-      "Esse e-mail não está cadastrado para receber e-mails promocionais e também não está cadastrado como cliente.";
-  }
+
+    return "Esse e-mail não está cadastrado como cliente e também não está cadastrado para receber e-mails promocionais.";
+  };
 
   return {
-    message,
+    message: getMessage(),
     ...(isClient && { cliente: isClient }),
     ...(isOnPromotionalEmails && { emailsPromocionais: isOnPromotionalEmails }),
     tables: {
-      clientTable: isClient ? true : false,
-      promoEmailTable: isOnPromotionalEmails ? true : false,
+      clientTable: !!isClient,
+      promoEmailTable: !!isOnPromotionalEmails,
     },
   };
 }
