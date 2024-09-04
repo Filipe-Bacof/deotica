@@ -1,6 +1,7 @@
 import { prisma } from "../config/database";
 import {
   AtualizarStatusOS,
+  EditarOS,
   InserirOS,
 } from "../interfaces/serviceOrder.interface";
 
@@ -36,11 +37,22 @@ async function updateStatus(id: number, data: AtualizarStatusOS) {
   return result;
 }
 
+async function updateDataOS(id: number, data: EditarOS) {
+  const result = await prisma.ordemServico.update({
+    where: { id },
+    data,
+    include: { criador: true },
+  });
+
+  return result;
+}
+
 const serviceOrderRepository = {
   insert,
   getAll,
   getById,
   updateStatus,
+  updateDataOS,
 };
 
 export default serviceOrderRepository;

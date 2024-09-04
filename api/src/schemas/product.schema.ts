@@ -3,6 +3,7 @@ import {
   AtualizarQuantidadeProduto,
   CriarProduto,
   EditarProduto,
+  VendaProduto,
 } from "../interfaces/product.interface";
 
 export const newProductSchema = Joi.object<CriarProduto>({
@@ -91,3 +92,23 @@ export const updateQuantityProductSchema =
       "any.required": `A quantidade do produto é obrigatória`,
     }),
   });
+
+export const productSaleSchema = Joi.object<VendaProduto>({
+  id: Joi.string()
+    .guid({ version: ["uuidv4"] })
+    .required()
+    .messages({
+      "string.guid": `O ID do produto deve ser um UUID válido`,
+      "any.required": `O ID do produto é obrigatório`,
+    }),
+  preco: Joi.number().precision(2).positive().required().messages({
+    "number.base": `O preço deve ser um número válido com até 2 casas decimais`,
+    "number.positive": `O preço deve ser maior que 0`,
+    "any.required": `O preço do produto é obrigatório`,
+  }),
+  quantidade: Joi.number().integer().min(1).required().messages({
+    "number.base": `A quantidade deve ser um número válido`,
+    "number.min": `A quantidade deve ser maior ou igual a 1`,
+    "any.required": `A quantidade do produto é obrigatória`,
+  }),
+});

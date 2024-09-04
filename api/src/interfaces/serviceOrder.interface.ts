@@ -19,6 +19,10 @@ export interface OrdemServico {
 
 export type InserirOS = Omit<OrdemServico, "id">;
 
-export type CriarOS = Omit<InserirOS, "vendaId" | "clienteId" | "createdBy">;
+export type CriarOS = Partial<
+  Omit<InserirOS, "id" | "vendaId" | "clienteId" | "createdBy">
+>;
+
+export type EditarOS = CriarOS;
 
 export type AtualizarStatusOS = Required<Pick<OrdemServico, "concluido">>;

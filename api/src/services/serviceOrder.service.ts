@@ -1,5 +1,6 @@
 import {
   AtualizarStatusOS,
+  EditarOS,
   InserirOS,
 } from "../interfaces/serviceOrder.interface";
 import serviceOrderRepository from "../repositories/serviceOrder.repository";
@@ -24,11 +25,17 @@ async function updateStatus(id: number, data: AtualizarStatusOS) {
   return result;
 }
 
+async function updateDataOS(id: number, data: EditarOS) {
+  const result = await serviceOrderRepository.updateDataOS(id, data);
+  return result;
+}
+
 const serviceOrderService = {
   insert,
   getAll,
   getById,
   updateStatus,
+  updateDataOS,
 };
 
 export default serviceOrderService;

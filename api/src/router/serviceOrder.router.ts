@@ -3,10 +3,14 @@ import {
   serviceOrderGETALL,
   serviceOrderGETBYID,
   serviceOrderPATCHSTATUS,
+  serviceOrderPUT,
 } from "../controllers/serviceOrder.controller";
 import { validateHeaderToken } from "../middlewares/validateToken";
 import { validateSchema } from "../middlewares/validateSchema";
-import { updateServiceOrderStatusSchema } from "../schemas/serviceOrder.schema";
+import {
+  editServiceOrderSchema,
+  updateServiceOrderStatusSchema,
+} from "../schemas/serviceOrder.schema";
 
 const serviceOrderRouter = Router();
 
@@ -27,6 +31,13 @@ serviceOrderRouter.patch(
   validateHeaderToken,
   validateSchema(updateServiceOrderStatusSchema),
   serviceOrderPATCHSTATUS
+);
+
+serviceOrderRouter.put(
+  "/serviceOrder/:id",
+  validateHeaderToken,
+  validateSchema(editServiceOrderSchema),
+  serviceOrderPUT
 );
 
 export default serviceOrderRouter;
