@@ -13,6 +13,7 @@ import {
   templatePrimeiroLogin,
 } from "../utils/generateTemplates";
 import profileRepository from "../repositories/profile.repository";
+import { isUUID } from "../utils/validations";
 
 async function signUp(data: SignUpConfirmPass) {
   const dataUsuario: SignUp = {
@@ -26,7 +27,7 @@ async function signUp(data: SignUpConfirmPass) {
   console.log(data);
   if (checkEmailIsValid) {
     throw {
-      status: 401,
+      status: 409,
       message: `Email já foi cadastrado.`,
     };
   }
@@ -34,7 +35,7 @@ async function signUp(data: SignUpConfirmPass) {
   const checkRoleIsValid = await profileRepository.getOne(data.perfilId);
   if (!checkRoleIsValid) {
     throw {
-      status: 401,
+      status: 404,
       message: `Este perfil de usuário não existe.`,
     };
   }
@@ -170,12 +171,19 @@ async function newPass(email: string, senha: string) {
 }
 
 async function getUserData(id: string) {
+  if (!isUUID(id)) {
+    throw {
+      status: 422,
+      message: `Este ID não é válido!`,
+    };
+  }
+
   const foundUser = await authRepository.getOneUser(id);
 
   if (!foundUser) {
     throw {
       status: 404,
-      message: `This user is not registered.`,
+      message: `Usuário não cadastrado!`,
     };
   }
 
@@ -188,7 +196,7 @@ async function getUserDataByEmail(email: string) {
   if (!foundUser) {
     throw {
       status: 404,
-      message: `This user is not registered.`,
+      message: `Usuário não cadastrado!`,
     };
   }
 

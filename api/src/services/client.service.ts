@@ -1,6 +1,7 @@
 import { EditarCliente, CriarCliente } from "../interfaces/client.interface";
 import clientRepository from "../repositories/client.repository";
 import { isUserAuthorizedToDoThisAction } from "../utils/permissions";
+import { isUUID } from "../utils/validations";
 
 async function getAll() {
   const result = await clientRepository.getAll();
@@ -13,6 +14,19 @@ async function getByCpf(cpf: string) {
 }
 
 async function getById(id: string) {
+  if (!id) {
+    throw {
+      status: 401,
+      message: "É preciso informar o ID para atualizar.",
+    };
+  }
+  if (!isUUID(id)) {
+    throw {
+      status: 422,
+      message: `Este ID não é válido!`,
+    };
+  }
+
   const result = await clientRepository.getById(id);
   return result;
 }
@@ -43,6 +57,12 @@ async function edit(id: string, data: EditarCliente) {
     throw {
       status: 401,
       message: "É preciso informar o ID para atualizar.",
+    };
+  }
+  if (!isUUID(id)) {
+    throw {
+      status: 422,
+      message: `Este ID não é válido!`,
     };
   }
 

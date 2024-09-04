@@ -1,5 +1,6 @@
 import { CriarVenda } from "../interfaces/sale.interface";
 import saleRepository from "../repositories/sale.repository";
+import { isUUID } from "../utils/validations";
 import salesProductsService from "./salesProducts.service";
 import serviceOrderService from "./serviceOrder.service";
 
@@ -9,6 +10,18 @@ async function getAll() {
 }
 
 async function getById(id: string) {
+  if (!id) {
+    throw {
+      status: 401,
+      message: "É preciso informar o ID para atualizar.",
+    };
+  }
+  if (!isUUID(id)) {
+    throw {
+      status: 422,
+      message: `Este ID não é válido!`,
+    };
+  }
   const result = await saleRepository.getById(id);
   return result;
 }

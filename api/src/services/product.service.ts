@@ -1,6 +1,7 @@
 import { CriarProduto, EditarProduto } from "../interfaces/product.interface";
 import productRepository from "../repositories/product.repository";
 import salesProductsRepository from "../repositories/salesProducts.repository";
+import { isUUID } from "../utils/validations";
 
 async function getAll() {
   const result = await productRepository.getAll();
@@ -8,6 +9,19 @@ async function getAll() {
 }
 
 async function getById(id: string) {
+  if (!id) {
+    throw {
+      status: 401,
+      message: "É preciso informar o ID para atualizar.",
+    };
+  }
+  if (!isUUID(id)) {
+    throw {
+      status: 422,
+      message: `Este ID não é válido!`,
+    };
+  }
+
   const result = await productRepository.getById(id);
   return result;
 }
@@ -24,6 +38,12 @@ async function edit(id: string, data: EditarProduto) {
       message: "É preciso informar o ID para atualizar.",
     };
   }
+  if (!isUUID(id)) {
+    throw {
+      status: 422,
+      message: `Este ID não é válido!`,
+    };
+  }
 
   const result = await productRepository.edit(id, data);
   return result;
@@ -34,6 +54,12 @@ async function removeQuantityFromStock(id: string, quantidade: number) {
     throw {
       status: 401,
       message: "É preciso informar o ID para atualizar.",
+    };
+  }
+  if (!isUUID(id)) {
+    throw {
+      status: 422,
+      message: `Este ID não é válido!`,
     };
   }
 
@@ -60,6 +86,12 @@ async function addQuantityFromStock(id: string, quantidade: number) {
       message: "É preciso informar o ID para atualizar.",
     };
   }
+  if (!isUUID(id)) {
+    throw {
+      status: 422,
+      message: `Este ID não é válido!`,
+    };
+  }
 
   const product = await productRepository.getById(id);
 
@@ -76,6 +108,12 @@ async function updateQuantity(id: string, quantidade: number) {
       message: "É preciso informar o ID para atualizar.",
     };
   }
+  if (!isUUID(id)) {
+    throw {
+      status: 422,
+      message: `Este ID não é válido!`,
+    };
+  }
 
   const result = await productRepository.updateQuantity(id, quantidade);
   return result;
@@ -86,6 +124,20 @@ async function deleteProduct(id: string) {
     throw {
       status: 401,
       message: "É preciso informar o ID para deletar.",
+    };
+  }
+  if (!isUUID(id)) {
+    throw {
+      status: 422,
+      message: `Este ID não é válido!`,
+    };
+  }
+
+  const product = await productRepository.getById(id);
+  if (!product) {
+    throw {
+      status: 404,
+      message: "Esse produto não foi encontrado",
     };
   }
 
