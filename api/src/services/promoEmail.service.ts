@@ -49,14 +49,6 @@ async function isClient(email: string) {
   const isOnPromotionalEmails = await promoEmailRepository.getOneByEmail(email);
   const isClient = await clientRepository.getOneByEmail(email);
 
-  if (!isClient && !isOnPromotionalEmails) {
-    throw {
-      status: 404,
-      message:
-        "Esse e-mail não está cadastrado para receber e-mails promocionais e também não está cadastrado como cliente.",
-    };
-  }
-
   let message = "";
 
   if (isClient && isOnPromotionalEmails) {
@@ -78,6 +70,9 @@ async function isClient(email: string) {
       message =
         "Esse e-mail não está cadastrado como cliente e não deve receber e-mails promocionais, pois está com status inativo.";
     }
+  } else {
+    message =
+      "Esse e-mail não está cadastrado para receber e-mails promocionais e também não está cadastrado como cliente.";
   }
 
   return {
