@@ -2,6 +2,7 @@ import { CriarVendaRequest } from "../interfaces/sale.interface";
 import saleRepository from "../repositories/sale.repository";
 import { isUUID } from "../utils/validations";
 import salesProductsService from "./salesProducts.service";
+import productService from "./product.service";
 import serviceOrderService from "./serviceOrder.service";
 
 async function getAll() {
@@ -45,6 +46,22 @@ async function insert(data: CriarVendaRequest, userID: string) {
 
   console.log("✅ Produtos de cada venda informados com sucesso!");
   console.log(produtos);
+
+  const quantidades = await Promise.all(
+    data.produtos.map((product) => {
+      try {
+        productService.removeQuantityFromStock(product.id, product.quantidade);
+      } catch (error) {
+        console.error(
+          `Erro ao remover quantidade do produto com id ${product.id}`
+        );
+        console.error(error);
+      }
+    })
+  );
+
+  console.log("✅ Quantidades de cada produto decrementadas com sucesso!");
+  console.log(quantidades);
 
   if (data.ordemServico) {
     const ordemDeServico = await serviceOrderService.insert({

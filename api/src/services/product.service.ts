@@ -65,15 +65,19 @@ async function removeQuantityFromStock(id: string, quantidade: number) {
 
   const product = await productRepository.getById(id);
 
-  if (product.quantidade < quantidade) {
-    throw {
-      status: 409,
-      message:
-        "Você está tentando deletar mais itens do que a quantidade disponível em estoque",
-    };
-  }
+  let newQuantity;
 
-  const newQuantity = product.quantidade - quantidade;
+  if (product.quantidade < quantidade) {
+    newQuantity = 0;
+    // Dessa forma não crasha o backend ao tentar decrementar quantidade maior do que tem em estoque, mas é um erro que precisa ser melhor tratado dependendo da regra de negócio, irei alinhar isso com a proprietária.
+    // throw {
+    //   status: 409,
+    //   message:
+    //     "Você está tentando deletar mais itens do que a quantidade disponível em estoque",
+    // };
+  } else {
+    newQuantity = product.quantidade - quantidade;
+  }
 
   const result = await productRepository.updateQuantity(id, newQuantity);
   return result;

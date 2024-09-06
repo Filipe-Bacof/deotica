@@ -532,7 +532,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"quantidade\": 800\r\n}",
+							"raw": "{\r\n    \"quantidade\": 3\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -594,13 +594,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{URL}}/product/1242141",
+							"raw": "{{URL}}/product/6b3676ad-730d-4e8c-b55c-465558309c06",
 							"host": [
 								"{{URL}}"
 							],
 							"path": [
 								"product",
-								"1242141"
+								"6b3676ad-730d-4e8c-b55c-465558309c06"
 							]
 						}
 					},
@@ -754,7 +754,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"formaDePagamentoId\": 1,\r\n    \"clienteId\": \"f864b01a-b9f9-4345-9634-68d2c165efbd\",\r\n    \"numeroDeParcelas\": 3,\r\n    \"valorDeEntrada\": 500.00,\r\n    \"desconto\": 50.00,\r\n    \"produtos\": [\r\n        {\r\n            \"id\": \"6b3676ad-730d-4e8c-b55c-465558309c06\",\r\n            \"preco\": 100.00,\r\n            \"quantidade\": 5\r\n        }\r\n    ],\r\n    \"ordemServico\": {\r\n        \"dataDeEntrega\": \"2024-09-01T00:00:00.000Z\",\r\n        \"concluido\": \"pendente\",\r\n        \"tipoLente\": \"Progresso\",\r\n        \"modeloLente\": \"XYZ\",\r\n        \"tratamentos\": \"Antirreflexo\"\r\n    }\r\n}\r\n",
+							"raw": "{\r\n    \"venda\": {\r\n        \"formaDePagamentoId\": 1,\r\n        \"clienteId\": \"f864b01a-b9f9-4345-9634-68d2c165efbd\",\r\n        \"numeroDeParcelas\": 3,\r\n        \"valorDeEntrada\": 500.00,\r\n        \"desconto\": 50.00\r\n    },\r\n    \"produtos\": [\r\n        {\r\n            \"id\": \"6b3676ad-730d-4e8c-b55c-465558309c06\",\r\n            \"preco\": 100.00,\r\n            \"quantidade\": 5\r\n        }\r\n    ],\r\n    \"ordemServico\": {\r\n        \"dataDeEntrega\": \"2024-09-01T00:00:00.000Z\",\r\n        \"concluido\": \"pendente\",\r\n        \"tipoLente\": \"Progresso\",\r\n        \"modeloLente\": \"XYZ\",\r\n        \"tratamentos\": \"Antirreflexo\"\r\n    }\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -780,7 +780,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"formaDePagamentoId\": 1,\r\n    \"clienteId\": \"f864b01a-b9f9-4345-9634-68d2c165efbd\",\r\n    \"numeroDeParcelas\": 3,\r\n    \"valorDeEntrada\": 500.00,\r\n    \"desconto\": 50.00,\r\n    \"produtos\": [\r\n        {\r\n            \"id\": \"6b3676ad-730d-4e8c-b55c-465558309c06\",\r\n            \"preco\": 100.00,\r\n            \"quantidade\": 5\r\n        }\r\n    ]\r\n}\r\n",
+							"raw": "{\r\n    \"venda\": {\r\n        \"formaDePagamentoId\": 1,\r\n        \"clienteId\": \"f864b01a-b9f9-4345-9634-68d2c165efbd\",\r\n        \"numeroDeParcelas\": 3,\r\n        \"valorDeEntrada\": 500.00,\r\n        \"desconto\": 50.00\r\n    },\r\n    \"produtos\": [\r\n        {\r\n            \"id\": \"6b3676ad-730d-4e8c-b55c-465558309c06\",\r\n            \"preco\": 100.00,\r\n            \"quantidade\": 2\r\n        }\r\n    ]\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
