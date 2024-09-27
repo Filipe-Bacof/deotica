@@ -1,4 +1,4 @@
-import { CriarVendaRequest } from "../interfaces/sale.interface";
+import type { CriarVendaRequest } from "../interfaces/sale.interface";
 import saleRepository from "../repositories/sale.repository";
 import { isUUID } from "../utils/validations";
 import salesProductsService from "./salesProducts.service";
@@ -20,7 +20,7 @@ async function getById(id: string) {
   if (!isUUID(id)) {
     throw {
       status: 422,
-      message: `Este ID não é válido!`,
+      message: "Este ID não é válido!",
     };
   }
   const result = await saleRepository.getById(id);

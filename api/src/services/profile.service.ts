@@ -1,4 +1,7 @@
-import { CriarPerfil, EditarPerfil } from "../interfaces/profile.interface";
+import type {
+  CriarPerfil,
+  EditarPerfil,
+} from "../interfaces/profile.interface";
 import profileRepository from "../repositories/profile.repository";
 import { isPermission } from "../utils/permissions";
 

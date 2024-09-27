@@ -1,4 +1,7 @@
-import { CriarProduto, EditarProduto } from "../interfaces/product.interface";
+import type {
+  CriarProduto,
+  EditarProduto,
+} from "../interfaces/product.interface";
 import productRepository from "../repositories/product.repository";
 import salesProductsRepository from "../repositories/salesProducts.repository";
 import { isUUID } from "../utils/validations";
@@ -18,7 +21,7 @@ async function getById(id: string) {
   if (!isUUID(id)) {
     throw {
       status: 422,
-      message: `Este ID não é válido!`,
+      message: "Este ID não é válido!",
     };
   }
 
@@ -41,7 +44,7 @@ async function edit(id: string, data: EditarProduto) {
   if (!isUUID(id)) {
     throw {
       status: 422,
-      message: `Este ID não é válido!`,
+      message: "Este ID não é válido!",
     };
   }
 
@@ -59,13 +62,13 @@ async function removeQuantityFromStock(id: string, quantidade: number) {
   if (!isUUID(id)) {
     throw {
       status: 422,
-      message: `Este ID não é válido!`,
+      message: "Este ID não é válido!",
     };
   }
 
   const product = await productRepository.getById(id);
 
-  let newQuantity;
+  let newQuantity: number;
 
   if (product.quantidade < quantidade) {
     newQuantity = 0;
@@ -93,7 +96,7 @@ async function addQuantityFromStock(id: string, quantidade: number) {
   if (!isUUID(id)) {
     throw {
       status: 422,
-      message: `Este ID não é válido!`,
+      message: "Este ID não é válido!",
     };
   }
 
@@ -115,7 +118,7 @@ async function updateQuantity(id: string, quantidade: number) {
   if (!isUUID(id)) {
     throw {
       status: 422,
-      message: `Este ID não é válido!`,
+      message: "Este ID não é válido!",
     };
   }
 
@@ -133,7 +136,7 @@ async function deleteProduct(id: string) {
   if (!isUUID(id)) {
     throw {
       status: 422,
-      message: `Este ID não é válido!`,
+      message: "Este ID não é válido!",
     };
   }
 
@@ -152,8 +155,8 @@ async function deleteProduct(id: string) {
       status: 409,
       message:
         sales === 1
-          ? `Não é possível deletar esse produto, pois foi efetuada 1 venda com ele.`
-          : `Não é possível deletar esse produto, pois foram efetuadas ${sales} vendas com ele.`,
+          ? "Não é possível deletar esse produto, pois foi efetuada 1 venda com ele."
+          : "Não é possível deletar esse produto, pois foram efetuadas ${sales} vendas com ele.",
     };
   }
 

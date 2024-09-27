@@ -1,4 +1,4 @@
-import { CriarVendaProduto } from "../interfaces/salesProducts.interface";
+import type { CriarVendaProduto } from "../interfaces/salesProducts.interface";
 import salesProductsRepository from "../repositories/salesProducts.repository";
 
 async function insert(data: CriarVendaProduto) {

@@ -1,4 +1,7 @@
-import { EditarCliente, CriarCliente } from "../interfaces/client.interface";
+import type {
+  EditarCliente,
+  CriarCliente,
+} from "../interfaces/client.interface";
 import clientRepository from "../repositories/client.repository";
 import { isUserAuthorizedToDoThisAction } from "../utils/permissions";
 import { isUUID } from "../utils/validations";
@@ -23,7 +26,7 @@ async function getById(id: string) {
   if (!isUUID(id)) {
     throw {
       status: 422,
-      message: `Este ID não é válido!`,
+      message: "Este ID não é válido!",
     };
   }
 
@@ -62,7 +65,7 @@ async function edit(id: string, data: EditarCliente) {
   if (!isUUID(id)) {
     throw {
       status: 422,
-      message: `Este ID não é válido!`,
+      message: "Este ID não é válido!",
     };
   }
 

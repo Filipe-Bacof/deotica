@@ -1,6 +1,6 @@
-import { Request, Response } from "express";
+import type { Request, Response } from "express";
 import authService from "../services/auth.service";
-import { SignIn, SignUpConfirmPass } from "../interfaces/auth.interface";
+import type { SignIn, SignUpConfirmPass } from "../interfaces/auth.interface";
 
 export async function signUp(req: Request, res: Response) {
   const data: SignUpConfirmPass = req.body;
@@ -27,7 +27,7 @@ export async function signIn(req: Request, res: Response) {
         id: user.id,
         nome: user.nome,
         email: user.email,
-        perfil: user.perfilId, // VER AQUI
+        perfil: user.perfilUsuario,
         createdAt: user.createdAt,
         updatedAt: user.updatedAt,
       },

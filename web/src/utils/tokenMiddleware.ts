@@ -5,8 +5,8 @@ interface JwtPayload {
 }
 
 export function getToken() {
-  const token: string | null = localStorage.getItem("@token");
-  console.log(`Token: ${token}`);
+  const token: string | null = localStorage.getItem("@deoticaToken");
+  // console.log(`Token: ${token}`);
   return token;
 }
 

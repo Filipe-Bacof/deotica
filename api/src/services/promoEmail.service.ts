@@ -1,4 +1,4 @@
-import { CriarEmailPromocional } from "../interfaces/promoEmail.interface";
+import type { CriarEmailPromocional } from "../interfaces/promoEmail.interface";
 import clientRepository from "../repositories/client.repository";
 import promoEmailRepository from "../repositories/promoEmail.repository";
 
@@ -30,6 +30,7 @@ async function insert(data: CriarEmailPromocional) {
         status: 422,
         message: "Esse e-mail já foi inserido.",
       };
+      // biome-ignore lint/style/noUselessElse: <explanation>
     } else {
       const updated = await promoEmailRepository.updateStatus(
         isAlreadyInserted.id,
@@ -37,6 +38,7 @@ async function insert(data: CriarEmailPromocional) {
       );
       return updated;
     }
+    // biome-ignore lint/style/noUselessElse: <explanation>
   } else {
     const result = await promoEmailRepository.insert(data);
     return result;

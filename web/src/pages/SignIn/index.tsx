@@ -1,8 +1,41 @@
 import { useState } from "react";
+import axios from "axios";
+import PasswordHidden from "../../assets/password-hidden.svg";
+import PasswordVisible from "../../assets/password-visible.svg";
+import type { Login } from "../../interfaces/auth.interface";
+import { toast } from "react-toastify";
+import { useAuthStore } from "../../stores/userStore";
+import { useNavigate } from "react-router-dom";
 
 export default function SignIn() {
   const [user, setUser] = useState("");
   const [password, setPassword] = useState("");
+  const [passwordRevealed, setPasswordRevealed] = useState(false);
+  const { handleAddUser } = useAuthStore((state) => state);
+  const navigate = useNavigate();
+
+  async function sendDataToDB(data: Login) {
+    console.log(data);
+    await axios({
+      method: "POST",
+      url: `${import.meta.env.VITE_BACKEND_URL}/signin`,
+      data: data,
+    })
+      .then((response) => {
+        console.log(response);
+
+        localStorage.setItem("@deoticaToken", response.data.token);
+
+        handleAddUser(response.data.user);
+
+        navigate("/home");
+      })
+      .catch((error) => {
+        console.log(error);
+        const err = error.response.data.name || error.response.data;
+        toast.error(`Ocorreu um erro: ${err}`);
+      });
+  }
 
   return (
     <div className="flex h-screen flex-col items-center justify-evenly bg-blueDeotica md:flex-row">
@@ -17,7 +50,7 @@ export default function SignIn() {
         <h1 className="font-deotica text-8xl font-extrabold uppercase">
           Deotica
         </h1>
-        <p className="font-deotica py-2 text-center text-3xl font-normal text-white">
+        <p className="py-2 text-center font-deotica text-3xl font-normal text-white">
           um novo olhar em sua vida
         </p>
       </div>
@@ -35,15 +68,34 @@ export default function SignIn() {
         </div>
         <div className="flex w-full flex-col items-center md:items-start">
           <span>Senha</span>
-          <input
-            type="password"
-            className="h-12 w-full rounded-md px-4 py-2 text-xl"
-            value={password}
-            placeholder="Digite a sua senha"
-            onChange={(e) => setPassword(e.target.value)}
-          />
+          <div className="relative h-12 w-full">
+            <input
+              className="absolute h-full w-full flex-shrink-0 rounded px-4 py-2 text-xl"
+              type={passwordRevealed ? "text" : "password"}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Digite a sua senha"
+            />
+            {/* biome-ignore lint/a11y/useKeyWithClickEvents: <explanation> */}
+            <div
+              className="absolute right-0 cursor-pointer p-4"
+              onClick={() => setPasswordRevealed((state) => !state)}
+            >
+              {passwordRevealed ? (
+                <img src={PasswordVisible} alt="Senha Exibida" />
+              ) : (
+                <img src={PasswordHidden} alt="Senha Oculta" />
+              )}
+            </div>
+          </div>
         </div>
-        <button className="mt-6 h-12 w-full rounded-md bg-white hover:scale-[1.02] active:scale-100">
+        <button
+          type="button"
+          onClick={() => {
+            sendDataToDB({ email: user, senha: password });
+          }}
+          className="mt-6 h-12 w-full rounded-md bg-white hover:scale-[1.02] active:scale-100"
+        >
           Entrar
         </button>
       </div>

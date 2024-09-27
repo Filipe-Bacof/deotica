@@ -1,4 +1,4 @@
-import {
+import type {
   InserirFormaDePagamento,
   EditarFormaDePagamento,
 } from "../interfaces/payment.interface";
@@ -42,7 +42,7 @@ async function deletePayment(id: number) {
       status: 409,
       message:
         sales === 1
-          ? `Não é possível deletar essa forma de pagamento, pois foi efetuada 1 venda nessa forma de pagamento.`
+          ? "Não é possível deletar essa forma de pagamento, pois foi efetuada 1 venda nessa forma de pagamento."
           : `Não é possível deletar essa forma de pagamento, pois foram efetuadas ${sales} vendas nessa forma de pagamento.`,
     };
   }

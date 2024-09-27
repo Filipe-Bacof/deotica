@@ -1,4 +1,7 @@
-import { CriarPerfil, EditarPerfil } from "../interfaces/profile.interface";
+import type {
+  CriarPerfil,
+  EditarPerfil,
+} from "../interfaces/profile.interface";
 import { prisma } from "../config/database";
 
 async function insert(data: CriarPerfil) {

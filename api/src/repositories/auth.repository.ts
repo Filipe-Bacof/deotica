@@ -1,5 +1,5 @@
 import { prisma } from "../config/database";
-import { CreateUser } from "../interfaces/auth.interface";
+import type { CreateUser } from "../interfaces/auth.interface";
 
 async function insert(data: CreateUser) {
   const result = await prisma.usuarios.create({ data });

@@ -3,7 +3,7 @@ import crypto from "crypto";
 import authRepository from "../repositories/auth.repository";
 import { generateToken } from "../utils/token";
 import mailer from "../modules/mailer";
-import {
+import type {
   SignIn,
   SignUp,
   SignUpConfirmPass,
@@ -28,7 +28,7 @@ async function signUp(data: SignUpConfirmPass) {
   if (checkEmailIsValid) {
     throw {
       status: 409,
-      message: `Email já foi cadastrado.`,
+      message: "Email já foi cadastrado.",
     };
   }
 
@@ -36,7 +36,7 @@ async function signUp(data: SignUpConfirmPass) {
   if (!checkRoleIsValid) {
     throw {
       status: 404,
-      message: `Este perfil de usuário não existe.`,
+      message: "Este perfil de usuário não existe.",
     };
   }
 
@@ -74,22 +74,20 @@ async function signIn(data: SignIn) {
   if (!checkEmailIsValid) {
     throw {
       status: 400,
-      message: `Ocorreu um erro na autenticação.`,
+      message: "Ocorreu um erro na autenticação.",
     };
   }
   if (!bcrypt.compareSync(data.senha, checkEmailIsValid.senha)) {
     throw {
       status: 400,
-      message: `Ocorreu um erro na autenticação.`,
+      message: "Ocorreu um erro na autenticação.",
     };
   }
-  let keypassword = "";
+
   console.log(checkEmailIsValid);
 
   const token = generateToken(checkEmailIsValid.id);
-  if (keypassword) {
-    return { token: token, keypassword: keypassword };
-  }
+
   return { token: token };
 }
 
@@ -99,7 +97,7 @@ async function forgot(email: string) {
     if (!foundUser) {
       throw {
         status: 400,
-        message: `Ocorreu um erro, tente novamente.`,
+        message: "Ocorreu um erro, tente novamente.",
       };
     }
 
@@ -117,7 +115,7 @@ async function forgot(email: string) {
     if (!result) {
       throw {
         status: 400,
-        message: `Ocorreu um erro, tente novamente.`,
+        message: "Ocorreu um erro, tente novamente.",
       };
     }
 
@@ -133,7 +131,7 @@ async function forgot(email: string) {
           console.log(err);
           throw {
             status: 400,
-            message: `Ocorreu um erro, tente novamente.`,
+            message: "Ocorreu um erro, tente novamente.",
           };
         }
         if (res) {
@@ -147,7 +145,7 @@ async function forgot(email: string) {
     console.log(error);
     throw {
       status: 400,
-      message: `Ocorreu um erro, tente novamente.`,
+      message: "Ocorreu um erro, tente novamente.",
     };
   }
 }
@@ -158,7 +156,7 @@ async function newPass(email: string, senha: string) {
   if (!foundUser) {
     throw {
       status: 400,
-      message: `Ocorreu um erro, tente novamente.`,
+      message: "Ocorreu um erro, tente novamente.",
     };
   }
 
@@ -174,7 +172,7 @@ async function getUserData(id: string) {
   if (!isUUID(id)) {
     throw {
       status: 422,
-      message: `Este ID não é válido!`,
+      message: "Este ID não é válido!",
     };
   }
 
@@ -183,7 +181,7 @@ async function getUserData(id: string) {
   if (!foundUser) {
     throw {
       status: 404,
-      message: `Usuário não cadastrado!`,
+      message: "Usuário não cadastrado!",
     };
   }
 
@@ -196,7 +194,7 @@ async function getUserDataByEmail(email: string) {
   if (!foundUser) {
     throw {
       status: 404,
-      message: `Usuário não cadastrado!`,
+      message: "Usuário não cadastrado!",
     };
   }
 
