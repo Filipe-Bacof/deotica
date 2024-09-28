@@ -3,7 +3,7 @@ import { persist } from "zustand/middleware";
 import type { User } from "../interfaces/user.interface";
 
 export interface UserStore {
-  user: User;
+  user: User | null;
   handleAddUser: (data: User) => void;
   handleRemoveUser: () => void;
 }
@@ -21,19 +21,10 @@ export const useAuthStore = create<UserStore>()(
         createdAt,
         updatedAt,
       }: User) => {
-        set({
-          user: {
-            id,
-            nome,
-            email,
-            perfil,
-            createdAt,
-            updatedAt,
-          },
-        });
+        set({ user: { id, nome, email, perfil, createdAt, updatedAt } });
       },
 
-      handleRemoveUser: () => set({}, true),
+      handleRemoveUser: () => set({ user: null }),
     }),
     { name: "@deoticaUser" },
   ),
