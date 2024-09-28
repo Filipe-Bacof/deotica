@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import SidebarAndHeader from "../../components/SidebarAndHeader";
 import { getAllClients } from "../../api/client";
+import { Button } from "../../components/Button";
 
 export default function Clients() {
   const { data } = useQuery({
@@ -14,11 +15,11 @@ export default function Clients() {
       <main className="flex h-full flex-col">
         <section className="m-4 flex flex-col items-center justify-between md:flex-row">
           <h2 className="text-xl font-semibold">Meus clientes</h2>
-          <button type="button" className="">
+          <Button asLink to="/clientes/novo">
             Novo Cliente
-          </button>
+          </Button>
         </section>
-        <section>
+        <section className="mx-4 flex flex-col">
           {data
             ? data.map((item) => (
                 <div key={item.id}>

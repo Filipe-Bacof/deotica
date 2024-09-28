@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Permission } from "./Permission";
 import { useAuthStore } from "../stores/userStore";
 import { sidebarOptions } from "../utils/sidebarOptions";
-import IconLogout from "../icons/IconLogout";
+import { LogOut } from "lucide-react";
 
 type SidebarAndHeaderProps = {
   children: ReactNode;
@@ -44,6 +44,21 @@ export default function SidebarAndHeader({
 
   // const redirectToExternalURL = (externalURL: string) => {window.location.href = externalURL};
 
+  function ButtonNavigation(item: MenuItem) {
+    return (
+      <Link
+        className={`flex h-10 w-10 items-center gap-2 rounded-md px-3 md:w-56 ${
+          item.title === selected && "bg-white/20"
+        }`}
+        key={item.id}
+        to={item.href}
+      >
+        {item.icon}
+        <span className="hidden w-fit md:flex">{item.title}</span>
+      </Link>
+    );
+  }
+
   return (
     <div className="flex flex-1 flex-col md:flex-row">
       <nav className="flex-col items-center bg-blueDeotica pt-8 text-white md:flex md:h-screen md:px-5">
@@ -52,36 +67,13 @@ export default function SidebarAndHeader({
         </p>
         <div className="mx-3 my-3 flex w-full flex-row justify-between gap-2 md:my-8 md:flex-col">
           {sidebarOptions.map((item: MenuItem) => {
-            if (item.permission && item.permission?.length > 0) {
-              return (
-                <Permission key={item.id} permissions={item.permission}>
-                  <Link
-                    className={`flex h-10 w-10 items-center gap-2 rounded-md px-3 md:w-56 ${
-                      item.title === selected && "bg-white/20"
-                    }`}
-                    key={item.id}
-                    to={item.href}
-                  >
-                    {item.icon}
-                    <span className="hidden w-fit md:flex">{item.title}</span>
-                  </Link>
-                </Permission>
-              );
-              // biome-ignore lint/style/noUselessElse: <explanation>
-            } else {
-              return (
-                <Link
-                  className={`flex h-10 w-10 items-center gap-2 rounded-md px-3 md:w-56 ${
-                    item.title === selected && "bg-white/20"
-                  }`}
-                  key={item.id}
-                  to={item.href}
-                >
-                  {item.icon}
-                  <span className="hidden w-fit md:flex">{item.title}</span>
-                </Link>
-              );
-            }
+            return item.permission && item.permission?.length > 0 ? (
+              <Permission key={item.id} permissions={item.permission}>
+                {ButtonNavigation(item)}
+              </Permission>
+            ) : (
+              ButtonNavigation(item)
+            );
           })}
           <div className="flex flex-col">
             <button
@@ -94,7 +86,7 @@ export default function SidebarAndHeader({
                 navigate("/login");
               }}
             >
-              <IconLogout />
+              <LogOut className="size-4 text-zinc-100" />
               <span className="hidden w-fit md:flex">Sair</span>
             </button>
           </div>
@@ -112,7 +104,7 @@ export default function SidebarAndHeader({
             </p>
           </div>
         </header>
-        <main className="m flex-grow overflow-y-scroll bg-[#F2F2F3]">
+        <main className="m flex-grow overflow-hidden bg-[#F2F2F3]">
           {children}
         </main>
       </section>

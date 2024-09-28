@@ -4,7 +4,7 @@ export interface Cliente {
   id: string;
   nome: string;
   cpf: string;
-  telefone?: string;
+  telefone: string;
   email?: string;
   dataNascimento?: Date;
   genero?: "masculino" | "feminino" | "nao-informado";
