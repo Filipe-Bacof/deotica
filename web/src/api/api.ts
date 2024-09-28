@@ -8,6 +8,7 @@ export const Api: AxiosInstance = Axios.create({
 Api.interceptors.request.use(
   (config) => {
     config.headers.Authorization = `Bearer ${Cookies.get("@deoticaToken")}`;
+    config.headers["Content-Type"] = "application/json";
 
     return Promise.resolve(config);
   },
