@@ -1,4 +1,5 @@
 import type {
+  ClientsResponse,
   CriarCliente,
   EditarCliente,
 } from "../interfaces/client.interface";
@@ -14,9 +15,11 @@ export async function editClient(id: string, data: EditarCliente) {
   return result;
 }
 
-export async function getAllClients() {
+export async function getAllClients(): Promise<ClientsResponse[]> {
+  console.log("teste");
   const result = await Api.get("/client");
-  return result;
+  console.log(result);
+  return result.data;
 }
 
 export async function getClientByCpf(cpf: string) {

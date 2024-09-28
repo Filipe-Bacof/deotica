@@ -1,5 +1,5 @@
 import Axios, { type AxiosInstance } from "axios";
-import Cookies from "js-cookie";
+import { getToken } from "../utils/tokenMiddleware";
 
 export const Api: AxiosInstance = Axios.create({
   baseURL: `${import.meta.env.VITE_BACKEND_URL}`,
@@ -7,7 +7,7 @@ export const Api: AxiosInstance = Axios.create({
 
 Api.interceptors.request.use(
   (config) => {
-    config.headers.Authorization = `Bearer ${Cookies.get("@deoticaToken")}`;
+    config.headers.Authorization = `Bearer ${getToken()}`;
     config.headers["Content-Type"] = "application/json";
 
     return Promise.resolve(config);

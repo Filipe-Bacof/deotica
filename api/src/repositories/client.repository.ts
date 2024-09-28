@@ -1,4 +1,7 @@
-import { EditarCliente, InserirCliente } from "../interfaces/client.interface";
+import type {
+  EditarCliente,
+  InserirCliente,
+} from "../interfaces/client.interface";
 import { prisma } from "../config/database";
 
 async function insert(data: InserirCliente) {
@@ -19,15 +22,33 @@ async function edit(id: string, data: EditarCliente) {
 }
 
 async function getAll() {
-  return prisma.clientes.findMany({
-    include: { criador: true },
+  const clientes = await prisma.clientes.findMany({
+    include: {
+      criador: {
+        select: {
+          id: true,
+          nome: true,
+          email: true,
+        },
+      },
+    },
   });
+
+  return clientes;
 }
 
 async function getByCpf(cpf: string) {
   const result = await prisma.clientes.findUnique({
     where: { cpf },
-    include: { criador: true },
+    include: {
+      criador: {
+        select: {
+          id: true,
+          nome: true,
+          email: true,
+        },
+      },
+    },
   });
 
   return result;
@@ -36,7 +57,15 @@ async function getByCpf(cpf: string) {
 async function getById(id: string) {
   const result = await prisma.clientes.findUnique({
     where: { id },
-    include: { criador: true },
+    include: {
+      criador: {
+        select: {
+          id: true,
+          nome: true,
+          email: true,
+        },
+      },
+    },
   });
 
   return result;
@@ -45,7 +74,15 @@ async function getById(id: string) {
 async function getOneByEmail(email: string) {
   const result = await prisma.clientes.findFirst({
     where: { email },
-    include: { criador: true },
+    include: {
+      criador: {
+        select: {
+          id: true,
+          nome: true,
+          email: true,
+        },
+      },
+    },
   });
 
   return result;

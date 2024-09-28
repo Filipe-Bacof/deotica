@@ -8,3 +8,9 @@ export interface User {
   createdAt: string;
   updatedAt: string;
 }
+
+export interface Criador {
+  id: number;
+  nome: string;
+  email: string;
+}

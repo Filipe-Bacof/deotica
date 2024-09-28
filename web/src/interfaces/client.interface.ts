@@ -1,3 +1,5 @@
+import type { Criador } from "./user.interface";
+
 export interface Cliente {
   id: string;
   nome: string;
@@ -5,7 +7,7 @@ export interface Cliente {
   telefone?: string;
   email?: string;
   dataNascimento?: Date;
-  genero?: string;
+  genero?: "masculino" | "feminino" | "nao-informado";
   cep?: string;
   uf?: string;
   cidade?: string;
@@ -20,3 +22,23 @@ export type InserirCliente = Omit<Cliente, "id">;
 export type CriarCliente = Omit<InserirCliente, "createdBy">;
 
 export type EditarCliente = Partial<CriarCliente>;
+
+export interface ClientsResponse {
+  id: string;
+  nome: string;
+  cpf: string;
+  telefone: string;
+  email: string;
+  dataNascimento: string;
+  genero: "masculino" | "feminino" | "nao-informado";
+  cep: string;
+  uf: string;
+  cidade: string;
+  bairro: string;
+  endereco: string;
+  complemento: string;
+  createdBy: string;
+  createdAt: string;
+  updatedAt: string;
+  criador: Criador;
+}
