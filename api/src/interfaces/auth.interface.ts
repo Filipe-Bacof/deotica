@@ -18,6 +18,8 @@ export type SignUpConfirmPass = SignUp & {
   confirmarSenha: string;
 };
 
+export type Forgot = Pick<Usuario, "email">;
+
 export type NewPass = SignIn & {
   token: string;
 };

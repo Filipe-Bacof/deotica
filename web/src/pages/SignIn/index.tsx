@@ -1,7 +1,7 @@
 import { useState } from "react";
 import PasswordHidden from "../../assets/password-hidden.svg";
 import PasswordVisible from "../../assets/password-visible.svg";
-import type { Login } from "../../interfaces/auth.interface";
+import type { SignIn as Login } from "../../interfaces/auth.interface";
 import { toast } from "react-toastify";
 import { useAuthStore } from "../../stores/userStore";
 import { useNavigate } from "react-router-dom";

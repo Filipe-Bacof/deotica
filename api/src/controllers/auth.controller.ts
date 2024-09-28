@@ -1,6 +1,11 @@
 import type { Request, Response } from "express";
 import authService from "../services/auth.service";
-import type { SignIn, SignUpConfirmPass } from "../interfaces/auth.interface";
+import type {
+  Forgot,
+  NewPass,
+  SignIn,
+  SignUpConfirmPass,
+} from "../interfaces/auth.interface";
 
 export async function signUp(req: Request, res: Response) {
   const data: SignUpConfirmPass = req.body;
@@ -36,14 +41,14 @@ export async function signIn(req: Request, res: Response) {
 }
 
 export async function forgot(req: Request, res: Response) {
-  const { email } = req.body;
+  const { email }: Forgot = req.body;
   console.log(email);
   const result = await authService.forgot(email);
   res.status(200).send({ result });
 }
 
 export async function newPass(req: Request, res: Response) {
-  const { email, senha } = req.body;
+  const { email, senha }: NewPass = req.body;
   await authService.newPass(email, senha);
   res.status(200).send("Senha atualizada.");
 }
