@@ -1,4 +1,4 @@
-import { CriarEmailPromocional } from "../interfaces/promoEmail.interface";
+import type { CriarEmailPromocional } from "../interfaces/promoEmail.interface";
 import { prisma } from "../config/database";
 
 async function insert(data: CriarEmailPromocional) {

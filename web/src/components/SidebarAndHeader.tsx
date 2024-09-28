@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import type { MenuItem } from "../interfaces/sidebar.interface";
 import type { User } from "../interfaces/user.interface";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Permission } from "./Permission";
 import { useAuthStore } from "../stores/userStore";
 import { sidebarOptions } from "../utils/sidebarOptions";
@@ -17,7 +17,7 @@ export default function SidebarAndHeader({
   selected,
 }: SidebarAndHeaderProps) {
   const user = useAuthStore((state: { user: User | null }) => state.user);
-  const { handleRemoveUser } = useAuthStore((state) => state);
+  const navigate = useNavigate();
 
   function today() {
     const dataAtual = new Date();
@@ -42,9 +42,7 @@ export default function SidebarAndHeader({
     }
   }
 
-  const redirectToExternalURL = (externalURL: string) => {
-    window.location.href = externalURL;
-  };
+  // const redirectToExternalURL = (externalURL: string) => {window.location.href = externalURL};
 
   return (
     <div className="flex flex-1 flex-col md:flex-row">
@@ -92,8 +90,8 @@ export default function SidebarAndHeader({
               onClick={() => {
                 localStorage.removeItem("@deoticaToken");
                 localStorage.removeItem("@deoticaUser");
-                handleRemoveUser();
-                redirectToExternalURL("https://www.deoticalanding.com.br");
+                // redirectToExternalURL("https://www.deoticalanding.com.br");
+                navigate("/login");
               }}
             >
               <IconLogout />

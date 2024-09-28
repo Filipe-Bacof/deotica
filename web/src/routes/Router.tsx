@@ -3,6 +3,8 @@ import { AuthProvider } from "../context/authContext";
 import { PrivateRoutes } from "./PrivateRoutes";
 import Home from "../pages/Home";
 import SignIn from "../pages/SignIn";
+import Clients from "../pages/Clients";
+import Products from "../pages/Products";
 
 export default function Router() {
   return (
@@ -14,6 +16,8 @@ export default function Router() {
           {/* Todas as Rotas Privadas da Aplicação abaixo: */}
           <Route element={<PrivateRoutes />}>
             <Route path="/home" element={<Home />} />
+            <Route path="/clientes" element={<Clients />} />
+            <Route path="/produtos" element={<Products />} />
           </Route>
           {/* Qualquer Rota Aleatória manda pro Login Também */}
           <Route path="*" element={<SignIn />} />

@@ -1,11 +1,11 @@
 import { useState } from "react";
-import axios from "axios";
 import PasswordHidden from "../../assets/password-hidden.svg";
 import PasswordVisible from "../../assets/password-visible.svg";
 import type { Login } from "../../interfaces/auth.interface";
 import { toast } from "react-toastify";
 import { useAuthStore } from "../../stores/userStore";
 import { useNavigate } from "react-router-dom";
+import { login } from "../../api/auth";
 
 export default function SignIn() {
   const [user, setUser] = useState("");
@@ -16,18 +16,11 @@ export default function SignIn() {
 
   async function sendDataToDB(data: Login) {
     console.log(data);
-    await axios({
-      method: "POST",
-      url: `${import.meta.env.VITE_BACKEND_URL}/signin`,
-      data: data,
-    })
-      .then((response) => {
-        console.log(response);
-
-        localStorage.setItem("@deoticaToken", response.data.token);
-
-        handleAddUser(response.data.user);
-
+    login(data)
+      .then((data) => {
+        console.log(data);
+        localStorage.setItem("@deoticaToken", data.token);
+        handleAddUser(data.user);
         navigate("/home");
       })
       .catch((error) => {
