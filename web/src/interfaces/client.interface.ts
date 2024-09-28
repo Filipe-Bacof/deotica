@@ -42,3 +42,22 @@ export interface ClientsResponse {
   updatedAt: string;
   criador: Criador;
 }
+
+export interface CreatedClientResponse {
+  id: string;
+  nome: string;
+  cpf: string;
+  telefone: string;
+  email: string | null;
+  dataNascimento: string;
+  genero: "masculino" | "feminino" | "nao-informado";
+  cep: string | null;
+  uf: string | null;
+  cidade: string | null;
+  bairro: string | null;
+  endereco: string | null;
+  complemento: string | null;
+  createdBy: string;
+  createdAt: string;
+  updatedAt: string;
+}

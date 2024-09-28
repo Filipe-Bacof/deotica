@@ -1,13 +1,16 @@
 import type {
   ClientsResponse,
+  CreatedClientResponse,
   CriarCliente,
   EditarCliente,
 } from "../interfaces/client.interface";
 import { Api } from "./api";
 
-export async function registerClient(data: CriarCliente) {
+export async function registerClient(
+  data: CriarCliente,
+): Promise<CreatedClientResponse> {
   const result = await Api.post("/client", data);
-  return result;
+  return result.data;
 }
 
 export async function editClient(id: string, data: EditarCliente) {

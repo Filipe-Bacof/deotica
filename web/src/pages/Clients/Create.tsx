@@ -12,6 +12,7 @@ import {
   RadioGroupItem,
 } from "../../components/RadioGroup";
 import { toast } from "react-toastify";
+import HeaderPage from "../../components/HeaderPage";
 
 const createClientForm = z.object({
   nome: z.string().min(1, "Nome é obrigatório"),
@@ -76,8 +77,11 @@ export default function CreateClient() {
   async function handleCreateClient(data: CreateClientForm) {
     // console.log(data);
     await registerClient(data)
-      .then(() => {
+      .then((data) => {
         queryClient.invalidateQueries({ queryKey: ["clients"] });
+        toast.success(
+          `Cliente ${data.nome.split(" ")[0]} cadastrado com sucesso!`,
+        );
         reset();
         navigate("/clientes");
       })
@@ -92,12 +96,7 @@ export default function CreateClient() {
   return (
     <SidebarAndHeader selected="Clientes">
       <main className="flex h-full flex-col">
-        <section className="m-4 flex flex-col items-center justify-between md:flex-row">
-          <h2 className="text-xl font-semibold">Criar novo cliente</h2>
-          <Button asLink to="/clientes">
-            Voltar
-          </Button>
-        </section>
+        <HeaderPage title="Criar novo cliente" link="/clientes" />
         <section className="overflow-y-scroll pb-8">
           <form
             onSubmit={handleSubmit(handleCreateClient)}
