@@ -14,6 +14,15 @@ export default function ViewClient() {
     staleTime: 1000 * 60,
   });
 
+  function itemCard(title: string, value: string) {
+    return (
+      <div className="flex gap-2 rounded-md bg-zinc-300 px-2 py-1">
+        <span className="font-semibold">{title}:</span>
+        <p className="">{value}</p>
+      </div>
+    );
+  }
+
   return (
     <SidebarAndHeader selected="Clientes">
       <main className="flex h-full flex-col">
@@ -29,7 +38,21 @@ export default function ViewClient() {
             <p>Erro ao localizar este cliente</p>
           ) : data ? (
             <>
-              <pre>{JSON.stringify(data, null, 2)}</pre>
+              {/* <pre>{JSON.stringify(data, null, 2)}</pre> */}
+              <div className="mb-4 flex flex-col gap-1">
+                {itemCard("Nome", data.nome)}
+                {itemCard("CPF", data.cpf)}
+                {itemCard("Telefone", data.telefone)}
+                {itemCard("E-mail", data.email)}
+                {itemCard("Data de Nascimento", data.dataNascimento)}
+                {itemCard("Gênero", data.genero)}
+                {itemCard("CEP", data.cep)}
+                {itemCard("UF", data.uf)}
+                {itemCard("Cidade", data.cidade)}
+                {itemCard("Bairro", data.bairro)}
+                {itemCard("Endereço", data.endereco)}
+                {itemCard("Complemento", data.complemento)}
+              </div>
               <div className="flex w-full items-center justify-center">
                 <Button
                   asLink

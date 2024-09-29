@@ -25,7 +25,7 @@ export default function Clients() {
                 <Link
                   key={item.id}
                   to={`/clientes/view/${item.id}`}
-                  className="rounded-md bg-zinc-400 px-4 py-2"
+                  className="rounded-md bg-zinc-200 px-4 py-2"
                 >
                   <div className="flex w-full flex-col items-center justify-between md:flex-row">
                     <p>{item.nome}</p>
