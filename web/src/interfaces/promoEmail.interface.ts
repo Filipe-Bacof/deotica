@@ -14,3 +14,13 @@ export type DesativarEmailPromocional = Pick<EmailPromocional, "email">;
 export type VerificarEmailPromocional = DesativarEmailPromocional;
 
 export type EmailPromocionalResponse = Required<EmailPromocional>;
+
+export interface SendSimpleMessage {
+  emails: string[];
+  message: string;
+}
+
+export interface SendSimpleMessageResponse {
+  email: string;
+  status: boolean;
+}

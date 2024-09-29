@@ -7,13 +7,13 @@ const button = tv({
   variants: {
     variant: {
       creation:
-        "bg-emerald-500 text-emerald-50 hover:bg-emerald-600 focus:outline-emerald-900",
+        "bg-emerald-500 text-emerald-50 hover:bg-emerald-600 focus:outline-emerald-900 disabled:cursor-not-allowed disabled:bg-emerald-500/50",
       destructive:
-        "bg-red-500 text-red-50 hover:bg-red-600 focus:outline-red-900",
+        "bg-red-500 text-red-50 hover:bg-red-600 focus:outline-red-900 disabled:cursor-not-allowed disabled:bg-red-500/50",
       warning:
-        "bg-orange-500 text-orange-50 hover:bg-orange-600 focus:outline-orange-900",
+        "bg-orange-500 text-orange-50 hover:bg-orange-600 focus:outline-orange-900 disabled:cursor-not-allowed disabled:bg-orange-500/50",
       navigation:
-        "bg-blueDeotica text-white hover:bg-sky-700 focus:outline-sky-950",
+        "bg-blueDeotica text-white hover:bg-sky-700 focus:outline-sky-950 disabled:cursor-not-allowed disabled:bg-sky-500/50",
     },
     size: {
       default: "px-4 py-2.5",

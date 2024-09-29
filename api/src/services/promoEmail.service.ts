@@ -111,10 +111,10 @@ async function sendSimpleMessageToEmailList(data: SendSimpleMessage) {
           subject: "Mensagem de Deotica",
           text: data.message,
         });
-        return { email, status: "enviado com sucesso" };
+        return { email, status: true };
       } catch (error) {
         console.error(`Erro ao enviar para ${email}:`, error);
-        return { email, status: "falha ao enviar" };
+        return { email, status: false };
       }
     })
   );
