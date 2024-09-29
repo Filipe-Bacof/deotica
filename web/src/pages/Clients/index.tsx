@@ -8,7 +8,7 @@ export default function Clients() {
   const { data } = useQuery({
     queryKey: ["clients"],
     queryFn: getAllClients,
-    staleTime: 1000 * 60 * 10, // 10 minutos
+    staleTime: 1000 * 60,
   });
 
   return (

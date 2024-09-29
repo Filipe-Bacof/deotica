@@ -19,7 +19,6 @@ export async function editClient(id: string, data: EditarCliente) {
 }
 
 export async function getAllClients(): Promise<ClientsResponse[]> {
-  console.log("teste");
   const result = await Api.get("/client");
   console.log(result);
   return result.data;
@@ -30,7 +29,8 @@ export async function getClientByCpf(cpf: string) {
   return result;
 }
 
-export async function getClientById(id: string) {
+export async function getClientById(id: string): Promise<ClientsResponse> {
   const result = await Api.get(`/client/id/${id}`);
-  return result;
+  console.log(result);
+  return result.data;
 }
