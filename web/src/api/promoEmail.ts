@@ -1,13 +1,14 @@
 import type {
   CriarEmailPromocional,
   DesativarEmailPromocional,
+  EmailPromocionalResponse,
   VerificarEmailPromocional,
 } from "../interfaces/promoEmail.interface";
 import { Api } from "./api";
 
-export async function getAllPromoEmails() {
+export async function getAllPromoEmails(): Promise<EmailPromocionalResponse[]> {
   const result = await Api.get("/promoEmail");
-  return result;
+  return result.data;
 }
 
 export async function registerPromoEmail(data: CriarEmailPromocional) {

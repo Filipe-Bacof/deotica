@@ -1,4 +1,8 @@
-import type { CriarEmailPromocional } from "../interfaces/promoEmail.interface";
+import type {
+  CriarEmailPromocional,
+  SendSimpleMessage,
+} from "../interfaces/promoEmail.interface";
+import transporter from "../modules/mailer";
 import clientRepository from "../repositories/client.repository";
 import promoEmailRepository from "../repositories/promoEmail.repository";
 
@@ -97,12 +101,34 @@ async function isClient(email: string) {
   };
 }
 
+async function sendSimpleMessageToEmailList(data: SendSimpleMessage) {
+  const results = await Promise.all(
+    data.emails.map(async (email) => {
+      try {
+        await transporter.sendMail({
+          from: process.env.MAIL_USERNAME,
+          to: email,
+          subject: "Mensagem de Deotica",
+          text: data.message,
+        });
+        return { email, status: "enviado com sucesso" };
+      } catch (error) {
+        console.error(`Erro ao enviar para ${email}:`, error);
+        return { email, status: "falha ao enviar" };
+      }
+    })
+  );
+
+  return results;
+}
+
 const promoEmailService = {
   getAll,
   getOneByEmail,
   insert,
   desactivate,
   isClient,
+  sendSimpleMessageToEmailList,
 };
 
 export default promoEmailService;

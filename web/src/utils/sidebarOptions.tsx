@@ -3,6 +3,7 @@ import {
   Clipboard,
   DollarSign,
   Home,
+  Mail,
   ShoppingCart,
   Users,
 } from "lucide-react";
@@ -57,6 +58,14 @@ export const sidebarOptions: MenuItem[] = [
     icon: <Clipboard className={classes} />,
     alt: "ServiceOrderIcon",
     title: "Ordens de Serviço",
+    permission: [],
+  },
+  {
+    id: 6,
+    href: "/email",
+    icon: <Mail className={classes} />,
+    alt: "PromoEmailIcon",
+    title: "Email Promocional",
     permission: [],
   },
 ];

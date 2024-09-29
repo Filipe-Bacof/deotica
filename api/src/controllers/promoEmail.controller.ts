@@ -3,6 +3,7 @@ import promoEmailService from "../services/promoEmail.service";
 import type {
   CriarEmailPromocional,
   DesativarEmailPromocional,
+  SendSimpleMessage,
   VerificarEmailPromocional,
 } from "../interfaces/promoEmail.interface";
 
@@ -29,5 +30,12 @@ export async function promoEmailIsClient(req: Request, res: Response) {
   const data: VerificarEmailPromocional = req.body;
 
   const result = await promoEmailService.isClient(data.email);
+  res.status(200).send(result);
+}
+
+export async function promoEmailSendSimpleMessage(req: Request, res: Response) {
+  const data: SendSimpleMessage = req.body;
+
+  const result = await promoEmailService.sendSimpleMessageToEmailList(data);
   res.status(200).send(result);
 }

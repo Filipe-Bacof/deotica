@@ -4,6 +4,7 @@ import {
   promoEmailPOST,
   promoEmailPATCH,
   promoEmailIsClient,
+  promoEmailSendSimpleMessage,
 } from "../controllers/promoEmail.controller";
 import { validateHeaderToken } from "../middlewares/validateToken";
 import { validateSchema } from "../middlewares/validateSchema";
@@ -11,6 +12,7 @@ import {
   isClientSchema,
   promoEmailDesactivateSchema,
   promoEmailSchema,
+  promoEmailSendSimpleMessageSchema,
 } from "../schemas/promoEmail.schema";
 
 const promoEmailRouter = Router();
@@ -37,6 +39,13 @@ promoEmailRouter.post(
   validateHeaderToken,
   validateSchema(isClientSchema),
   promoEmailIsClient
+);
+
+promoEmailRouter.post(
+  "/promoEmail/sendSimpleMessage",
+  validateHeaderToken,
+  validateSchema(promoEmailSendSimpleMessageSchema),
+  promoEmailSendSimpleMessage
 );
 
 export default promoEmailRouter;

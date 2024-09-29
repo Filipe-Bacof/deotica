@@ -218,7 +218,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"nome\": \"João Silva\",\r\n    \"email\": \"joao.silva@example.com\",\r\n    \"cpf\": \"12345678900\",\r\n    \"telefone\": \"(11) 91234-5678\",\r\n    \"dataNascimento\": \"1996-08-02T00:00:00.000Z\",\r\n    \"genero\": \"masculino\",\r\n    \"cep\": \"12345678\",\r\n    \"uf\": \"SP\",\r\n    \"cidade\": \"São Paulo\",\r\n    \"bairro\": \"Centro\",\r\n    \"endereco\": \"Rua das Flores, 123\",\r\n    \"complemento\": \"Apt 101\"\r\n}",
+							"raw": "{\r\n    \"nome\": \"João Pedro Silva\",\r\n    \"email\": \"joao.pedro@example.com\",\r\n    \"cpf\": \"12345678944\",\r\n    \"telefone\": \"(11) 91234-5688\",\r\n    \"dataNascimento\": \"1996-08-02T00:00:00.000Z\",\r\n    \"genero\": \"masculino\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -252,12 +252,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{URL}}/client",
+							"raw": "{{URL}}/client/f864b01a-b9f9-4345-9634-68d2c165efbd",
 							"host": [
 								"{{URL}}"
 							],
 							"path": [
-								"client"
+								"client",
+								"f864b01a-b9f9-4345-9634-68d2c165efbd"
 							]
 						}
 					},
@@ -305,14 +306,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{URL}}/client/id/f864b01a-b9f9-4345-9634-68d2c165efbd",
+							"raw": "{{URL}}/client/id/a462b2a1-b570-4814-a35a-bee70f3259c5",
 							"host": [
 								"{{URL}}"
 							],
 							"path": [
 								"client",
 								"id",
-								"f864b01a-b9f9-4345-9634-68d2c165efbd"
+								"a462b2a1-b570-4814-a35a-bee70f3259c5"
 							]
 						}
 					},
@@ -635,7 +636,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"nome\": \"Filipe Bacof\",\r\n    \"email\": \"filipebacof@gmail.com\"\r\n}",
+							"raw": "{\r\n    \"nome\": \"Rafael Mahl\",\r\n    \"email\": \"rafaelmahl@hotmail.com\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -688,7 +689,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"filipebacof@gmail.com\"\r\n}",
+							"raw": "{\r\n    \"email\": \"rafaelmahl@hotmail.com\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -702,6 +703,33 @@
 							],
 							"path": [
 								"promoEmail"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"emails\": [\"filipebacof@gmail.com\"],\r\n    \"message\": \"Olá, gostaria de te convidar para vir na Deótica\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/promoEmail/sendSimpleMessage",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"promoEmail",
+								"sendSimpleMessage"
 							]
 						}
 					},
@@ -901,7 +929,7 @@
 		"bearer": [
 			{
 				"key": "token",
-				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiJiZjhiMjdkMi02YWQxLTQ5M2YtYjlmNS04ZGZlY2Y2YTExYjIiLCJpYXQiOjE3MjU0MDYyMDMsImV4cCI6MTcyNjAxMTAwM30.EFa4pMlIRWgJSmHoUCtYDRnFBLzAA_05gtlQjvW59wI",
+				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiJiZjhiMjdkMi02YWQxLTQ5M2YtYjlmNS04ZGZlY2Y2YTExYjIiLCJpYXQiOjE3Mjc1NDc4OTQsImV4cCI6MTcyODE1MjY5NH0.ZYodGNAIyaNTuOzdICrSQQ2jEX8arOgZNcJ0hQH8sdA",
 				"type": "string"
 			}
 		]

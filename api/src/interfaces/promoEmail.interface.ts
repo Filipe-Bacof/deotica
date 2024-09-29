@@ -12,3 +12,8 @@ export type CriarEmailPromocional = Pick<EmailPromocional, "nome" | "email">;
 export type DesativarEmailPromocional = Pick<EmailPromocional, "email">;
 
 export type VerificarEmailPromocional = DesativarEmailPromocional;
+
+export interface SendSimpleMessage {
+  emails: string[];
+  message: string;
+}

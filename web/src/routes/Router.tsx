@@ -8,6 +8,7 @@ import CreateClient from "../pages/Clients/Create";
 import EditClient from "../pages/Clients/Edit";
 import ViewClient from "../pages/Clients/View";
 import Products from "../pages/Products";
+import Mail from "../pages/Mail";
 
 export default function Router() {
   return (
@@ -24,6 +25,7 @@ export default function Router() {
             <Route path="/clientes/edit/:id" element={<EditClient />} />
             <Route path="/clientes/view/:id" element={<ViewClient />} />
             <Route path="/produtos" element={<Products />} />
+            <Route path="/email" element={<Mail />} />
           </Route>
           {/* Qualquer Rota Aleatória manda pro Login Também */}
           <Route path="*" element={<SignIn />} />
