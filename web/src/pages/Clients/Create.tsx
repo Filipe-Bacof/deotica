@@ -96,7 +96,11 @@ export default function CreateClient() {
   return (
     <SidebarAndHeader selected="Clientes">
       <main className="flex h-full flex-col">
-        <HeaderPage title="Criar novo cliente" link="/clientes" />
+        <HeaderPage
+          title="Criar novo cliente"
+          link="/clientes"
+          btnTitle="Voltar"
+        />
         <section className="overflow-y-scroll pb-8">
           <form
             onSubmit={handleSubmit(handleCreateClient)}

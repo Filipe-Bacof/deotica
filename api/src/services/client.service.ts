@@ -13,6 +13,12 @@ async function getAll() {
 
 async function getByCpf(cpf: string) {
   const result = await clientRepository.getByCpf(cpf);
+  if (!result) {
+    throw {
+      status: 404,
+      message: "Cliente não encontrado",
+    };
+  }
   return result;
 }
 
@@ -31,6 +37,12 @@ async function getById(id: string) {
   }
 
   const result = await clientRepository.getById(id);
+  if (!result) {
+    throw {
+      status: 404,
+      message: "Cliente não encontrado",
+    };
+  }
   return result;
 }
 

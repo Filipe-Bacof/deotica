@@ -10,11 +10,13 @@ import { LogOut } from "lucide-react";
 type SidebarAndHeaderProps = {
   children: ReactNode;
   selected: string;
+  scroll?: boolean;
 };
 
 export default function SidebarAndHeader({
   children,
   selected,
+  scroll = false,
 }: SidebarAndHeaderProps) {
   const user = useAuthStore((state: { user: User | null }) => state.user);
   const navigate = useNavigate();
@@ -104,7 +106,9 @@ export default function SidebarAndHeader({
             </p>
           </div>
         </header>
-        <main className="m flex-grow overflow-hidden bg-[#F2F2F3]">
+        <main
+          className={`flex-grow bg-[#F2F2F3] ${scroll ? "md:overflow-y-scroll" : "md:overflow-hidden"}`}
+        >
           {children}
         </main>
       </section>
