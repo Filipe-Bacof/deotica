@@ -43,8 +43,20 @@ export default function Mail() {
         return item.status ? `Sucesso: ${item.email}` : `Falha: ${item.email}`;
       });
       toast.success(messages.join("\n"));
-      setEmails([]);
       setMessage("");
+      if (data.some((item) => item.status === false)) {
+        const emailsToCheck = data
+          .filter((email) => email.status === false)
+          .map((email) => email.email);
+        toast.warning("E-mails que falharam o envio estão ainda marcados!");
+        toast.warning(
+          "E-mails que falharam o envio estão no campo de mensagens separados por vírgula!",
+        );
+        setEmails(emailsToCheck);
+        setMessage(emailsToCheck.join(", "));
+      } else {
+        setEmails([]);
+      }
     } catch (error) {
       toast.error("Erro ao enviar os emails.");
       console.error(error);
