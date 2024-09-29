@@ -1,4 +1,7 @@
-import { EditarProduto, InserirProduto } from "../interfaces/product.interface";
+import type {
+  EditarProduto,
+  InserirProduto,
+} from "../interfaces/product.interface";
 import { prisma } from "../config/database";
 
 async function insert(data: InserirProduto) {
@@ -20,14 +23,30 @@ async function edit(id: string, data: EditarProduto) {
 
 async function getAll() {
   return prisma.produtos.findMany({
-    include: { criador: true },
+    include: {
+      criador: {
+        select: {
+          id: true,
+          nome: true,
+          email: true,
+        },
+      },
+    },
   });
 }
 
 async function getById(id: string) {
   const result = await prisma.produtos.findUnique({
     where: { id },
-    include: { criador: true },
+    include: {
+      criador: {
+        select: {
+          id: true,
+          nome: true,
+          email: true,
+        },
+      },
+    },
   });
 
   return result;
@@ -37,7 +56,15 @@ async function updateQuantity(id: string, quantidade: number) {
   const result = await prisma.produtos.update({
     where: { id },
     data: { quantidade },
-    include: { criador: true },
+    include: {
+      criador: {
+        select: {
+          id: true,
+          nome: true,
+          email: true,
+        },
+      },
+    },
   });
 
   return result;

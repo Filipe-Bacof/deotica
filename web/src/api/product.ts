@@ -2,6 +2,7 @@ import type {
   AtualizarQuantidadeProduto,
   CriarProduto,
   EditarProduto,
+  ProductsResponse,
 } from "../interfaces/product.interface";
 import { Api } from "./api";
 
@@ -44,9 +45,9 @@ export async function deleteProduct(id: string) {
   return result;
 }
 
-export async function getAllProducts() {
+export async function getAllProducts(): Promise<ProductsResponse[]> {
   const result = await Api.get("/product");
-  return result;
+  return result.data;
 }
 
 export async function getProductById(id: string) {
