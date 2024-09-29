@@ -14,7 +14,6 @@ const createClientForm = z.object({
     .transform((val) => (val === "" ? undefined : val)),
   dataNascimento: z
     .string()
-    .regex(/^\d{4}-\d{2}-\d{2}$/, "Data de nascimento inválida")
     .optional()
     .transform((val) => (val ? new Date(`${val}T00:00:00.000Z`) : undefined)),
   genero: z.enum(["masculino", "feminino", "nao-informado"]).optional(),
