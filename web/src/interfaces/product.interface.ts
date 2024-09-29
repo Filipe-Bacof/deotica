@@ -26,20 +26,24 @@ export type EditarProduto = Partial<CriarProduto>;
 
 export type VendaProduto = Pick<Produto, "id" | "preco" | "quantidade">;
 
-export interface ProductsResponse {
+export interface ProductResponse {
   id: string;
   nome: string;
   quantidade: number;
   preco: string;
   status: boolean;
-  codigoDeBarras: string;
-  marca: string;
-  modelo: string;
-  tipo: string;
-  genero: string;
-  produtoAtivo: string;
+  codigoDeBarras: string | null;
+  marca: string | null;
+  modelo: string | null;
+  tipo: string | null;
+  genero: "masculino" | "feminino" | "unissex" | "nao-informado";
+  produtoAtivo: string | null;
   createdBy: string;
   createdAt: string;
   updatedAt: string;
   criador: Criador;
 }
+
+export type CreatedProductResponse = Omit<ProductResponse, "criador">;
+
+export type UpdatedProductResponse = CreatedProductResponse;

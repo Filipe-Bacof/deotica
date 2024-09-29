@@ -2,16 +2,15 @@ import { useQuery } from "@tanstack/react-query";
 import HeaderPage from "../../components/HeaderPage";
 import SidebarAndHeader from "../../components/SidebarAndHeader";
 import { useParams } from "react-router-dom";
-import { getClientById } from "../../api/client";
+import { getProductById } from "../../api/product";
 import { Button } from "../../components/Button";
-import { formatDate } from "../../utils/convertions";
 
-export default function ViewClient() {
+export default function ViewProduct() {
   const { id } = useParams();
-  const idClient = id || "0";
+  const idProduct = id || "0";
   const { data, isLoading, isError } = useQuery({
-    queryKey: ["client", idClient],
-    queryFn: () => getClientById(idClient),
+    queryKey: ["product", idProduct],
+    queryFn: () => getProductById(idProduct),
     staleTime: 1000 * 60,
   });
 
@@ -25,43 +24,38 @@ export default function ViewClient() {
   }
 
   return (
-    <SidebarAndHeader selected="Clientes">
+    <SidebarAndHeader selected="Produtos">
       <main className="flex h-full flex-col">
         <HeaderPage
-          title="Visualizar dados do cliente"
-          link="/clientes"
+          title="Visualizar dados do produto"
+          link="/produtos"
           btnTitle="Voltar"
         />
         <section className="mx-4 overflow-y-scroll pb-8">
           {isLoading ? (
             <p>Carregando...</p>
           ) : isError ? (
-            <p>Erro ao localizar este cliente</p>
+            <p>Erro ao localizar este produto</p>
           ) : data ? (
             <>
               {/* <pre>{JSON.stringify(data, null, 2)}</pre> */}
               <div className="mb-4 flex flex-col gap-1">
                 {itemCard("Nome", data.nome)}
-                {itemCard("CPF", data.cpf)}
-                {itemCard("Telefone", data.telefone)}
-                {itemCard("E-mail", data.email)}
-                {itemCard(
-                  "Data de Nascimento",
-                  formatDate(data.dataNascimento),
-                )}
+                {itemCard("Quantidade", String(data.quantidade))}
+                {itemCard("Preço", `R$ ${data.preco}`)}
+                {itemCard("Status", data.status ? "Ativo" : "Inativo")}
+                {itemCard("Código de Barras", data.codigoDeBarras || "")}
+                {itemCard("Marca", data.marca || "")}
+                {itemCard("Modelo", data.modelo || "")}
+                {itemCard("Tipo", data.tipo || "")}
                 {itemCard("Gênero", data.genero)}
-                {itemCard("CEP", data.cep)}
-                {itemCard("UF", data.uf)}
-                {itemCard("Cidade", data.cidade)}
-                {itemCard("Bairro", data.bairro)}
-                {itemCard("Endereço", data.endereco)}
-                {itemCard("Complemento", data.complemento)}
+                {itemCard("Produto Ativo", data.produtoAtivo || "")}
                 {itemCard("Criado por", data.criador.nome)}
               </div>
               <div className="flex w-full items-center justify-center">
                 <Button
                   asLink
-                  to={`/clientes/edit/${data.id}`}
+                  to={`/produtos/edit/${data.id}`}
                   variant="warning"
                 >
                   Editar

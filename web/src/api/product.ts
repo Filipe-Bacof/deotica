@@ -1,43 +1,50 @@
 import type {
   AtualizarQuantidadeProduto,
+  CreatedProductResponse,
   CriarProduto,
   EditarProduto,
-  ProductsResponse,
+  ProductResponse,
+  UpdatedProductResponse,
 } from "../interfaces/product.interface";
 import { Api } from "./api";
 
-export async function registerProduct(data: CriarProduto) {
+export async function registerProduct(
+  data: CriarProduto,
+): Promise<CreatedProductResponse> {
   const result = await Api.post("/product", data);
-  return result;
+  return result.data;
 }
 
-export async function editProduct(id: string, data: EditarProduto) {
+export async function editProduct(
+  id: string,
+  data: EditarProduto,
+): Promise<UpdatedProductResponse> {
   const result = await Api.put(`/product/${id}`, data);
-  return result;
+  return result.data;
 }
 
 export async function removeProductQuantity(
   id: string,
   data: AtualizarQuantidadeProduto,
-) {
+): Promise<ProductResponse> {
   const result = await Api.patch(`/product/minus/${id}`, data);
-  return result;
+  return result.data;
 }
 
 export async function addProductQuantity(
   id: string,
   data: AtualizarQuantidadeProduto,
-) {
+): Promise<ProductResponse> {
   const result = await Api.patch(`/product/plus/${id}`, data);
-  return result;
+  return result.data;
 }
 
 export async function updateProductQuantity(
   id: string,
   data: AtualizarQuantidadeProduto,
-) {
+): Promise<ProductResponse> {
   const result = await Api.patch(`/product/count/${id}`, data);
-  return result;
+  return result.data;
 }
 
 export async function deleteProduct(id: string) {
@@ -45,12 +52,12 @@ export async function deleteProduct(id: string) {
   return result;
 }
 
-export async function getAllProducts(): Promise<ProductsResponse[]> {
+export async function getAllProducts(): Promise<ProductResponse[]> {
   const result = await Api.get("/product");
   return result.data;
 }
 
-export async function getProductById(id: string) {
+export async function getProductById(id: string): Promise<ProductResponse> {
   const result = await Api.get(`/product/${id}`);
-  return result;
+  return result.data;
 }

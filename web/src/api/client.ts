@@ -28,9 +28,9 @@ export async function getAllClients(): Promise<ClientsResponse[]> {
   return result.data;
 }
 
-export async function getClientByCpf(cpf: string) {
+export async function getClientByCpf(cpf: string): Promise<ClientsResponse> {
   const result = await Api.get(`/client/cpf/${cpf}`);
-  return result;
+  return result.data;
 }
 
 export async function getClientById(id: string): Promise<ClientsResponse> {
