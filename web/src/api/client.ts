@@ -3,6 +3,7 @@ import type {
   CreatedClientResponse,
   CriarCliente,
   EditarCliente,
+  UpdatedClientResponse,
 } from "../interfaces/client.interface";
 import { Api } from "./api";
 
@@ -13,9 +14,12 @@ export async function registerClient(
   return result.data;
 }
 
-export async function editClient(id: string, data: EditarCliente) {
+export async function editClient(
+  id: string,
+  data: EditarCliente,
+): Promise<UpdatedClientResponse> {
   const result = await Api.put(`/client/${id}`, data);
-  return result;
+  return result.data;
 }
 
 export async function getAllClients(): Promise<ClientsResponse[]> {

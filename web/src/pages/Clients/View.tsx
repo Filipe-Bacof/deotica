@@ -4,6 +4,7 @@ import SidebarAndHeader from "../../components/SidebarAndHeader";
 import { useParams } from "react-router-dom";
 import { getClientById } from "../../api/client";
 import { Button } from "../../components/Button";
+import { formatDate } from "../../utils/convertions";
 
 export default function ViewClient() {
   const { id } = useParams();
@@ -44,7 +45,10 @@ export default function ViewClient() {
                 {itemCard("CPF", data.cpf)}
                 {itemCard("Telefone", data.telefone)}
                 {itemCard("E-mail", data.email)}
-                {itemCard("Data de Nascimento", data.dataNascimento)}
+                {itemCard(
+                  "Data de Nascimento",
+                  formatDate(data.dataNascimento),
+                )}
                 {itemCard("Gênero", data.genero)}
                 {itemCard("CEP", data.cep)}
                 {itemCard("UF", data.uf)}

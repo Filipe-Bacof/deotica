@@ -61,3 +61,5 @@ export interface CreatedClientResponse {
   createdAt: string;
   updatedAt: string;
 }
+
+export type UpdatedClientResponse = CreatedClientResponse;
