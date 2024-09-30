@@ -3,7 +3,11 @@ import type {
   VendaProduto,
   VendaProdutoResponse,
 } from "./product.interface";
-import type { CriarOS, ServiceOrderResponse } from "./serviceOrder.interface";
+import type {
+  CriarOS,
+  ServiceOrderResponse,
+  ServiceOrderResponseCreateSale,
+} from "./serviceOrder.interface";
 import type { Criador } from "./user.interface";
 import type { PaymentResponse } from "./payment.interface";
 import type { ClienteNomeGenero } from "./client.interface";
@@ -43,7 +47,7 @@ export interface CreateSaleResponse {
       preco: string;
     } & Dates,
   ];
-  ordemServico?: ServiceOrderResponse;
+  ordemServico?: ServiceOrderResponseCreateSale;
   atualizarQuantidades: {
     atualizados: ProductResponse[];
     erros: string | null;
@@ -53,7 +57,7 @@ export interface CreateSaleResponse {
 export type SaleResponse = Venda &
   Dates &
   Criador & {
-    ordemServico: (ServiceOrderResponse & Criador) | null;
+    ordemServico: ServiceOrderResponse | null;
     formaDePagamento: PaymentResponse;
     cliente: ClienteNomeGenero;
     vendasProdutos: VendaProdutoResponse[];

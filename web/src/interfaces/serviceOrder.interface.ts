@@ -1,3 +1,5 @@
+import type { Criador } from "./user.interface";
+
 export interface OrdemServico {
   id: number;
   vendaId: string;
@@ -27,7 +29,7 @@ export type EditarOS = CriarOS;
 
 export type AtualizarStatusOS = Required<Pick<OrdemServico, "concluido">>;
 
-export interface ServiceOrderResponse {
+export interface ServiceOrderResponseCreateSale {
   id: number;
   vendaId: string;
   clienteId: string;
@@ -47,3 +49,5 @@ export interface ServiceOrderResponse {
   createdAt: string;
   updatedAt: string;
 }
+
+export type ServiceOrderResponse = ServiceOrderResponseCreateSale & Criador;
