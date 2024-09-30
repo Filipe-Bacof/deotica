@@ -331,7 +331,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"descricao\": \"PIXXX\"\r\n}",
+							"raw": "{\r\n    \"descricao\": \"Cartão de Crédito\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -357,7 +357,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"descricao\": \"PIX\"\r\n}",
+							"raw": "{\r\n    \"descricao\": \"Cartão de Crédito\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -365,13 +365,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{URL}}/payment/2",
+							"raw": "{{URL}}/payment/3",
 							"host": [
 								"{{URL}}"
 							],
 							"path": [
 								"payment",
-								"2"
+								"3"
 							]
 						}
 					},
@@ -383,13 +383,13 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{URL}}/payment/1",
+							"raw": "{{URL}}/payment/3",
 							"host": [
 								"{{URL}}"
 							],
 							"path": [
 								"payment",
-								"1"
+								"3"
 							]
 						}
 					},
@@ -411,6 +411,24 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Formas de Pagamento por ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/payment/2",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"payment",
+								"2"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -424,7 +442,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"nome\": \"Lente xyz\",\r\n    \"quantidade\": 50,\r\n    \"preco\": 79.90,\r\n    \"status\": true,\r\n    \"codigoDeBarras\": \"7891234567890\",\r\n    \"marca\": \"PoloWear\",\r\n    \"modelo\": \"Slim Fit\",\r\n    \"tipo\": \"Camisa\",\r\n    \"genero\": \"masculino\",\r\n    \"produtoAtivo\": \"Sim\"\r\n}",
+							"raw": "{\r\n    \"nome\": \"Oculos de Sol Elegante\",\r\n    \"quantidade\": 12,\r\n    \"preco\": 180.90,\r\n    \"status\": true,\r\n    \"codigoDeBarras\": \"46546546894\",\r\n    \"marca\": \"RayBan\",\r\n    \"modelo\": \"Bonito\",\r\n    \"tipo\": \"Oculos\",\r\n    \"genero\": \"unissex\",\r\n    \"produtoAtivo\": \"Sim e tenho em estoque\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -709,7 +727,7 @@
 					"response": []
 				},
 				{
-					"name": "New Request",
+					"name": "Send Simple Message to Email List",
 					"request": {
 						"method": "POST",
 						"header": [],
