@@ -14,6 +14,7 @@ async function insert(data: InserirOS) {
 
 async function getAll() {
   return prisma.ordemServico.findMany({
+    orderBy: { updatedAt: "desc" },
     include: {
       criador: {
         select: {

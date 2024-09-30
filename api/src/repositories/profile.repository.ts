@@ -28,6 +28,7 @@ async function edit(id: number, data: EditarPerfil) {
 async function getAll(populateUser: boolean) {
   return prisma.perfilUsuario.findMany({
     include: { usuarios: populateUser },
+    orderBy: { createdAt: "desc" },
   });
 }
 

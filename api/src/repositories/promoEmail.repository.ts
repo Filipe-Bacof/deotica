@@ -9,18 +9,20 @@ async function insert(data: CriarEmailPromocional) {
 }
 
 async function getAll() {
-  return prisma.emailsPromocionais.findMany({});
+  return prisma.emailsPromocionais.findMany({ orderBy: { createdAt: "desc" } });
 }
 
 async function getAllActive() {
   return prisma.emailsPromocionais.findMany({
     where: { ativo: { equals: true } },
+    orderBy: { createdAt: "desc" },
   });
 }
 
 async function getAllInactive() {
   return prisma.emailsPromocionais.findMany({
     where: { ativo: { equals: false } },
+    orderBy: { createdAt: "desc" },
   });
 }
 

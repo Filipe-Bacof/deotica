@@ -22,7 +22,7 @@ async function edit(id: number, data: EditarFormaDePagamento) {
 }
 
 async function getAll() {
-  return prisma.formasDePagamento.findMany({});
+  return prisma.formasDePagamento.findMany({ orderBy: { createdAt: "desc" } });
 }
 
 async function getOne(id: number) {

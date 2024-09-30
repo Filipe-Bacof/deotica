@@ -10,6 +10,7 @@ async function insert(data: InserirVenda) {
 
 async function getAll() {
   return prisma.vendas.findMany({
+    orderBy: { createdAt: "desc" },
     include: {
       criador: {
         select: {
@@ -25,6 +26,33 @@ async function getAll() {
               id: true,
               nome: true,
               email: true,
+            },
+          },
+        },
+      },
+      formaDePagamento: {
+        select: {
+          id: true,
+          descricao: true,
+        },
+      },
+      cliente: {
+        select: {
+          id: true,
+          nome: true,
+          genero: true,
+        },
+      },
+      vendasProdutos: {
+        include: {
+          produto: {
+            select: {
+              id: true,
+              nome: true,
+              quantidade: true,
+              preco: true,
+              status: true,
+              genero: true,
             },
           },
         },
@@ -55,6 +83,33 @@ async function getById(id: string) {
           },
         },
       },
+      formaDePagamento: {
+        select: {
+          id: true,
+          descricao: true,
+        },
+      },
+      cliente: {
+        select: {
+          id: true,
+          nome: true,
+          genero: true,
+        },
+      },
+      vendasProdutos: {
+        include: {
+          produto: {
+            select: {
+              id: true,
+              nome: true,
+              quantidade: true,
+              preco: true,
+              status: true,
+              genero: true,
+            },
+          },
+        },
+      },
     },
   });
 
@@ -64,6 +119,7 @@ async function getById(id: string) {
 async function getByPaymentMethod(formaDePagamentoId: number) {
   return prisma.vendas.findMany({
     where: { formaDePagamentoId },
+    orderBy: { createdAt: "desc" },
     include: {
       criador: {
         select: {
@@ -79,6 +135,33 @@ async function getByPaymentMethod(formaDePagamentoId: number) {
               id: true,
               nome: true,
               email: true,
+            },
+          },
+        },
+      },
+      formaDePagamento: {
+        select: {
+          id: true,
+          descricao: true,
+        },
+      },
+      cliente: {
+        select: {
+          id: true,
+          nome: true,
+          genero: true,
+        },
+      },
+      vendasProdutos: {
+        include: {
+          produto: {
+            select: {
+              id: true,
+              nome: true,
+              quantidade: true,
+              preco: true,
+              status: true,
+              genero: true,
             },
           },
         },

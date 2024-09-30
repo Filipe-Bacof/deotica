@@ -23,6 +23,7 @@ async function edit(id: string, data: EditarProduto) {
 
 async function getAll() {
   return prisma.produtos.findMany({
+    orderBy: { createdAt: "desc" },
     include: {
       criador: {
         select: {

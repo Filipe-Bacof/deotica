@@ -7,7 +7,9 @@ async function insert(data: CreateUser) {
 }
 
 async function getAll() {
-  const result = await prisma.usuarios.findMany({});
+  const result = await prisma.usuarios.findMany({
+    orderBy: { createdAt: "desc" },
+  });
   return result;
 }
 

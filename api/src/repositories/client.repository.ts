@@ -23,6 +23,7 @@ async function edit(id: string, data: EditarCliente) {
 
 async function getAll() {
   const clientes = await prisma.clientes.findMany({
+    orderBy: { updatedAt: "desc" },
     include: {
       criador: {
         select: {
