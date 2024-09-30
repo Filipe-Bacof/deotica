@@ -63,3 +63,8 @@ export interface CreatedClientResponse {
 }
 
 export type UpdatedClientResponse = CreatedClientResponse;
+
+export type ClienteNomeGenero = Pick<
+  CreatedClientResponse,
+  "id" | "nome" | "genero"
+>;

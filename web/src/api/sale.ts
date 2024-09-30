@@ -1,22 +1,23 @@
 import type {
   CriarVendaRequest,
+  CreateSaleResponse,
   SaleResponse,
 } from "../interfaces/sale.interface";
 import { Api } from "./api";
 
-export async function getAllSales() {
+export async function getAllSales(): Promise<SaleResponse[]> {
   const result = await Api.get("/sale");
-  return result;
+  return result.data;
 }
 
-export async function getSaleById(id: string) {
+export async function getSaleById(id: string): Promise<SaleResponse> {
   const result = await Api.get(`/sale/${id}`);
-  return result;
+  return result.data;
 }
 
 export async function createSale(
   data: CriarVendaRequest,
-): Promise<SaleResponse> {
+): Promise<CreateSaleResponse> {
   const result = await Api.post("/sale", data);
   return result.data;
 }

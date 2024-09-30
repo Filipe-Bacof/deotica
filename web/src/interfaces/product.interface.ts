@@ -47,3 +47,20 @@ export interface ProductResponse {
 export type CreatedProductResponse = Omit<ProductResponse, "criador">;
 
 export type UpdatedProductResponse = CreatedProductResponse;
+
+export interface VendaProdutoResponse {
+  vendaId: string;
+  produtoId: string;
+  quantidade: number;
+  preco: string;
+  createdAt: string;
+  updatedAt: string;
+  produto: {
+    id: string;
+    nome: string;
+    quantidade: number;
+    preco: string;
+    status: boolean;
+    genero: "masculino" | "feminino" | "unissex" | "nao-informado";
+  };
+}

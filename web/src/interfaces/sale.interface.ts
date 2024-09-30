@@ -1,5 +1,12 @@
-import type { ProductResponse, VendaProduto } from "./product.interface";
+import type {
+  ProductResponse,
+  VendaProduto,
+  VendaProdutoResponse,
+} from "./product.interface";
 import type { CriarOS, ServiceOrderResponse } from "./serviceOrder.interface";
+import type { Criador } from "./user.interface";
+import type { PaymentResponse } from "./payment.interface";
+import type { ClienteNomeGenero } from "./client.interface";
 
 export interface Venda {
   id: string;
@@ -26,7 +33,7 @@ type Dates = {
   updatedAt: string;
 };
 
-export interface SaleResponse {
+export interface CreateSaleResponse {
   venda: Venda & Dates;
   produtos: [
     {
@@ -36,9 +43,18 @@ export interface SaleResponse {
       preco: string;
     } & Dates,
   ];
-  ordemServico: ServiceOrderResponse;
+  ordemServico?: ServiceOrderResponse;
   atualizarQuantidades: {
     atualizados: ProductResponse[];
     erros: string | null;
   };
 }
+
+export type SaleResponse = Venda &
+  Dates &
+  Criador & {
+    ordemServico: (ServiceOrderResponse & Criador) | null;
+    formaDePagamento: PaymentResponse;
+    cliente: ClienteNomeGenero;
+    vendasProdutos: VendaProdutoResponse[];
+  };

@@ -17,3 +17,5 @@ export interface PaymentMethodResponse {
   createdAt: string;
   updatedAt: string;
 }
+
+export type PaymentResponse = Pick<PaymentMethodResponse, "id" | "descricao">;
