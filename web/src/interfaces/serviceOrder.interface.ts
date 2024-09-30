@@ -26,3 +26,24 @@ export type CriarOS = Partial<
 export type EditarOS = CriarOS;
 
 export type AtualizarStatusOS = Required<Pick<OrdemServico, "concluido">>;
+
+export interface ServiceOrderResponse {
+  id: number;
+  vendaId: string;
+  clienteId: string;
+  dataDeEntrega: string | null;
+  concluido: string | null;
+  olhoEsquerdo: string | null;
+  olhoDireito: string | null;
+  tipoLente: string | null;
+  corLente: string | null;
+  modeloLente: string | null;
+  tratamentos: string | null;
+  observacoes: string | null;
+  armacao: string | null;
+  tipoArmacao: string | null;
+  somenteLente: boolean | null;
+  createdBy: string;
+  createdAt: string;
+  updatedAt: string;
+}

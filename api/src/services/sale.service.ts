@@ -24,57 +24,96 @@ async function getById(id: string) {
     };
   }
   const result = await saleRepository.getById(id);
+
+  if (!result) {
+    throw {
+      status: 404,
+      message: "Essa venda não foi encontrada",
+    };
+  }
+
   return result;
 }
 
 async function insert(data: CriarVendaRequest, userID: string) {
-  const venda = await saleRepository.insert({
-    ...data.venda,
-    createdBy: userID,
-  });
-
-  const produtos = await Promise.all(
-    data.produtos.map((product) =>
-      salesProductsService.insert({
-        vendaId: venda.id,
-        produtoId: product.id,
-        preco: product.preco,
-        quantidade: product.quantidade,
-      })
-    )
-  );
-
-  console.log("✅ Produtos de cada venda informados com sucesso!");
-  console.log(produtos);
-
-  const quantidades = await Promise.all(
-    data.produtos.map((product) => {
-      try {
-        productService.removeQuantityFromStock(product.id, product.quantidade);
-      } catch (error) {
-        console.error(
-          `Erro ao remover quantidade do produto com id ${product.id}`
-        );
-        console.error(error);
-      }
-    })
-  );
-
-  console.log("✅ Quantidades de cada produto decrementadas com sucesso!");
-  console.log(quantidades);
-
-  if (data.ordemServico) {
-    const ordemDeServico = await serviceOrderService.insert({
-      ...data.ordemServico,
-      vendaId: venda.id,
-      clienteId: venda.clienteId,
+  try {
+    const venda = await saleRepository.insert({
+      ...data.venda,
       createdBy: userID,
     });
-    console.log("✅ Ordem de serviço criada com sucesso!");
-    console.log(ordemDeServico);
-  }
 
-  return venda;
+    const produtos = await Promise.all(
+      data.produtos.map((product) =>
+        salesProductsService.insert({
+          vendaId: venda.id,
+          produtoId: product.id,
+          preco: product.preco,
+          quantidade: product.quantidade,
+        })
+      )
+    );
+
+    console.log("✅ Produtos de cada venda informados com sucesso!");
+    console.log(produtos);
+
+    const atualizados = [];
+    const errosAtualizar = [];
+
+    const quantidades = await Promise.all(
+      data.produtos.map((product) =>
+        productService
+          .removeQuantityFromStock(product.id, product.quantidade)
+          .then((atualizar) => {
+            atualizados.push(atualizar);
+          })
+          .catch((error) => {
+            console.error(
+              `Erro ao remover quantidade do produto com id ${product.id}`
+            );
+            console.error(error);
+            errosAtualizar.push(error);
+          })
+      )
+    );
+
+    console.log("✅ Quantidades de cada produto decrementadas com sucesso!");
+    console.log(quantidades);
+
+    let ordemServico = null;
+
+    if (data.ordemServico) {
+      try {
+        const ordemDeServico = await serviceOrderService.insert({
+          ...data.ordemServico,
+          vendaId: venda.id,
+          clienteId: venda.clienteId,
+          createdBy: userID,
+        });
+        console.log("✅ Ordem de serviço criada com sucesso!");
+        console.log(ordemDeServico);
+        ordemServico = ordemDeServico;
+      } catch (error) {
+        console.log(error);
+        ordemServico = error;
+      }
+    }
+
+    return {
+      venda,
+      produtos,
+      ...(ordemServico && { ordemServico }),
+      atualizarQuantidades: {
+        atualizados,
+        erros: errosAtualizar.length > 0 ? errosAtualizar : null,
+      },
+    };
+  } catch (error) {
+    console.error("Erro inesperado:", error);
+    throw {
+      status: 400,
+      message: "Erro inesperado!",
+    };
+  }
 }
 
 const saleService = {

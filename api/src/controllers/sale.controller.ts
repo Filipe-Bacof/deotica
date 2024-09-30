@@ -1,6 +1,6 @@
-import { Request, Response } from "express";
+import type { Request, Response } from "express";
 import saleService from "../services/sale.service";
-import { CriarVendaRequest } from "../interfaces/sale.interface";
+import type { CriarVendaRequest } from "../interfaces/sale.interface";
 import { getUserIDbyToken } from "../utils/token";
 
 export async function saleGETALL(_req: Request, res: Response) {

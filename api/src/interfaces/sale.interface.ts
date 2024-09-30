@@ -20,3 +20,15 @@ export type CriarVendaRequest = {
   produtos: VendaProduto[];
   ordemServico?: CriarOS;
 };
+
+export type VendaCriada = {
+  id: string;
+  formaDePagamentoId: number;
+  clienteId: string;
+  numeroDeParcelas: number;
+  valorDeEntrada: number;
+  desconto: number;
+  createdBy: string;
+  createdAt: Date;
+  updatedAt: Date;
+};

@@ -1,4 +1,7 @@
-import type { CriarVendaRequest } from "../interfaces/sale.interface";
+import type {
+  CriarVendaRequest,
+  SaleResponse,
+} from "../interfaces/sale.interface";
 import { Api } from "./api";
 
 export async function getAllSales() {
@@ -11,7 +14,9 @@ export async function getSaleById(id: string) {
   return result;
 }
 
-export async function createSale(data: CriarVendaRequest) {
+export async function createSale(
+  data: CriarVendaRequest,
+): Promise<SaleResponse> {
   const result = await Api.post("/sale", data);
-  return result;
+  return result.data;
 }

@@ -1,5 +1,5 @@
 import { prisma } from "../config/database";
-import { InserirVenda } from "../interfaces/sale.interface";
+import type { InserirVenda } from "../interfaces/sale.interface";
 
 async function insert(data: InserirVenda) {
   console.log(data);
@@ -10,14 +10,52 @@ async function insert(data: InserirVenda) {
 
 async function getAll() {
   return prisma.vendas.findMany({
-    include: { criador: true },
+    include: {
+      criador: {
+        select: {
+          id: true,
+          nome: true,
+          email: true,
+        },
+      },
+      ordemServico: {
+        include: {
+          criador: {
+            select: {
+              id: true,
+              nome: true,
+              email: true,
+            },
+          },
+        },
+      },
+    },
   });
 }
 
 async function getById(id: string) {
   const result = await prisma.vendas.findUnique({
     where: { id },
-    include: { criador: true },
+    include: {
+      criador: {
+        select: {
+          id: true,
+          nome: true,
+          email: true,
+        },
+      },
+      ordemServico: {
+        include: {
+          criador: {
+            select: {
+              id: true,
+              nome: true,
+              email: true,
+            },
+          },
+        },
+      },
+    },
   });
 
   return result;
@@ -26,6 +64,26 @@ async function getById(id: string) {
 async function getByPaymentMethod(formaDePagamentoId: number) {
   return prisma.vendas.findMany({
     where: { formaDePagamentoId },
+    include: {
+      criador: {
+        select: {
+          id: true,
+          nome: true,
+          email: true,
+        },
+      },
+      ordemServico: {
+        include: {
+          criador: {
+            select: {
+              id: true,
+              nome: true,
+              email: true,
+            },
+          },
+        },
+      },
+    },
   });
 }
 
