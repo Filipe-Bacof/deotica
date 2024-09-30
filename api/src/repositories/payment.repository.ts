@@ -1,4 +1,4 @@
-import {
+import type {
   InserirFormaDePagamento,
   EditarFormaDePagamento,
 } from "../interfaces/payment.interface";
@@ -22,9 +22,11 @@ async function edit(id: number, data: EditarFormaDePagamento) {
 }
 
 async function getAll() {
-  return prisma.formasDePagamento.findMany({
-    include: { criador: true },
-  });
+  return prisma.formasDePagamento.findMany({});
+}
+
+async function getOne(id: number) {
+  return prisma.formasDePagamento.findUnique({ where: { id } });
 }
 
 async function deletePayment(id: number) {
@@ -35,6 +37,7 @@ const clientRepository = {
   insert,
   edit,
   getAll,
+  getOne,
   deletePayment,
 };
 

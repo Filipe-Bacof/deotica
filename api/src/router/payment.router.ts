@@ -1,6 +1,7 @@
 import { Router } from "express";
 import {
   paymentGETALL,
+  paymentGETBYID,
   paymentPOST,
   paymentPUT,
   paymentDELETE,
@@ -12,6 +13,8 @@ import { newPaymentMethodSchema } from "../schemas/payment.schema";
 const paymentRouter = Router();
 
 paymentRouter.get("/payment", validateHeaderToken, paymentGETALL);
+
+paymentRouter.get("/payment/:id", validateHeaderToken, paymentGETBYID);
 
 paymentRouter.post(
   "/payment",

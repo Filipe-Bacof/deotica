@@ -1,13 +1,19 @@
-import { Request, Response } from "express";
+import type { Request, Response } from "express";
 import paymentService from "../services/payment.service";
 import { getUserIDbyToken } from "../utils/token";
-import {
+import type {
   CriarFormaDePagamento,
   EditarFormaDePagamento,
 } from "../interfaces/payment.interface";
 
 export async function paymentGETALL(_req: Request, res: Response) {
   const result = await paymentService.getAll();
+  res.status(200).send(result);
+}
+
+export async function paymentGETBYID(req: Request, res: Response) {
+  const { id } = req.params;
+  const result = await paymentService.getOne(Number(id));
   res.status(200).send(result);
 }
 

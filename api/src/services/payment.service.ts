@@ -10,6 +10,17 @@ async function getAll() {
   return result;
 }
 
+async function getOne(id: number) {
+  const result = await paymentRepository.getOne(id);
+  if (!result) {
+    throw {
+      status: 404,
+      message: "Essa forma de pagamento não foi encontrada.",
+    };
+  }
+  return result;
+}
+
 async function insert(data: InserirFormaDePagamento) {
   const result = await paymentRepository.insert(data);
   return result;
@@ -51,6 +62,6 @@ async function deletePayment(id: number) {
   return result;
 }
 
-const paymentService = { getAll, insert, edit, deletePayment };
+const paymentService = { getAll, getOne, insert, edit, deletePayment };
 
 export default paymentService;
