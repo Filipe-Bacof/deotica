@@ -11,6 +11,7 @@ import type {
 import type { Criador } from "./user.interface";
 import type { PaymentResponse } from "./payment.interface";
 import type { ClienteNomeGenero } from "./client.interface";
+import type { Dates } from "./dates.interface";
 
 export interface Venda {
   id: string;
@@ -32,11 +33,6 @@ export type CriarVendaRequest = {
   ordemServico?: CriarOS;
 };
 
-type Dates = {
-  createdAt: string;
-  updatedAt: string;
-};
-
 export interface CreateSaleResponse {
   venda: Venda & Dates;
   produtos: [
@@ -55,8 +51,8 @@ export interface CreateSaleResponse {
 }
 
 export type SaleResponse = Venda &
-  Dates &
-  Criador & {
+  Dates & {
+    criador: Criador;
     ordemServico: ServiceOrderResponse | null;
     formaDePagamento: PaymentResponse;
     cliente: ClienteNomeGenero;

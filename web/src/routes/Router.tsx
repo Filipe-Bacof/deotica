@@ -15,15 +15,19 @@ import PaymentMethods from "../pages/Payment";
 import CreatePaymentMethod from "../pages/Payment/Create";
 import EditPaymentMethod from "../pages/Payment/Edit";
 import ViewPaymentMethod from "../pages/Payment/View";
+import Sales from "../pages/Sales";
+import CreateSale from "../pages/Sales/Create";
+import ViewSale from "../pages/Sales/View";
+import ServiceOrder from "../pages/ServiceOrder";
+import ViewServiceOrder from "../pages/ServiceOrder/View";
 import Mail from "../pages/Mail";
+import NFE from "../pages/Sales/NFE";
 
 export default function Router() {
   return (
     <BrowserRouter>
       <AuthProvider>
         <Routes>
-          <Route path="/login" element={<SignIn />} />
-
           {/* Todas as Rotas Privadas da Aplicação abaixo: */}
           <Route element={<PrivateRoutes />}>
             <Route path="/home" element={<Home />} />
@@ -52,8 +56,18 @@ export default function Router() {
               element={<ViewPaymentMethod />}
             />
 
+            <Route path="/vendas" element={<Sales />} />
+            <Route path="/vendas/novo" element={<CreateSale />} />
+            <Route path="/vendas/view/:id" element={<ViewSale />} />
+
+            <Route path="/os" element={<ServiceOrder />} />
+            <Route path="/os/view/:id" element={<ViewServiceOrder />} />
+
             <Route path="/email" element={<Mail />} />
           </Route>
+          {/* Todas as Rotas Públicas da Aplicação abaixo: */}
+          <Route path="/login" element={<SignIn />} />
+          <Route path="/nfe/:id" element={<NFE />} />
           {/* Qualquer Rota Aleatória manda pro Login Também */}
           <Route path="*" element={<SignIn />} />
         </Routes>

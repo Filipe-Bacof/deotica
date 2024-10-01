@@ -30,13 +30,21 @@ type ButtonProps = ComponentProps<"button"> &
   VariantProps<typeof button> & {
     asLink?: boolean;
     to?: string;
+    target?: React.HTMLAttributeAnchorTarget;
   };
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ asLink, to, className, variant, size, ...props }, ref) => {
+  (
+    { asLink, to, className, variant, size, target = "_self", ...props },
+    ref,
+  ) => {
     if (asLink && to) {
       return (
-        <Link to={to} className={button({ variant, size, className })}>
+        <Link
+          to={to}
+          target={target}
+          className={button({ variant, size, className })}
+        >
           {props.children}
         </Link>
       );

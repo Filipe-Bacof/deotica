@@ -16,6 +16,14 @@ async function getAll() {
   return prisma.ordemServico.findMany({
     orderBy: { updatedAt: "desc" },
     include: {
+      cliente: {
+        select: {
+          id: true,
+          nome: true,
+          genero: true,
+        },
+      },
+      venda: {},
       criador: {
         select: {
           id: true,
@@ -31,6 +39,14 @@ async function getById(id: number) {
   const result = await prisma.ordemServico.findUnique({
     where: { id },
     include: {
+      cliente: {
+        select: {
+          id: true,
+          nome: true,
+          genero: true,
+        },
+      },
+      venda: {},
       criador: {
         select: {
           id: true,
@@ -48,6 +64,14 @@ async function getBySaleId(vendaId: string) {
   const result = await prisma.ordemServico.findUnique({
     where: { vendaId },
     include: {
+      cliente: {
+        select: {
+          id: true,
+          nome: true,
+          genero: true,
+        },
+      },
+      venda: {},
       criador: {
         select: {
           id: true,
@@ -66,6 +90,14 @@ async function updateStatus(id: number, data: AtualizarStatusOS) {
     where: { id },
     data,
     include: {
+      cliente: {
+        select: {
+          id: true,
+          nome: true,
+          genero: true,
+        },
+      },
+      venda: {},
       criador: {
         select: {
           id: true,
@@ -84,6 +116,14 @@ async function updateDataOS(id: number, data: EditarOS) {
     where: { id },
     data,
     include: {
+      cliente: {
+        select: {
+          id: true,
+          nome: true,
+          genero: true,
+        },
+      },
+      venda: {},
       criador: {
         select: {
           id: true,

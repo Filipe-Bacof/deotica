@@ -1,3 +1,6 @@
+import type { ClienteNomeGenero } from "./client.interface";
+import type { Dates } from "./dates.interface";
+import type { Venda } from "./sale.interface";
 import type { Criador } from "./user.interface";
 
 export interface OrdemServico {
@@ -50,4 +53,8 @@ export interface ServiceOrderResponseCreateSale {
   updatedAt: string;
 }
 
-export type ServiceOrderResponse = ServiceOrderResponseCreateSale & Criador;
+export type ServiceOrderResponse = ServiceOrderResponseCreateSale & {
+  criador: Criador;
+  cliente: ClienteNomeGenero;
+  venda: Venda & Dates;
+};
