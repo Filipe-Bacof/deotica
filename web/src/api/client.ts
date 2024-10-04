@@ -24,7 +24,6 @@ export async function editClient(
 
 export async function getAllClients(): Promise<ClientsResponse[]> {
   const result = await Api.get("/client");
-  console.log(result);
   return result.data;
 }
 
@@ -35,6 +34,5 @@ export async function getClientByCpf(cpf: string): Promise<ClientsResponse> {
 
 export async function getClientById(id: string): Promise<ClientsResponse> {
   const result = await Api.get(`/client/id/${id}`);
-  console.log(result);
   return result.data;
 }

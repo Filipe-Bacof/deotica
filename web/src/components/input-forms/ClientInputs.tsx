@@ -69,7 +69,7 @@ export default function ClientInputs({
       <div className="flex w-full flex-col gap-2">
         <label htmlFor="email">E-mail*</label>
         <input
-          type="text"
+          type="email"
           id="email"
           required
           className="rounded-md border border-zinc-400 px-2 py-1"
