@@ -8,7 +8,7 @@ export interface OrdemServico {
   vendaId: string;
   clienteId: string;
   dataDeEntrega?: Date;
-  concluido?: "pendente" | "retirada" | "finalizado";
+  concluido?: "pendente" | "retirada" | "finalizado" | string;
   olhoEsquerdo?: string;
   olhoDireito?: string;
   tipoLente?: string;

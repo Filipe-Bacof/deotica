@@ -21,7 +21,7 @@ const vendaDefault: CriarVendaRequest = {
 
 const ordemServicoDefault: CriarOS = {
   armacao: "",
-  concluido: "pendente",
+  concluido: undefined,
   corLente: "",
   dataDeEntrega: undefined,
   modeloLente: "",

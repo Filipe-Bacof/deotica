@@ -293,12 +293,187 @@ export default function CreateSale() {
               {hasOS && (
                 <>
                   <div className="flex w-full flex-col gap-2">
+                    <label htmlFor="dataDeEntrega">Data de Entrega</label>
+                    <input
+                      type="date"
+                      id="dataDeEntrega"
+                      className="rounded-md border border-zinc-400 px-2 py-1"
+                      placeholder="Selecione a data de entrega"
+                      value={
+                        serviceOrderData.dataDeEntrega
+                          ? serviceOrderData.dataDeEntrega
+                              .toISOString()
+                              .substr(0, 10)
+                          : ""
+                      }
+                      onChange={(e) => {
+                        setServiceOrderData({
+                          ...serviceOrderData,
+                          dataDeEntrega: e.target.value
+                            ? new Date(e.target.value)
+                            : undefined,
+                        });
+                      }}
+                    />
+                  </div>
+                  <div className="flex w-full flex-col gap-2">
+                    <label htmlFor="concluido">Status da OS</label>
+                    <select
+                      name="concluido"
+                      id="concluido"
+                      className="rounded-md border border-zinc-400 px-2 py-1"
+                      value={serviceOrderData.concluido}
+                      onChange={(e) => {
+                        setServiceOrderData({
+                          ...serviceOrderData,
+                          concluido: e.target.value,
+                        });
+                      }}
+                    >
+                      <option value={undefined}>
+                        Selecione o Status da OS
+                      </option>
+                      <option value="pendente">Pendente</option>
+                      <option value="retirada">Retirada</option>
+                      <option value="finalizado">Finalizado</option>
+                    </select>
+                  </div>
+                  <div className="flex w-full flex-col gap-2">
+                    <label htmlFor="olhoEsquerdo">Olho Esquerdo</label>
+                    <input
+                      type="text"
+                      id="olhoEsquerdo"
+                      className="rounded-md border border-zinc-400 px-2 py-1"
+                      placeholder="Informações sobre o Olho Esquerdo"
+                      value={serviceOrderData.olhoEsquerdo}
+                      onChange={(e) => {
+                        setServiceOrderData({
+                          ...serviceOrderData,
+                          olhoEsquerdo: e.target.value,
+                        });
+                      }}
+                    />
+                  </div>
+                  <div className="flex w-full flex-col gap-2">
+                    <label htmlFor="olhoDireito">Olho Direito</label>
+                    <input
+                      type="text"
+                      id="olhoDireito"
+                      className="rounded-md border border-zinc-400 px-2 py-1"
+                      placeholder="Informações sobre o Olho Direito"
+                      value={serviceOrderData.olhoDireito}
+                      onChange={(e) => {
+                        setServiceOrderData({
+                          ...serviceOrderData,
+                          olhoDireito: e.target.value,
+                        });
+                      }}
+                    />
+                  </div>
+                  <div className="flex w-full flex-col gap-2">
+                    <label htmlFor="tipoLente">Tipo de Lente</label>
+                    <input
+                      type="text"
+                      id="tipoLente"
+                      className="rounded-md border border-zinc-400 px-2 py-1"
+                      placeholder="Informações sobre o Tipo de Lente"
+                      value={serviceOrderData.tipoLente}
+                      onChange={(e) => {
+                        setServiceOrderData({
+                          ...serviceOrderData,
+                          tipoLente: e.target.value,
+                        });
+                      }}
+                    />
+                  </div>
+                  <div className="flex w-full flex-col gap-2">
+                    <label htmlFor="corLente">Cor da Lente</label>
+                    <input
+                      type="text"
+                      id="corLente"
+                      className="rounded-md border border-zinc-400 px-2 py-1"
+                      placeholder="Informações sobre a Cor da Lente"
+                      value={serviceOrderData.corLente}
+                      onChange={(e) => {
+                        setServiceOrderData({
+                          ...serviceOrderData,
+                          corLente: e.target.value,
+                        });
+                      }}
+                    />
+                  </div>
+                  <div className="flex w-full flex-col gap-2">
+                    <label htmlFor="modeloLente">Modelo da Lente</label>
+                    <input
+                      type="text"
+                      id="modeloLente"
+                      className="rounded-md border border-zinc-400 px-2 py-1"
+                      placeholder="Informações sobre o Modelo da Lente"
+                      value={serviceOrderData.modeloLente}
+                      onChange={(e) => {
+                        setServiceOrderData({
+                          ...serviceOrderData,
+                          modeloLente: e.target.value,
+                        });
+                      }}
+                    />
+                  </div>
+                  <div className="flex w-full flex-col gap-2">
+                    <label htmlFor="tratamentos">Tratamentos</label>
+                    <input
+                      type="text"
+                      id="tratamentos"
+                      className="rounded-md border border-zinc-400 px-2 py-1"
+                      placeholder="Informações sobre tratamentos"
+                      value={serviceOrderData.tratamentos}
+                      onChange={(e) => {
+                        setServiceOrderData({
+                          ...serviceOrderData,
+                          tratamentos: e.target.value,
+                        });
+                      }}
+                    />
+                  </div>
+                  <div className="flex w-full flex-col gap-2">
+                    <label htmlFor="observacoes">Observações</label>
+                    <input
+                      type="text"
+                      id="observacoes"
+                      className="rounded-md border border-zinc-400 px-2 py-1"
+                      placeholder="Observações relevantes sobre a OS"
+                      value={serviceOrderData.observacoes}
+                      onChange={(e) => {
+                        setServiceOrderData({
+                          ...serviceOrderData,
+                          observacoes: e.target.value,
+                        });
+                      }}
+                    />
+                  </div>
+                  <div className="flex w-full flex-row gap-2 md:justify-start">
+                    <input
+                      id="somenteLente"
+                      type="checkbox"
+                      checked={serviceOrderData.somenteLente}
+                      onChange={() => {
+                        setServiceOrderData((state) => {
+                          return {
+                            ...serviceOrderData,
+                            somenteLente: !state.somenteLente,
+                          };
+                        });
+                      }}
+                    />
+                    <label htmlFor="hasOS">Somente Lente</label>
+                  </div>
+                  <div className="flex w-full flex-col gap-2">
                     <label htmlFor="armacao">Armação</label>
                     <input
                       type="text"
                       id="armacao"
+                      disabled={serviceOrderData.somenteLente}
                       className="rounded-md border border-zinc-400 px-2 py-1"
-                      placeholder="Digite o tipo de armação"
+                      placeholder="Armação"
                       value={serviceOrderData.armacao}
                       onChange={(e) => {
                         setServiceOrderData({
@@ -308,7 +483,23 @@ export default function CreateSale() {
                       }}
                     />
                   </div>
-                  <p>Outros inputs</p>
+                  <div className="flex w-full flex-col gap-2">
+                    <label htmlFor="tipoArmacao">Tipo de Armacao</label>
+                    <input
+                      type="text"
+                      id="tipoArmacao"
+                      disabled={serviceOrderData.somenteLente}
+                      className="rounded-md border border-zinc-400 px-2 py-1"
+                      placeholder="Tipo de Armação"
+                      value={serviceOrderData.tipoArmacao}
+                      onChange={(e) => {
+                        setServiceOrderData({
+                          ...serviceOrderData,
+                          tipoArmacao: e.target.value,
+                        });
+                      }}
+                    />
+                  </div>
                 </>
               )}
             </form>
