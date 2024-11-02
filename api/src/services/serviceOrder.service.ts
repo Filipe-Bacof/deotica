@@ -15,6 +15,20 @@ async function getAll() {
   return result;
 }
 
+async function getInfo() {
+  const finalizado = await serviceOrderRepository.countByStatus(
+    "finalizado",
+    true
+  );
+  const pendente = await serviceOrderRepository.countByStatus("pendente");
+  const retirada = await serviceOrderRepository.countByStatus("retirada");
+  return {
+    finalizado,
+    pendente,
+    retirada,
+  };
+}
+
 async function getById(id: number) {
   const result = await serviceOrderRepository.getById(id);
   return result;
@@ -38,6 +52,7 @@ async function updateDataOS(id: number, data: EditarOS) {
 const serviceOrderService = {
   insert,
   getAll,
+  getInfo,
   getById,
   getBySaleId,
   updateStatus,

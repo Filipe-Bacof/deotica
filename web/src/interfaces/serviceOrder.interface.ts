@@ -58,3 +58,9 @@ export type ServiceOrderResponse = ServiceOrderResponseCreateSale & {
   cliente: ClienteNomeGenero;
   venda: Venda & Dates;
 };
+
+export type ServiceOrderCount = {
+  finalizado: number;
+  pendente: number;
+  retirada: number;
+};

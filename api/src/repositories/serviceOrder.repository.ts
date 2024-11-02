@@ -1,6 +1,7 @@
 import { prisma } from "../config/database";
 import type {
   AtualizarStatusOS,
+  Concluido,
   EditarOS,
   InserirOS,
 } from "../interfaces/serviceOrder.interface";
@@ -137,6 +138,23 @@ async function updateDataOS(id: number, data: EditarOS) {
   return result;
 }
 
+async function countByStatus(concluido: Concluido, mesAtual = false) {
+  const agora = new Date();
+  const trintaDiasAtras = new Date();
+  trintaDiasAtras.setDate(agora.getDate() - 30);
+
+  return prisma.ordemServico.count({
+    where: {
+      concluido,
+      ...(mesAtual && {
+        updatedAt: {
+          gte: trintaDiasAtras,
+        },
+      }),
+    },
+  });
+}
+
 const serviceOrderRepository = {
   insert,
   getAll,
@@ -144,6 +162,7 @@ const serviceOrderRepository = {
   getBySaleId,
   updateStatus,
   updateDataOS,
+  countByStatus,
 };
 
 export default serviceOrderRepository;

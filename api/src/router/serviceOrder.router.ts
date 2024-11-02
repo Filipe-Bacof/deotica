@@ -1,6 +1,7 @@
 import { Router } from "express";
 import {
   serviceOrderGETALL,
+  serviceOrderGETINFO,
   serviceOrderGETBYID,
   serviceOrderPATCHSTATUS,
   serviceOrderPUT,
@@ -18,6 +19,12 @@ serviceOrderRouter.get(
   "/serviceOrder",
   validateHeaderToken,
   serviceOrderGETALL
+);
+
+serviceOrderRouter.get(
+  "/serviceOrderInfoStatus",
+  validateHeaderToken,
+  serviceOrderGETINFO
 );
 
 serviceOrderRouter.get(

@@ -1,12 +1,18 @@
 import type {
   AtualizarStatusOS,
   EditarOS,
+  ServiceOrderCount,
   ServiceOrderResponse,
 } from "../interfaces/serviceOrder.interface";
 import { Api } from "./api";
 
 export async function getAllServiceOrders(): Promise<ServiceOrderResponse[]> {
   const result = await Api.get("/serviceOrder");
+  return result.data;
+}
+
+export async function getCountServiceOrdersInfo(): Promise<ServiceOrderCount> {
+  const result = await Api.get("/serviceOrderInfoStatus");
   return result.data;
 }
 

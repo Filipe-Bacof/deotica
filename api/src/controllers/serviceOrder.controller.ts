@@ -1,12 +1,16 @@
-import { Request, Response } from "express";
+import type { Request, Response } from "express";
 import serviceOrderService from "../services/serviceOrder.service";
-import {
+import type {
   AtualizarStatusOS,
   EditarOS,
 } from "../interfaces/serviceOrder.interface";
 
 export async function serviceOrderGETALL(_req: Request, res: Response) {
   const result = await serviceOrderService.getAll();
+  res.status(200).send(result);
+}
+export async function serviceOrderGETINFO(_req: Request, res: Response) {
+  const result = await serviceOrderService.getInfo();
   res.status(200).send(result);
 }
 
