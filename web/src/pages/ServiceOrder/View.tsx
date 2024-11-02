@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import { getServiceOrderById } from "../../api/serviceOrder";
 import { formatDate } from "../../utils/convertions";
 import { Button } from "../../components/Button";
+import UpdateStatusOS from "../../components/UpdateStatusOS";
 
 export default function ViewServiceOrder() {
   const { id } = useParams();
@@ -47,6 +48,28 @@ export default function ViewServiceOrder() {
                   `${data.cliente.nome} (Gênero: ${data.cliente.genero})`,
                 )}
                 {itemCard("Vendedor", data.criador.nome)}
+                {data.concluido && itemCard("Status da OS", data.concluido)}
+                {data.dataDeEntrega &&
+                  itemCard("Data de Entrega", formatDate(data.dataDeEntrega))}
+                {data.armacao && itemCard("Armação", data.armacao)}
+                {data.corLente && itemCard("Cor da Lente", data.corLente)}
+                {data.modeloLente &&
+                  itemCard("Modelo da Lente", data.modeloLente)}
+                {data.tipoLente && itemCard("Tipo da Lente", data.tipoLente)}
+                {data.observacoes && itemCard("Observações", data.observacoes)}
+                {data.olhoDireito && itemCard("Olho Direito", data.olhoDireito)}
+                {data.olhoEsquerdo &&
+                  itemCard("Olho Esquerdo", data.olhoEsquerdo)}
+                {itemCard("Somente Lente", data.somenteLente ? "Sim" : "Não")}
+                {data.tipoArmacao &&
+                  itemCard("Tipo de Armação", data.tipoArmacao)}
+                {data.tratamentos && itemCard("Tratamentos", data.tratamentos)}
+
+                {itemCard(
+                  "Criado em",
+                  `${formatDate(data.createdAt)} - por ${data.criador.nome}`,
+                )}
+                <UpdateStatusOS id={data.id} valueOS={data.concluido} />
               </div>
               <div className="flex w-full items-center justify-center gap-4">
                 <Button

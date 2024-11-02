@@ -8,18 +8,23 @@ import {
 } from "../../utils/createSaleInputs";
 import type { CriarVendaRequest } from "../../interfaces/sale.interface";
 import type { CriarOS } from "../../interfaces/serviceOrder.interface";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import Select from "react-select";
 import { getAllClients } from "../../api/client";
 import { getAllProducts } from "../../api/product";
 import { getAllPaymentMethods } from "../../api/payment";
 import { Button } from "../../components/Button";
+import { createSale } from "../../api/sale";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 export default function CreateSale() {
+  const queryClient = useQueryClient();
+  const navigate = useNavigate();
   const [saleData, setSaleData] = useState<CriarVendaRequest>(vendaDefault);
   const [serviceOrderData, setServiceOrderData] =
     useState<CriarOS>(ordemServicoDefault);
-  const [hasOS, setHasOS] = useState<boolean>(true);
+  const [hasOS, setHasOS] = useState<boolean>(false);
 
   const { data: clients } = useQuery({
     queryKey: ["clients"],
@@ -40,7 +45,11 @@ export default function CreateSale() {
   });
 
   if (!clients && !paymentMethods && !products) {
-    return null;
+    return (
+      <SidebarAndHeader selected="Vendas">
+        <p>Carregando</p>
+      </SidebarAndHeader>
+    );
   }
 
   const optionsClients = clients?.map((client) => ({
@@ -53,9 +62,9 @@ export default function CreateSale() {
     label: payment.descricao,
   }));
 
-  const optionsProducts = products?.map((products) => ({
-    value: products.id,
-    label: `${products.nome} | ${products.genero} | ${products.marca} | ${products.modelo} | R$ ${Number(products.preco).toFixed(2)} (${products.quantidade})`,
+  const optionsProducts = products?.map((product) => ({
+    value: product.id,
+    label: `${product.nome} | ${product.genero} | ${product.marca} | ${product.modelo} | R$ ${Number(product.preco).toFixed(2)} (${product.quantidade})`,
   }));
 
   function handleAddProduct() {
@@ -80,6 +89,42 @@ export default function CreateSale() {
         ...prevSaleData,
         produtos: updatedList,
       }));
+    }
+  }
+
+  function handleCreateSale() {
+    try {
+      const dataCreateSale = saleData;
+      if (hasOS) {
+        dataCreateSale.ordemServico = serviceOrderData;
+      }
+
+      console.log(dataCreateSale);
+      createSale(dataCreateSale)
+        .then((data) => {
+          console.log(data);
+          if (
+            data.atualizarQuantidades.erros &&
+            data.atualizarQuantidades.erros.length > 0
+          ) {
+            data.atualizarQuantidades.erros.map((error) => {
+              // console.error(error)
+              toast.error(error as string);
+            });
+          }
+          queryClient.invalidateQueries({ queryKey: ["sales"] });
+          queryClient.invalidateQueries({ queryKey: ["sale"] });
+          toast.success("Venda efetuada com sucesso!");
+          navigate(`/vendas/view/${data.venda.id}`);
+        })
+        .catch((error) => {
+          // console.error(error);
+          error.response.data.map((error: string) => {
+            toast.error(error);
+          });
+        });
+    } catch (error) {
+      console.error(error);
     }
   }
 
@@ -324,9 +369,14 @@ export default function CreateSale() {
                       className="rounded-md border border-zinc-400 px-2 py-1"
                       value={serviceOrderData.concluido}
                       onChange={(e) => {
+                        const value = e.target.value as
+                          | "pendente"
+                          | "retirada"
+                          | "finalizado"
+                          | undefined;
                         setServiceOrderData({
                           ...serviceOrderData,
-                          concluido: e.target.value,
+                          concluido: value,
                         });
                       }}
                     >
@@ -502,6 +552,16 @@ export default function CreateSale() {
                   </div>
                 </>
               )}
+              <Button
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleCreateSale();
+                }}
+                type="button"
+                variant="creation"
+              >
+                Finalizar Venda
+              </Button>
             </form>
           </div>
         </section>

@@ -19,5 +19,6 @@ export async function createSale(
   data: CriarVendaRequest,
 ): Promise<CreateSaleResponse> {
   const result = await Api.post("/sale", data);
+  console.log(result);
   return result.data;
 }

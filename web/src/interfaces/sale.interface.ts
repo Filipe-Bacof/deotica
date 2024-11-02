@@ -46,7 +46,7 @@ export interface CreateSaleResponse {
   ordemServico?: ServiceOrderResponseCreateSale;
   atualizarQuantidades: {
     atualizados: ProductResponse[];
-    erros: string | null;
+    erros: unknown[] | null;
   };
 }
 
