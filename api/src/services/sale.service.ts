@@ -56,8 +56,8 @@ async function insert(data: CriarVendaRequest, userID: string) {
     console.log("✅ Produtos de cada venda informados com sucesso!");
     console.log(produtos);
 
-    const atualizados = [];
-    const errosAtualizar = [];
+    const atualizados: unknown[] = [];
+    const errosAtualizar: unknown[] = [];
 
     const quantidades = await Promise.all(
       data.produtos.map((product) =>
