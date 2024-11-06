@@ -553,7 +553,7 @@ export default function CreateSale() {
                 </>
               )}
               <Button
-                onClick={(e) => {
+                onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
                   e.preventDefault();
                   handleCreateSale();
                 }}
