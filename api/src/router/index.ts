@@ -11,7 +11,7 @@ import serviceOrderRouter from "./serviceOrder.router";
 const router = Router();
 
 router.get("/", (_req: Request, res: Response) => {
-  return res.send("API Funcionando! 👍");
+  return res.send("API Funcionando!!! 👍");
 });
 
 router.get("/ping", (_req: Request, res: Response) => {

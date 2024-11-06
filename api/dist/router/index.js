@@ -14,7 +14,7 @@ const sale_router_1 = __importDefault(require("./sale.router"));
 const serviceOrder_router_1 = __importDefault(require("./serviceOrder.router"));
 const router = (0, express_1.Router)();
 router.get("/", (_req, res) => {
-    return res.send("API Funcionando! 👍");
+    return res.send("API Funcionando!!! 👍");
 });
 router.get("/ping", (_req, res) => {
     return res.send("pong 🏓");
