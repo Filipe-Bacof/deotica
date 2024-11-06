@@ -8,8 +8,7 @@
     "start": "nodemon src/server.ts",
     "build": "rimraf dist && tsc && prisma generate",
     "ts.check": "tsc --project tsconfig.json",
-    "add-build": "git add dist",
-    "postinstall": "npm run build"
+    "add-build": "git add dist"
   },
   "pre-commit": [
     "ts.check",
