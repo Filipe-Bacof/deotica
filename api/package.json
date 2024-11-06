@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "tsx watch src/server.ts",
     "start": "nodemon src/server.ts",
-    "build": "rimraf dist && tsc",
+    "build": "rimraf dist && tsc && prisma generate",
     "ts.check": "tsc --project tsconfig.json",
     "add-build": "git add dist"
   },
