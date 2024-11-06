@@ -23,6 +23,7 @@ export default function Home() {
         {isLoadingOS ? (
           <p>carregando informações OS...</p>
         ) : isErrorOS ? (
+          // TODO: clique aqui para buscar os dados novamente
           <p>Erro ao buscar dados de OS...</p>
         ) : (
           <Link
@@ -49,15 +50,6 @@ export default function Home() {
           </Link>
         )}
       </div>
-
-      {/* <p>Ideias de coisas que podem ser exibidas aqui</p>
-      <ul>
-        <li>ultima venda</li>
-        <li>3 produtos mais vendidos</li>
-        <li>criar venda para o produto clicado</li>
-        <li>clientes com atendimento a domicilio</li>
-        <li>disparo de email em massa</li>
-      </ul> */}
     </SidebarAndHeader>
   );
 }

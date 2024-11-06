@@ -781,13 +781,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{URL}}/sale/1245125",
+							"raw": "{{URL}}/sale/c323b17c-dfb6-46c8-a1b5-16f1d0bb6746",
 							"host": [
 								"{{URL}}"
 							],
 							"path": [
 								"sale",
-								"1245125"
+								"c323b17c-dfb6-46c8-a1b5-16f1d0bb6746"
 							]
 						}
 					},
@@ -862,6 +862,23 @@
 							],
 							"path": [
 								"serviceOrder"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Contagem Ordens de Serviço",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/serviceOrderInfoStatus",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"serviceOrderInfoStatus"
 							]
 						}
 					},
@@ -947,7 +964,7 @@
 		"bearer": [
 			{
 				"key": "token",
-				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiJiZjhiMjdkMi02YWQxLTQ5M2YtYjlmNS04ZGZlY2Y2YTExYjIiLCJpYXQiOjE3Mjc1NDc4OTQsImV4cCI6MTcyODE1MjY5NH0.ZYodGNAIyaNTuOzdICrSQQ2jEX8arOgZNcJ0hQH8sdA",
+				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiJiZjhiMjdkMi02YWQxLTQ5M2YtYjlmNS04ZGZlY2Y2YTExYjIiLCJpYXQiOjE3MzA1MTUzMTUsImV4cCI6MTczMTEyMDExNX0.kpKNOHjPWXWxv6nCW2QNYwEsvOtyvs1UTM4_WaeFlrI",
 				"type": "string"
 			}
 		]
