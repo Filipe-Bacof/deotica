@@ -5,11 +5,10 @@
   "main": "index.js",
   "scripts": {
     "dev": "tsx watch src/server.ts",
-    "start": "nodemon dist/server.js",
+    "start": "nodemon src/server.ts",
     "build": "rimraf dist && tsc",
     "ts.check": "tsc --project tsconfig.json",
-    "add-build": "git add dist",
-    "postinstall": "npm run build && prisma generate"
+    "add-build": "git add dist"
   },
   "pre-commit": [
     "ts.check",
