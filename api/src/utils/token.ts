@@ -5,9 +5,12 @@ dotenv.config();
 
 export function decodeToken(tokenController: string) {
   const token = tokenController?.split("Bearer ").join("");
+  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
   let infoToken: any;
+  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
   jwt.verify(token, process.env.JWT_KEY, (err: any, decoded: any) => {
     if (err) throw { status: 400, message: `Invalid token ${token}` };
+    // biome-ignore lint/style/noUselessElse: <explanation>
     else infoToken = decoded;
   });
 
@@ -31,7 +34,7 @@ export function getUserIDbyToken(authorization: string): returnUserId {
   if (!checkToken) {
     throw {
       status: 404,
-      message: `token not valid`,
+      message: "token not valid",
     };
   }
   return checkToken;

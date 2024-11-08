@@ -1,11 +1,13 @@
 import type { Request, Response } from "express";
 import authService from "../services/auth.service";
 import type {
+  ChangePass,
   Forgot,
   NewPass,
   SignIn,
   SignUpConfirmPass,
 } from "../interfaces/auth.interface";
+import { getUserIDbyToken } from "../utils/token";
 
 export async function signUp(req: Request, res: Response) {
   const data: SignUpConfirmPass = req.body;
@@ -43,13 +45,23 @@ export async function signIn(req: Request, res: Response) {
 export async function forgot(req: Request, res: Response) {
   const { email }: Forgot = req.body;
   console.log(email);
-  const result = await authService.forgot(email);
-  res.status(200).send({ result });
+  await authService.forgot(email);
+  res.status(200).send("Verifique o seu e-mail!");
 }
 
 export async function newPass(req: Request, res: Response) {
   const { email, senha }: NewPass = req.body;
   await authService.newPass(email, senha);
+  res.status(200).send("Senha atualizada.");
+}
+
+export async function changePass(req: Request, res: Response) {
+  const { senha }: ChangePass = req.body;
+  const authHeader = req.headers.authorization;
+  const token = authHeader?.split(" ")[1];
+  const { userID } = getUserIDbyToken(token);
+  console.log(userID);
+  await authService.changePass(userID, senha);
   res.status(200).send("Senha atualizada.");
 }
 

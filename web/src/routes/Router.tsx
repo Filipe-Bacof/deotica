@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { AuthProvider } from "../context/authContext";
 import { PrivateRoutes } from "./PrivateRoutes";
-import SignIn from "../pages/SignIn";
+import SignIn from "../pages/Auth/SignIn";
 import Home from "../pages/Home";
 import Clients from "../pages/Clients";
 import CreateClient from "../pages/Clients/Create";
@@ -22,6 +22,8 @@ import ServiceOrder from "../pages/ServiceOrder";
 import ViewServiceOrder from "../pages/ServiceOrder/View";
 import Mail from "../pages/Mail";
 import NFE from "../pages/Sales/NFE";
+import ForgotPassword from "../pages/Auth/Forgot";
+import NewPassword from "../pages/Auth/NewPass";
 
 export default function Router() {
   return (
@@ -67,6 +69,8 @@ export default function Router() {
           </Route>
           {/* Todas as Rotas Públicas da Aplicação abaixo: */}
           <Route path="/login" element={<SignIn />} />
+          <Route path="/forgot" element={<ForgotPassword />} />
+          <Route path="/newpass" element={<NewPassword />} />
           <Route path="/nfe/:id" element={<NFE />} />
           {/* Qualquer Rota Aleatória manda pro Login Também */}
           <Route path="*" element={<SignIn />} />

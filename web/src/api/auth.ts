@@ -1,4 +1,5 @@
 import type {
+  ChangePass,
   Forgot,
   LoginResponse,
   NewPass,
@@ -24,6 +25,11 @@ export async function forgotPassword(data: Forgot) {
 
 export async function generateNewPassword(data: NewPass) {
   const result = await Api.post("/newpass", data);
+  return result;
+}
+
+export async function changePassword(data: ChangePass) {
+  const result = await Api.post("/changepass", data);
   return result;
 }
 

@@ -150,6 +150,38 @@ async function forgot(email: string) {
   }
 }
 
+async function changePass(userId: string, senha: string) {
+  try {
+    const foundUser = await authRepository.getOneUser(userId);
+    if (!foundUser) {
+      throw {
+        status: 400,
+        message: "Ocorreu um erro, tente novamente.",
+      };
+    }
+
+    const result = await authRepository.changePassword(
+      userId,
+      bcrypt.hashSync(senha, 10)
+    );
+
+    if (!result) {
+      throw {
+        status: 400,
+        message: "Ocorreu um erro, tente novamente.",
+      };
+    }
+
+    return result;
+  } catch (error) {
+    console.log(error);
+    throw {
+      status: 400,
+      message: "Ocorreu um erro, tente novamente.",
+    };
+  }
+}
+
 async function newPass(email: string, senha: string) {
   const foundUser = await authRepository.getByEmail(email);
 
@@ -206,6 +238,7 @@ const authService = {
   signIn,
   forgot,
   newPass,
+  changePass,
   getUserData,
   getUserDataByEmail,
 };

@@ -4,6 +4,7 @@ import {
   signUp,
   forgot,
   newPass,
+  changePass,
   getUserData,
 } from "../controllers/auth.controller";
 import verifyTokenForgotPass from "../middlewares/validateForgotPass";
@@ -24,6 +25,8 @@ authRouter.post("/signin", signIn);
 authRouter.post("/forgot", forgot);
 
 authRouter.post("/newpass", verifyTokenForgotPass, newPass);
+
+authRouter.post("/changepass", validateHeaderToken, changePass);
 
 authRouter.get("/user/:id", validateHeaderToken, getUserData);
 

@@ -55,6 +55,18 @@ async function updatePassword(email: string, newPassword: string) {
   return result;
 }
 
+async function changePassword(userId: string, newPassword: string) {
+  const result = await prisma.usuarios.update({
+    where: {
+      id: userId,
+    },
+    data: {
+      senha: newPassword,
+    },
+  });
+  return result;
+}
+
 const authRepository = {
   insert,
   getAll,
@@ -62,6 +74,7 @@ const authRepository = {
   getOneUser,
   updateTokenForgotPassword,
   updatePassword,
+  changePassword,
 };
 
 export default authRepository;
