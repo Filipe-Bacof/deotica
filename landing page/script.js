@@ -3,7 +3,7 @@ document.getElementById('formContato').addEventListener('submit', function(event
   const nome = document.getElementById('nome').value;
   const email = document.getElementById('email').value;
 
-  fetch('{{URL}}/promoEmail', {
+  fetch('https://deotica-api.vercel.app/promoEmail', {
       method: 'POST',
       headers: {
           'Content-Type': 'application/json'
