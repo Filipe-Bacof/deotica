@@ -1,5 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 import bcrypt from "bcrypt";
+import dotenv from "dotenv";
+dotenv.config();
 
 const prisma = new PrismaClient();
 
@@ -21,11 +23,15 @@ const perfilUsuario = prisma.perfilUsuario.create({
   },
 });
 
+const email = process.env.DEOTICA_EMAIL;
+const nameUser = process.env.DEOTICA_NAME;
+const password = process.env.DEOTICA_PASS;
+
 const usuario1 = prisma.usuarios.create({
   data: {
-    email: "filipebacof@gmail.com",
-    nome: "Filipe Bacof",
-    senha: bcrypt.hashSync("Deotica$Admin2024", 10),
+    email: email || "",
+    nome: nameUser || "",
+    senha: bcrypt.hashSync(password || "", 10),
     perfilId: 1,
   },
 });
