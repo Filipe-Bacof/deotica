@@ -30,6 +30,12 @@ export default function Home() {
     chart: {
       type: "line" as const,
       height: 350,
+      zoom: {
+        enabled: false,
+      },
+      toolbar: {
+        show: false,
+      },
     },
     xaxis: {
       categories:
@@ -44,6 +50,21 @@ export default function Home() {
     title: {
       text: "",
       align: "center",
+    },
+    tooltip: {
+      enabled: true,
+      x: {
+        format: "dd/MM/yyyy",
+      },
+      y: {
+        formatter: (value) => formatarMoeda(value),
+      },
+    },
+    dataLabels: {
+      enabled: false,
+    },
+    grid: {
+      show: true,
     },
   };
 
