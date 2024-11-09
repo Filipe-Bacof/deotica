@@ -91,7 +91,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"nome\": \"Clenice Francisco\",\r\n    \"email\": \"dhyvargaskr@gmail.com\",\r\n    \"senha\": \"AnotherDhy123!\",\r\n    \"confirmarSenha\": \"AnotherDhy123!\",\r\n    \"perfilId\": 2\r\n}",
+							"raw": "{\r\n    \"nome\": \"Dieli Vargas\",\r\n    \"email\": \"dhyvargaskr@gmail.com\",\r\n    \"senha\": \"AnotherDhy123!\",\r\n    \"confirmarSenha\": \"AnotherDhy123!\",\r\n    \"perfilId\": 2\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -117,7 +117,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"filipebacof@gmail.com\",\r\n    \"senha\": \"Deotica2025!\"\r\n}",
+							"raw": "{\r\n    \"email\": \"fmariaclenice@yahoo.com.br\",\r\n    \"senha\": \"Deotica2451\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -143,7 +143,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"filipebacof@gmail.com\"\r\n}",
+							"raw": "{\r\n    \"email\": \"fmariaclenice@yahoo.com.br\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -169,7 +169,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"filipebacof@gmail.com\",\r\n    \"senha\": \"Deotica$Admin2024\",\r\n    \"token\": \"92ed11073dca\"\r\n}",
+							"raw": "{\r\n    \"email\": \"fmariaclenice@yahoo.com.br\",\r\n    \"senha\": \"Deotica1234\",\r\n    \"token\": \"123456789abc\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -195,7 +195,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"senha\": \"Deotica$Admin2024\"\r\n}",
+							"raw": "{\r\n    \"senha\": \"Deotica1234\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -468,7 +468,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"nome\": \"Oculos de Sol Elegante\",\r\n    \"quantidade\": 12,\r\n    \"preco\": 180.90,\r\n    \"status\": true,\r\n    \"codigoDeBarras\": \"46546546894\",\r\n    \"marca\": \"RayBan\",\r\n    \"modelo\": \"Bonito\",\r\n    \"tipo\": \"Oculos\",\r\n    \"genero\": \"unissex\",\r\n    \"produtoAtivo\": \"Sim e tenho em estoque\"\r\n}",
+							"raw": "{\r\n    \"nome\": \"Oculos de Sol Elegante\",\r\n    \"quantidade\": 12,\r\n    \"preco\": 180,\r\n    \"status\": true,\r\n    \"codigoDeBarras\": \"46546546894\",\r\n    \"marca\": \"RayBan\",\r\n    \"modelo\": \"Bonito\",\r\n    \"tipo\": \"Oculos\",\r\n    \"genero\": \"unissex\",\r\n    \"produtoAtivo\": \"Sim e tenho em estoque\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -826,7 +826,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"venda\": {\r\n        \"formaDePagamentoId\": 1,\r\n        \"clienteId\": \"f864b01a-b9f9-4345-9634-68d2c165efbd\",\r\n        \"numeroDeParcelas\": 3,\r\n        \"valorDeEntrada\": 500.00,\r\n        \"desconto\": 50.00\r\n    },\r\n    \"produtos\": [\r\n        {\r\n            \"id\": \"6b3676ad-730d-4e8c-b55c-465558309c06\",\r\n            \"preco\": 100.00,\r\n            \"quantidade\": 5\r\n        }\r\n    ],\r\n    \"ordemServico\": {\r\n        \"dataDeEntrega\": \"2024-09-01T00:00:00.000Z\",\r\n        \"concluido\": \"pendente\",\r\n        \"tipoLente\": \"Progresso\",\r\n        \"modeloLente\": \"XYZ\",\r\n        \"tratamentos\": \"Antirreflexo\"\r\n    }\r\n}\r\n",
+							"raw": "{\r\n    \"venda\": {\r\n        \"formaDePagamentoId\": 1,\r\n        \"clienteId\": \"4d3d4bf8-acfa-43aa-a32c-6747d06f15af\",\r\n        \"numeroDeParcelas\": 1,\r\n        \"valorDeEntrada\": 510.00,\r\n        \"desconto\": 50.00\r\n    },\r\n    \"produtos\": [\r\n        {\r\n            \"id\": \"95bbc23d-d5f6-4cd5-bdb0-f9c9c556d323\",\r\n            \"preco\": 180.00,\r\n            \"quantidade\": 3\r\n        }\r\n    ],\r\n    \"ordemServico\": {\r\n        \"dataDeEntrega\": \"2024--01T00:00:00.000Z\",\r\n        \"concluido\": \"pendente\",\r\n        \"tipoLente\": \"123\",\r\n        \"modeloLente\": \"XYZ\",\r\n        \"tratamentos\": \"Antirreflexo\",\r\n        \"tipoArmacaoME\": \"2\",\r\n        \"vaiTrazerArmacao\": \"1\",\r\n        \"tipoArmacaoNY\": 1\r\n    }\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -888,23 +888,6 @@
 							],
 							"path": [
 								"serviceOrder"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Contagem Ordens de Serviço",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{URL}}/serviceOrderInfoStatus",
-							"host": [
-								"{{URL}}"
-							],
-							"path": [
-								"serviceOrderInfoStatus"
 							]
 						}
 					},
@@ -983,6 +966,46 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "Dashboard",
+			"item": [
+				{
+					"name": "Contagem Ordens de Serviço",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/serviceOrderInfoStatus",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"serviceOrderInfoStatus"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Vendas do Ultimo Mês",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/sales/lastMonth",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"sales",
+								"lastMonth"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	],
 	"auth": {
@@ -990,7 +1013,7 @@
 		"bearer": [
 			{
 				"key": "token",
-				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiJiZjhiMjdkMi02YWQxLTQ5M2YtYjlmNS04ZGZlY2Y2YTExYjIiLCJpYXQiOjE3MzEwMzI2NjYsImV4cCI6MTczMTYzNzQ2Nn0.h09lrZYBLq_KyeNvs3rF4x8OhqNsCqbNvdeUljOJLPM",
+				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiJkOWVhZjM0Zi0zNDM5LTRmODEtYTA3NC1iNDk1N2I5YjM4MmEiLCJpYXQiOjE3MzExOTQ3MTIsImV4cCI6MTczMTc5OTUxMn0.34N5sFphw5lu_auk1AIkuAAoga-tTNXNZPtU-Y-3aP4",
 				"type": "string"
 			}
 		]

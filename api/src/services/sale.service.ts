@@ -164,6 +164,24 @@ async function insert(data: CriarVendaRequest, userID: string) {
       try {
         const ordemDeServico = await serviceOrderService.insert({
           ...data.ordemServico,
+          ...(data.ordemServico.tipoArmacaoAC && {
+            tipoArmacaoAC: data.ordemServico.tipoArmacaoAC === "1",
+          }),
+          ...(data.ordemServico.tipoArmacaoME && {
+            tipoArmacaoME: data.ordemServico.tipoArmacaoME === "1",
+          }),
+          ...(data.ordemServico.tipoArmacaoNY && {
+            tipoArmacaoNY: data.ordemServico.tipoArmacaoNY === "1",
+          }),
+          ...(data.ordemServico.tipoArmacaoPA && {
+            tipoArmacaoPA: data.ordemServico.tipoArmacaoPA === "1",
+          }),
+          ...(data.ordemServico.somenteLente && {
+            somenteLente: data.ordemServico.somenteLente === "1",
+          }),
+          ...(data.ordemServico.vaiTrazerArmacao && {
+            vaiTrazerArmacao: data.ordemServico.vaiTrazerArmacao === "1",
+          }),
           vendaId: venda.id,
           clienteId: venda.clienteId,
           createdBy: userID,

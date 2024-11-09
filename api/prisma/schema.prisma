@@ -54,27 +54,44 @@ model formasDePagamento {
 }
 
 model ordemServico {
-  id            Int       @id @default(autoincrement())
-  vendaId       String    @unique
-  clienteId     String
-  dataDeEntrega DateTime?
-  concluido     String    @default("pendente")
-  olhoEsquerdo  String?
-  olhoDireito   String?
-  tipoLente     String?
-  corLente      String?
-  modeloLente   String?
-  tratamentos   String?
-  observacoes   String?
-  armacao       String?
-  tipoArmacao   String?
-  somenteLente  Boolean   @default(false)
-  createdBy     String
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
-  cliente       clientes  @relation(fields: [clienteId], references: [id])
-  criador       usuarios  @relation(fields: [createdBy], references: [id])
-  venda         vendas    @relation(fields: [vendaId], references: [id])
+  id                 Int       @id @default(autoincrement())
+  vendaId            String    @unique
+  clienteId          String
+  dataDeEntrega      DateTime?
+  concluido          String    @default("pendente")
+  olhoDireitoEsf     String?
+  olhoDireitoCil     String?
+  olhoDireitoEixo    String?
+  olhoDireitoDNP     String?
+  olhoDireitoAltura  String?
+  olhoEsquerdoEsf    String?
+  olhoEsquerdoCil    String?
+  olhoEsquerdoEixo   String?
+  olhoEsquerdoDNP    String?
+  olhoEsquerdoAltura String?
+  adicao             String?
+  tipoLente          String?   @db.VarChar(1) // DESENHOS
+  corLente           String?
+  modeloLente        String?
+  tratamentos        String?
+  observacoes        String?
+  armacaoMD          String?
+  armacaoTA          String?
+  armacaoHoriz       String?
+  armacaoPonte       String?
+  armacaoVert        String?
+  tipoArmacaoAC      Boolean?  @default(false)
+  tipoArmacaoME      Boolean?  @default(false)
+  tipoArmacaoNY      Boolean?  @default(false)
+  tipoArmacaoPA      Boolean?  @default(false)
+  somenteLente       Boolean?  @default(false)
+  vaiTrazerArmacao   Boolean?  @default(false)
+  createdBy          String
+  createdAt          DateTime  @default(now())
+  updatedAt          DateTime  @updatedAt
+  cliente            clientes  @relation(fields: [clienteId], references: [id])
+  criador            usuarios  @relation(fields: [createdBy], references: [id])
+  venda              vendas    @relation(fields: [vendaId], references: [id])
 }
 
 model perfilUsuario {
