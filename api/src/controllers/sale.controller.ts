@@ -22,3 +22,8 @@ export async function salePOST(req: Request, res: Response) {
   const result = await saleService.insert(data, userID);
   res.status(200).send(result);
 }
+
+export async function salesLastMonthGET(_req: Request, res: Response) {
+  const result = await saleService.salesLastMonth();
+  res.status(200).send(result);
+}

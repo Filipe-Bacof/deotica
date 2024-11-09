@@ -58,3 +58,21 @@ export type SaleResponse = Venda &
     cliente: ClienteNomeGenero;
     vendasProdutos: VendaProdutoResponse[];
   };
+
+export type SalesLastMonth = {
+  data: DataSalesLastMonth[];
+  totalValues: {
+    totalSemDesconto: number;
+    totalDescontado: number;
+    totalComDesconto: number;
+  };
+};
+
+type DataSalesLastMonth = {
+  id: string;
+  createdAt: string;
+  vendasNesseDia: number;
+  totalSemDesconto: number;
+  totalDescontado: number;
+  totalComDesconto: number;
+};

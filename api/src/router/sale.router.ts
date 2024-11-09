@@ -3,6 +3,7 @@ import {
   saleGETALL,
   saleGETBYID,
   salePOST,
+  salesLastMonthGET,
 } from "../controllers/sale.controller";
 import { validateHeaderToken } from "../middlewares/validateToken";
 import { validateSchema } from "../middlewares/validateSchema";
@@ -20,5 +21,7 @@ saleRouter.post(
   validateSchema(newSaleSchema),
   salePOST
 );
+
+saleRouter.get("/sales/lastMonth", validateHeaderToken, salesLastMonthGET);
 
 export default saleRouter;

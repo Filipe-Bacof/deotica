@@ -2,6 +2,7 @@ import type {
   CriarVendaRequest,
   CreateSaleResponse,
   SaleResponse,
+  SalesLastMonth,
 } from "../interfaces/sale.interface";
 import { Api } from "./api";
 
@@ -20,5 +21,10 @@ export async function createSale(
 ): Promise<CreateSaleResponse> {
   const result = await Api.post("/sale", data);
   console.log(result);
+  return result.data;
+}
+
+export async function getSalesLastMonth(): Promise<SalesLastMonth> {
+  const result = await Api.get("/sales/lastMonth");
   return result.data;
 }

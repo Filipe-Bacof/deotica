@@ -10,6 +10,85 @@ async function getAll() {
   return result;
 }
 
+async function salesLastMonth() {
+  const data = await saleRepository.salesLast30DaysData();
+
+  const hoje = new Date();
+  const trintaDiasAtras = new Date();
+  trintaDiasAtras.setDate(hoje.getDate() - 30);
+
+  const vendasPorDia = new Map();
+
+  // biome-ignore lint/complexity/noForEach: <explanation>
+  data.forEach((item) => {
+    const dataVenda = new Date(item.createdAt);
+    const dia = `${dataVenda.getFullYear()}-${(dataVenda.getMonth() + 1)
+      .toString()
+      .padStart(2, "0")}-${dataVenda.getDate().toString().padStart(2, "0")}`;
+
+    if (!vendasPorDia.has(dia)) {
+      vendasPorDia.set(dia, {
+        vendasNesseDia: 0,
+        totalSemDesconto: 0,
+        totalDescontado: 0,
+        totalComDesconto: 0,
+      });
+    }
+    const venda = vendasPorDia.get(dia);
+    venda.vendasNesseDia += 1;
+    venda.totalSemDesconto += Number(item.valorDeEntrada);
+    venda.totalDescontado += Number(item.desconto);
+    venda.totalComDesconto = venda.totalSemDesconto - venda.totalDescontado;
+  });
+
+  const vendasCompletas = [];
+  for (
+    let diaAtual = new Date(trintaDiasAtras);
+    diaAtual <= hoje;
+    diaAtual.setDate(diaAtual.getDate() + 1)
+  ) {
+    const diaFormatado = `${diaAtual.getFullYear()}-${(diaAtual.getMonth() + 1)
+      .toString()
+      .padStart(2, "0")}-${diaAtual.getDate().toString().padStart(2, "0")}`;
+
+    const createdAt = new Date(`${diaFormatado}T00:00:00.000Z`);
+
+    vendasCompletas.push({
+      createdAt: createdAt.toISOString(),
+      vendasNesseDia: vendasPorDia.has(diaFormatado)
+        ? vendasPorDia.get(diaFormatado).vendasNesseDia
+        : 0,
+      totalSemDesconto: vendasPorDia.has(diaFormatado)
+        ? vendasPorDia.get(diaFormatado).totalSemDesconto
+        : 0,
+      totalDescontado: vendasPorDia.has(diaFormatado)
+        ? vendasPorDia.get(diaFormatado).totalDescontado
+        : 0,
+      totalComDesconto: vendasPorDia.has(diaFormatado)
+        ? vendasPorDia.get(diaFormatado).totalComDesconto
+        : 0,
+    });
+  }
+
+  const totalSemDesconto = vendasCompletas.reduce(
+    (acc, item) => acc + item.totalSemDesconto,
+    0
+  );
+  const totalDescontado = vendasCompletas.reduce(
+    (acc, item) => acc + item.totalDescontado,
+    0
+  );
+  const totalComDesconto = totalSemDesconto - totalDescontado;
+
+  const totalValues = {
+    totalSemDesconto,
+    totalDescontado,
+    totalComDesconto,
+  };
+
+  return { data: vendasCompletas, totalValues };
+}
+
 async function getById(id: string) {
   if (!id) {
     throw {
@@ -118,6 +197,7 @@ async function insert(data: CriarVendaRequest, userID: string) {
 
 const saleService = {
   getAll,
+  salesLastMonth,
   getById,
   insert,
 };

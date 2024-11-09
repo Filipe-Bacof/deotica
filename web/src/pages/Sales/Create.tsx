@@ -114,6 +114,7 @@ export default function CreateSale() {
           }
           queryClient.invalidateQueries({ queryKey: ["sales"] });
           queryClient.invalidateQueries({ queryKey: ["sale"] });
+          queryClient.invalidateQueries({ queryKey: ["salesLastMonth"] });
           toast.success("Venda efetuada com sucesso!");
           navigate(`/vendas/view/${data.venda.id}`);
         })

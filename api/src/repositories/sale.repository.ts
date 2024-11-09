@@ -61,6 +61,29 @@ async function getAll() {
   });
 }
 
+async function salesLast30DaysData() {
+  const today = new Date();
+
+  const thirtyDaysAgo = new Date(today);
+  thirtyDaysAgo.setDate(today.getDate() - 30);
+
+  return prisma.vendas.findMany({
+    where: {
+      createdAt: {
+        gte: thirtyDaysAgo,
+      },
+    },
+    orderBy: { createdAt: "asc" },
+    select: {
+      id: true,
+      createdAt: true,
+      valorDeEntrada: true,
+      desconto: true,
+      numeroDeParcelas: true,
+    },
+  });
+}
+
 async function getById(id: string) {
   const result = await prisma.vendas.findUnique({
     where: { id },
@@ -182,6 +205,7 @@ const saleRepository = {
   getById,
   getByPaymentMethod,
   countSalesByPaymentMethod,
+  salesLast30DaysData,
 };
 
 export default saleRepository;
