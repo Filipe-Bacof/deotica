@@ -36,6 +36,13 @@ async function getAll() {
   });
 }
 
+async function getProductsWithLowQuantity() {
+  return prisma.produtos.findMany({
+    orderBy: { quantidade: "asc" },
+    take: 5,
+  });
+}
+
 async function getById(id: string) {
   const result = await prisma.produtos.findUnique({
     where: { id },
@@ -81,6 +88,7 @@ async function deleteProduct(id: string) {
 
 const productRepository = {
   getAll,
+  getProductsWithLowQuantity,
   getById,
   insert,
   edit,

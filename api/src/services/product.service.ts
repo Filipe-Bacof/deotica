@@ -12,6 +12,11 @@ async function getAll() {
   return result;
 }
 
+async function getProductsWithLowQuantity() {
+  const result = await productRepository.getProductsWithLowQuantity();
+  return result;
+}
+
 async function getById(id: string) {
   if (!id) {
     throw {
@@ -183,6 +188,7 @@ async function deleteProduct(id: string) {
 
 const productService = {
   getAll,
+  getProductsWithLowQuantity,
   getById,
   insert,
   edit,

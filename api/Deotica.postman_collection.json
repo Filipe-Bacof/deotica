@@ -1032,6 +1032,24 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Os 10 produtos com estoque mais baixo",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/products/lowStock",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"products",
+								"lowStock"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		}
