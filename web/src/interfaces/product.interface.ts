@@ -17,6 +17,12 @@ export interface Produto {
 
 export type AtualizarQuantidadeProduto = Pick<Produto, "quantidade">;
 
+type ProdutoAtualizarEstoque = Pick<Produto, "id" | "quantidade">;
+
+export type AtualizarQuantidadeEstoque = {
+  produtos: ProdutoAtualizarEstoque[];
+};
+
 export type InserirProduto = Omit<Produto, "id" | "status" | "quantidade"> &
   Partial<Pick<Produto, "status" | "quantidade">>;
 
@@ -43,6 +49,16 @@ export interface ProductResponse {
   updatedAt: string;
   criador: Criador;
 }
+
+type ProductLowStock = Pick<ProductResponse, "id" | "nome" | "quantidade">;
+
+export type ProductsLowStockResponse = {
+  data: ProductLowStock[];
+  totalValues: {
+    total: number;
+    lowStock: number;
+  };
+};
 
 export type CreatedProductResponse = Omit<ProductResponse, "criador">;
 

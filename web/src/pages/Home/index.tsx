@@ -1,6 +1,7 @@
 import SidebarAndHeader from "../../components/SidebarAndHeader";
 import DataOS from "./components/DataOS";
 import DataAndChartSales from "./components/DataAndChartSales";
+import DataAndChartProducts from "./components/DataAndChatProducts";
 
 export default function Home() {
   return (
@@ -11,6 +12,7 @@ export default function Home() {
         </h1>
         <DataOS />
         <DataAndChartSales />
+        <DataAndChartProducts />
       </div>
     </SidebarAndHeader>
   );

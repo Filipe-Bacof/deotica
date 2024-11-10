@@ -1034,7 +1034,7 @@
 					"response": []
 				},
 				{
-					"name": "Os 10 produtos com estoque mais baixo",
+					"name": "Produtos com estoque baixo",
 					"request": {
 						"method": "GET",
 						"header": [],

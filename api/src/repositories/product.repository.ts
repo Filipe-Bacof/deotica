@@ -38,8 +38,20 @@ async function getAll() {
 
 async function getProductsWithLowQuantity() {
   return prisma.produtos.findMany({
+    where: { AND: { status: { equals: true }, quantidade: { lt: 30 } } },
     orderBy: { quantidade: "asc" },
+    select: { id: true, nome: true, quantidade: true },
     take: 5,
+  });
+}
+
+async function getTotalProductsCount() {
+  return prisma.produtos.count();
+}
+
+async function getTotalProductsLowStockCount() {
+  return prisma.produtos.count({
+    where: { quantidade: { lt: 30 } },
   });
 }
 
@@ -89,6 +101,8 @@ async function deleteProduct(id: string) {
 const productRepository = {
   getAll,
   getProductsWithLowQuantity,
+  getTotalProductsCount,
+  getTotalProductsLowStockCount,
   getById,
   insert,
   edit,

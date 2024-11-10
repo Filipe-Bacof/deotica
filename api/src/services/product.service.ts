@@ -13,8 +13,13 @@ async function getAll() {
 }
 
 async function getProductsWithLowQuantity() {
-  const result = await productRepository.getProductsWithLowQuantity();
-  return result;
+  const data = await productRepository.getProductsWithLowQuantity();
+  const total = await productRepository.getTotalProductsCount();
+  const lowStock = await productRepository.getTotalProductsLowStockCount();
+  return {
+    data,
+    totalValues: { total, lowStock },
+  };
 }
 
 async function getById(id: string) {

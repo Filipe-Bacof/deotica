@@ -1,9 +1,11 @@
 import type {
+  AtualizarQuantidadeEstoque,
   AtualizarQuantidadeProduto,
   CreatedProductResponse,
   CriarProduto,
   EditarProduto,
   ProductResponse,
+  ProductsLowStockResponse,
   UpdatedProductResponse,
 } from "../interfaces/product.interface";
 import { Api } from "./api";
@@ -47,6 +49,13 @@ export async function updateProductQuantity(
   return result.data;
 }
 
+export async function updateManyProductsQuantityStock(
+  data: AtualizarQuantidadeEstoque,
+) {
+  const result = await Api.patch("/products/stock/updatemany", data);
+  return result;
+}
+
 export async function deleteProduct(id: string) {
   const result = await Api.delete(`/product/${id}`);
   return result;
@@ -54,6 +63,11 @@ export async function deleteProduct(id: string) {
 
 export async function getAllProducts(): Promise<ProductResponse[]> {
   const result = await Api.get("/product");
+  return result.data;
+}
+
+export async function getProductsWithLowStock(): Promise<ProductsLowStockResponse> {
+  const result = await Api.get("/products/lowStock");
   return result.data;
 }
 
