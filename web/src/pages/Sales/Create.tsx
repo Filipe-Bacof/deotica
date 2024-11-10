@@ -206,6 +206,14 @@ export default function CreateSale() {
                 />
               </div>
               <div className="flex w-full flex-col gap-2">
+                <span>Valor Total da Compra</span>
+                <span className="cursor-default rounded-md border border-zinc-400 px-2 py-1">
+                  R${" "}
+                  {saleData.produtos.reduce((acc, item) => acc + item.preco, 0)}{" "}
+                  &#40;Cálculo automático&#41;
+                </span>
+              </div>
+              <div className="flex w-full flex-col gap-2">
                 <label htmlFor="valorDeEntrada">Valor de Entrada</label>
                 <input
                   type="number"
