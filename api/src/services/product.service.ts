@@ -1,4 +1,5 @@
 import type {
+  AtualizarQuantidadeEstoque,
   CriarProduto,
   EditarProduto,
 } from "../interfaces/product.interface";
@@ -126,6 +127,22 @@ async function updateQuantity(id: string, quantidade: number) {
   return result;
 }
 
+async function updateQuantityManyProductsStock(
+  data: AtualizarQuantidadeEstoque
+) {
+  const result = await Promise.all(
+    data.produtos.map(async (item) => {
+      const product = await productRepository.getById(item.id);
+
+      const newQuantity = product.quantidade + item.quantidade;
+
+      await productRepository.updateQuantity(item.id, newQuantity);
+    })
+  );
+
+  return result;
+}
+
 async function deleteProduct(id: string) {
   if (!id) {
     throw {
@@ -172,6 +189,7 @@ const productService = {
   removeQuantityFromStock,
   addQuantityFromStock,
   updateQuantity,
+  updateQuantityManyProductsStock,
   deleteProduct,
 };
 

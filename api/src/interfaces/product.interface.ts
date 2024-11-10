@@ -15,6 +15,12 @@ export interface Produto {
 
 export type AtualizarQuantidadeProduto = Pick<Produto, "quantidade">;
 
+type ProdutoAtualizarEstoque = Pick<Produto, "id" | "quantidade">;
+
+export type AtualizarQuantidadeEstoque = {
+  produtos: ProdutoAtualizarEstoque[];
+};
+
 export type InserirProduto = Omit<Produto, "id" | "status" | "quantidade"> &
   Partial<Pick<Produto, "status" | "quantidade">>;
 

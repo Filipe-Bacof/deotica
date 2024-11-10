@@ -1,5 +1,6 @@
 import Joi from "joi";
 import type {
+  AtualizarQuantidadeEstoque,
   AtualizarQuantidadeProduto,
   CriarProduto,
   EditarProduto,
@@ -94,6 +95,32 @@ export const updateQuantityProductSchema =
       "any.required": "A quantidade do produto é obrigatória",
     }),
   });
+
+export const updateQuantityFromListProductsSchema = Joi.object({
+  produtos: Joi.array()
+    .items(
+      Joi.object({
+        id: Joi.string()
+          .guid({ version: ["uuidv4"] })
+          .required()
+          .messages({
+            "string.guid": "O ID do produto deve ser um UUID válido",
+            "any.required": "O ID do produto é obrigatório",
+          }),
+        quantidade: Joi.number().min(0).required().messages({
+          "number.min": "A quantidade do produto não pode ser negativa",
+          "number.base": "A quantidade deve ser um número válido",
+          "any.required": "A quantidade do produto é obrigatória",
+        }),
+      })
+    )
+    .min(1)
+    .required()
+    .messages({
+      "array.min": "A lista de produtos deve conter pelo menos um item",
+      "any.required": "A lista de produtos é obrigatória",
+    }),
+});
 
 export const productSaleSchema = Joi.object<VendaProduto>({
   id: Joi.string()

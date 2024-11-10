@@ -7,6 +7,7 @@ import {
   productPATCHMINUS,
   productPATCHPLUS,
   productPATCHVALUE,
+  productUpdateManyStockPATCH,
   productDELETE,
 } from "../controllers/product.controller";
 import { validateHeaderToken } from "../middlewares/validateToken";
@@ -14,6 +15,7 @@ import { validateSchema } from "../middlewares/validateSchema";
 import {
   editProductSchema,
   newProductSchema,
+  updateQuantityFromListProductsSchema,
   updateQuantityProductSchema,
 } from "../schemas/product.schema";
 
@@ -56,6 +58,13 @@ productRouter.patch(
   validateHeaderToken,
   validateSchema(updateQuantityProductSchema),
   productPATCHVALUE
+);
+
+productRouter.patch(
+  "/products/stock/updatemany",
+  validateHeaderToken,
+  validateSchema(updateQuantityFromListProductsSchema),
+  productUpdateManyStockPATCH
 );
 
 productRouter.delete("/product/:id", validateHeaderToken, productDELETE);

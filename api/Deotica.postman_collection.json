@@ -599,6 +599,34 @@
 					"response": []
 				},
 				{
+					"name": "Adicionar Quantidade Vários Produtos",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"produtos\": [\r\n       {\r\n        \"id\": \"ec5cecef-3749-4954-a99c-5ac9762b7d22\",\r\n        \"quantidade\": 13\r\n       },\r\n       {\r\n        \"id\": \"95bbc23d-d5f6-4cd5-bdb0-f9c9c556d323\",\r\n        \"quantidade\": 3\r\n       }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/products/stock/updatemany",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"products",
+								"stock",
+								"updatemany"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Deletar Produto",
 					"request": {
 						"method": "DELETE",

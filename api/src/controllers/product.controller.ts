@@ -4,6 +4,7 @@ import type {
   CriarProduto,
   EditarProduto,
   AtualizarQuantidadeProduto,
+  AtualizarQuantidadeEstoque,
 } from "../interfaces/product.interface";
 import { getUserIDbyToken } from "../utils/token";
 
@@ -63,6 +64,13 @@ export async function productPATCHVALUE(req: Request, res: Response) {
 
   const result = await productService.updateQuantity(id, data.quantidade);
   res.status(200).send(result);
+}
+
+export async function productUpdateManyStockPATCH(req: Request, res: Response) {
+  const data: AtualizarQuantidadeEstoque = req.body;
+
+  await productService.updateQuantityManyProductsStock(data);
+  res.status(200).send("Produtos Atualizados");
 }
 
 export async function productDELETE(req: Request, res: Response) {
