@@ -146,15 +146,6 @@ export default function CreateSale() {
 
   return (
     <SidebarAndHeader selected="Vendas">
-      <button
-        type="button"
-        onClick={() => {
-          console.log(saleData);
-          console.log(serviceOrderData);
-        }}
-      >
-        debug
-      </button>
       <main className="flex h-full flex-col">
         <HeaderPage title="Nova Venda" link="/vendas" btnTitle="Voltar" />
         <section className="w-full overflow-y-scroll pb-8">
