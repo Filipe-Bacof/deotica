@@ -27,15 +27,15 @@ export default function DataOS() {
         Andamento das Ordens de Serviço
       </h2>
       <div className="flex w-full flex-col items-center justify-between gap-2 md:flex-row">
-        <p className="flex w-full flex-col items-center justify-center rounded-md bg-orange-400 p-2 md:w-1/3">
+        <p className="flex w-full flex-col items-center justify-center rounded-md bg-orange-400 p-2 hover:bg-orange-300 md:w-1/3">
           <span>Pendentes</span>
           <span>{dataOS?.pendente}</span>
         </p>
-        <p className="flex w-full flex-col items-center justify-center rounded-md bg-blue-400 p-2 md:w-1/3">
+        <p className="flex w-full flex-col items-center justify-center rounded-md bg-blue-400 p-2 hover:bg-blue-300 md:w-1/3">
           <span>Aguardando Retirada</span>
           <span>{dataOS?.retirada}</span>
         </p>
-        <p className="flex w-full flex-col items-center justify-center rounded-md bg-emerald-400 p-2 md:w-1/3">
+        <p className="flex w-full flex-col items-center justify-center rounded-md bg-emerald-400 p-2 hover:bg-emerald-300 md:w-1/3">
           <span>Concluídas esse mês</span>
           <span>{dataOS?.finalizado}</span>
         </p>

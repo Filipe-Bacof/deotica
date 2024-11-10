@@ -68,11 +68,11 @@ export default function DataAndChartProducts() {
       >
         <h2 className="text-base font-semibold">Produtos com estoque baixo</h2>
         <div className="flex w-full flex-col items-center justify-between gap-2 md:flex-row">
-          <p className="flex w-full flex-col items-center justify-center rounded-md bg-emerald-400 p-2 md:w-1/2">
+          <p className="flex w-full flex-col items-center justify-center rounded-md bg-emerald-400 p-2 hover:bg-emerald-300 md:w-1/2">
             <span>Qtd Produtos Cadastrados</span>
             <span>{dataProductsLowStock?.totalValues.total}</span>
           </p>
-          <p className="flex w-full flex-col items-center justify-center rounded-md bg-emerald-400 p-2 md:w-1/2">
+          <p className="flex w-full flex-col items-center justify-center rounded-md bg-emerald-400 p-2 hover:bg-emerald-300 md:w-1/2">
             <span>Itens com estoque abaixo de 30</span>
             <span>{dataProductsLowStock?.totalValues.lowStock}</span>
           </p>

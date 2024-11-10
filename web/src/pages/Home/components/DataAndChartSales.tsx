@@ -77,7 +77,7 @@ export default function DataAndChartSales() {
       >
         <h2 className="text-base font-semibold">Vendas dos Últimos 30 dias</h2>
         <div className="flex w-full flex-col items-center justify-between gap-2 md:flex-row">
-          <p className="flex w-full flex-col items-center justify-center rounded-md bg-emerald-400 p-2 md:w-1/2">
+          <p className="flex w-full flex-col items-center justify-center rounded-md bg-emerald-400 p-2 hover:bg-emerald-300 md:w-1/2">
             <span>Faturamento</span>
             <span>
               {formatarMoeda(
@@ -85,7 +85,7 @@ export default function DataAndChartSales() {
               )}
             </span>
           </p>
-          <p className="flex w-full flex-col items-center justify-center rounded-md bg-emerald-400 p-2 md:w-1/2">
+          <p className="flex w-full flex-col items-center justify-center rounded-md bg-emerald-400 p-2 hover:bg-emerald-300 md:w-1/2">
             <span>Total - Desconto</span>
             <span>
               {formatarMoeda(
