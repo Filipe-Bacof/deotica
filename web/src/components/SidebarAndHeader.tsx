@@ -49,14 +49,14 @@ export default function SidebarAndHeader({
   function ButtonNavigation(item: MenuItem) {
     return (
       <Link
-        className={`flex h-10 w-10 items-center gap-2 rounded-md px-3 md:w-56 ${
+        className={`flex h-fit w-fit items-center gap-2 rounded-md border border-white/30 px-3 md:h-10 md:w-56 md:border-none ${
           item.title === selected && "bg-white/20"
         }`}
         key={item.id}
         to={item.href}
       >
         {item.icon}
-        <span className="hidden w-fit md:flex">{item.title}</span>
+        <span className="w-fit text-nowrap">{item.title}</span>
       </Link>
     );
   }
@@ -67,7 +67,7 @@ export default function SidebarAndHeader({
         <p className="text-center font-deotica text-3xl font-extrabold uppercase">
           Deotica
         </p>
-        <div className="mx-3 my-3 flex w-full flex-row justify-between gap-2 md:my-8 md:flex-col">
+        <div className="mx-3 my-3 flex w-full flex-row flex-wrap justify-center gap-1 md:my-8 md:flex-col md:justify-between md:gap-2">
           {sidebarOptions.map((item: MenuItem) => {
             return item.permission && item.permission?.length > 0 ? (
               <Permission key={item.id} permissions={item.permission}>
@@ -80,7 +80,7 @@ export default function SidebarAndHeader({
           <div className="flex flex-col">
             <button
               type="button"
-              className="flex h-10 w-10 items-center gap-2 rounded-md px-3 md:w-56"
+              className="flex h-fit w-fit items-center gap-2 rounded-md border border-white/30 px-3 md:h-10 md:w-56 md:border-none"
               onClick={() => {
                 localStorage.removeItem("@deoticaToken");
                 localStorage.removeItem("@deoticaUser");
@@ -89,15 +89,15 @@ export default function SidebarAndHeader({
               }}
             >
               <LogOut className="size-4 text-zinc-100" />
-              <span className="hidden w-fit md:flex">Sair</span>
+              <span className="w-fit">Sair</span>
             </button>
           </div>
         </div>
       </nav>
       <section className="flex h-screen flex-grow flex-col">
-        <header className="flex h-14 w-full flex-row items-center justify-between border-b-2 border-gray-500/30 bg-[#F2F2F3] px-8 py-8">
+        <header className="hidden h-14 w-full flex-row items-center justify-between border-b-2 border-gray-500/30 bg-[#F2F2F3] px-8 py-8 md:flex">
           <div className="flex flex-row items-center justify-center gap-3">
-            <p className="text-verde-vidaia text-2xl font-bold">
+            <p className="text-2xl font-bold text-black">
               {saudacao()}, {user ? user.nome.split(" ")[0] : "Usuário"}
             </p>
             <h2>{user ? user.perfil.nome : "Perfil"}</h2>
