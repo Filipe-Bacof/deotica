@@ -67,7 +67,7 @@ export default function SidebarAndHeader({
         <p className="text-center font-deotica text-3xl font-extrabold uppercase">
           Deotica
         </p>
-        <div className="mx-3 my-3 flex w-full flex-row flex-wrap justify-center gap-1 md:my-8 md:flex-col md:justify-between md:gap-2">
+        <div className="my-3 flex w-full flex-row flex-wrap justify-center gap-1 px-3 md:my-8 md:flex-col md:justify-between md:gap-2 md:px-0">
           {sidebarOptions.map((item: MenuItem) => {
             return item.permission && item.permission?.length > 0 ? (
               <Permission key={item.id} permissions={item.permission}>

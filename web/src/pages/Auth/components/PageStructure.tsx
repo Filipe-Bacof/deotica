@@ -15,10 +15,10 @@ export default function PageStructure({ children }: PageStructureProps) {
         width={30.6875}
         height={10}
       /> */}
-        <h1 className="font-deotica text-8xl font-extrabold uppercase">
+        <h1 className="font-deotica text-6xl font-extrabold uppercase md:text-8xl">
           Deotica
         </h1>
-        <p className="py-2 text-center font-deotica text-3xl font-normal text-white">
+        <p className="py-2 text-center font-deotica text-xl font-normal text-white md:text-3xl">
           um novo olhar em sua vida
         </p>
       </div>
