@@ -7,7 +7,10 @@ import {
   vendaDefault,
 } from "../../utils/createSaleInputs";
 import type { CriarVendaRequest } from "../../interfaces/sale.interface";
-import type { CriarOS } from "../../interfaces/serviceOrder.interface";
+import type {
+  CriarOS,
+  TipoDeLente,
+} from "../../interfaces/serviceOrder.interface";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import Select from "react-select";
 import { getAllClients } from "../../api/client";
@@ -17,6 +20,18 @@ import { Button } from "../../components/Button";
 import { createSale } from "../../api/sale";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import {
+  RadioGroup,
+  RadioGroupIndicator,
+  RadioGroupItem,
+} from "../../components/RadioGroup";
+import tipoLente1 from "../../assets/lentes-modelos/1.svg";
+import tipoLente2 from "../../assets/lentes-modelos/2.svg";
+import tipoLente3 from "../../assets/lentes-modelos/3.svg";
+import tipoLente4 from "../../assets/lentes-modelos/4.svg";
+import tipoLente5 from "../../assets/lentes-modelos/5.svg";
+import tipoLente6 from "../../assets/lentes-modelos/6.svg";
+import { Check } from "lucide-react";
 
 export default function CreateSale() {
   const queryClient = useQueryClient();
@@ -131,7 +146,7 @@ export default function CreateSale() {
 
   return (
     <SidebarAndHeader selected="Vendas">
-      {/* <button
+      <button
         type="button"
         onClick={() => {
           console.log(saleData);
@@ -139,10 +154,10 @@ export default function CreateSale() {
         }}
       >
         debug
-      </button> */}
+      </button>
       <main className="flex h-full flex-col">
         <HeaderPage title="Nova Venda" link="/vendas" btnTitle="Voltar" />
-        <section className="overflow-y-scroll pb-8">
+        <section className="w-full overflow-y-scroll pb-8">
           <div className="mx-4 flex flex-1 flex-col justify-between gap-2">
             <form className="flex min-h-screen w-full flex-col gap-2">
               <h3 className="text-lg font-semibold">Dados da Venda</h3>
@@ -389,66 +404,191 @@ export default function CreateSale() {
                       <option value="finalizado">Finalizado</option>
                     </select>
                   </div>
-                  <div className="flex w-full flex-col gap-2">
-                    <label htmlFor="olhoEsquerdo">Olho Esquerdo</label>
-                    <input
-                      type="text"
-                      id="olhoEsquerdo"
-                      className="rounded-md border border-zinc-400 px-2 py-1"
-                      placeholder="Informações sobre o Olho Esquerdo"
-                      value={serviceOrderData.olhoEsquerdo}
-                      onChange={(e) => {
-                        setServiceOrderData({
-                          ...serviceOrderData,
-                          olhoEsquerdo: e.target.value,
-                        });
-                      }}
-                    />
+                  <h3 className="text-lg font-semibold">Olho Direito</h3>
+                  <div className="flex w-full flex-col flex-wrap items-center justify-between md:flex-row">
+                    <div className="flex w-full flex-col gap-2 md:w-1/3">
+                      <label htmlFor="olhoDireitoEsf">ESF</label>
+                      <input
+                        type="text"
+                        id="olhoDireitoEsf"
+                        className="rounded-md border border-zinc-400 px-2 py-1"
+                        placeholder="ESF"
+                        value={serviceOrderData.olhoDireitoEsf}
+                        onChange={(e) => {
+                          setServiceOrderData({
+                            ...serviceOrderData,
+                            olhoDireitoEsf: e.target.value,
+                          });
+                        }}
+                      />
+                    </div>
+                    <div className="flex w-full flex-col gap-2 md:w-1/3">
+                      <label htmlFor="olhoDireitoCil">CIL</label>
+                      <input
+                        type="text"
+                        id="olhoDireitoCil"
+                        className="rounded-md border border-zinc-400 px-2 py-1"
+                        placeholder="CIL"
+                        value={serviceOrderData.olhoDireitoCil}
+                        onChange={(e) => {
+                          setServiceOrderData({
+                            ...serviceOrderData,
+                            olhoDireitoCil: e.target.value,
+                          });
+                        }}
+                      />
+                    </div>
+                    <div className="flex w-full flex-col gap-2 md:w-1/3">
+                      <label htmlFor="olhoDireitoEixo">EIXO</label>
+                      <input
+                        type="text"
+                        id="olhoDireitoEixo"
+                        className="rounded-md border border-zinc-400 px-2 py-1"
+                        placeholder="EIXO"
+                        value={serviceOrderData.olhoDireitoEixo}
+                        onChange={(e) => {
+                          setServiceOrderData({
+                            ...serviceOrderData,
+                            olhoDireitoEixo: e.target.value,
+                          });
+                        }}
+                      />
+                    </div>
                   </div>
-                  <div className="flex w-full flex-col gap-2">
-                    <label htmlFor="olhoDireito">Olho Direito</label>
-                    <input
-                      type="text"
-                      id="olhoDireito"
-                      className="rounded-md border border-zinc-400 px-2 py-1"
-                      placeholder="Informações sobre o Olho Direito"
-                      value={serviceOrderData.olhoDireito}
-                      onChange={(e) => {
-                        setServiceOrderData({
-                          ...serviceOrderData,
-                          olhoDireito: e.target.value,
-                        });
-                      }}
-                    />
+                  <div className="flex w-full flex-col flex-wrap items-center justify-between md:flex-row">
+                    <div className="flex w-full flex-col gap-2 md:w-1/2">
+                      <label htmlFor="olhoDireitoDNP">DNP</label>
+                      <input
+                        type="text"
+                        id="olhoDireitoDNP"
+                        className="rounded-md border border-zinc-400 px-2 py-1"
+                        placeholder="DNP"
+                        value={serviceOrderData.olhoDireitoDNP}
+                        onChange={(e) => {
+                          setServiceOrderData({
+                            ...serviceOrderData,
+                            olhoDireitoDNP: e.target.value,
+                          });
+                        }}
+                      />
+                    </div>
+                    <div className="flex w-full flex-col gap-2 md:w-1/2">
+                      <label htmlFor="olhoDireitoAltura">ALT</label>
+                      <input
+                        type="text"
+                        id="olhoDireitoAltura"
+                        className="rounded-md border border-zinc-400 px-2 py-1"
+                        placeholder="ALT"
+                        value={serviceOrderData.olhoDireitoAltura}
+                        onChange={(e) => {
+                          setServiceOrderData({
+                            ...serviceOrderData,
+                            olhoDireitoAltura: e.target.value,
+                          });
+                        }}
+                      />
+                    </div>
                   </div>
-                  <div className="flex w-full flex-col gap-2">
-                    <label htmlFor="tipoLente">Tipo de Lente</label>
-                    <input
-                      type="text"
-                      id="tipoLente"
-                      className="rounded-md border border-zinc-400 px-2 py-1"
-                      placeholder="Informações sobre o Tipo de Lente"
-                      value={serviceOrderData.tipoLente}
-                      onChange={(e) => {
-                        setServiceOrderData({
-                          ...serviceOrderData,
-                          tipoLente: e.target.value,
-                        });
-                      }}
-                    />
+                  <h3 className="text-lg font-semibold">Olho Esquerdo</h3>
+                  <div className="flex w-full flex-col flex-wrap items-center justify-between md:flex-row">
+                    <div className="flex w-full flex-col gap-2 md:w-1/3">
+                      <label htmlFor="olhoEsquerdoEsf">ESF</label>
+                      <input
+                        type="text"
+                        id="olhoEsquerdoEsf"
+                        className="rounded-md border border-zinc-400 px-2 py-1"
+                        placeholder="ESF"
+                        value={serviceOrderData.olhoEsquerdoEsf}
+                        onChange={(e) => {
+                          setServiceOrderData({
+                            ...serviceOrderData,
+                            olhoEsquerdoEsf: e.target.value,
+                          });
+                        }}
+                      />
+                    </div>
+                    <div className="flex w-full flex-col gap-2 md:w-1/3">
+                      <label htmlFor="olhoEsquerdoCil">CIL</label>
+                      <input
+                        type="text"
+                        id="olhoEsquerdoCil"
+                        className="rounded-md border border-zinc-400 px-2 py-1"
+                        placeholder="CIL"
+                        value={serviceOrderData.olhoEsquerdoCil}
+                        onChange={(e) => {
+                          setServiceOrderData({
+                            ...serviceOrderData,
+                            olhoEsquerdoCil: e.target.value,
+                          });
+                        }}
+                      />
+                    </div>
+                    <div className="flex w-full flex-col gap-2 md:w-1/3">
+                      <label htmlFor="olhoEsquerdoEixo">EIXO</label>
+                      <input
+                        type="text"
+                        id="olhoEsquerdoEixo"
+                        className="rounded-md border border-zinc-400 px-2 py-1"
+                        placeholder="EIXO"
+                        value={serviceOrderData.olhoEsquerdoEixo}
+                        onChange={(e) => {
+                          setServiceOrderData({
+                            ...serviceOrderData,
+                            olhoEsquerdoEixo: e.target.value,
+                          });
+                        }}
+                      />
+                    </div>
                   </div>
+                  <div className="flex w-full flex-col flex-wrap items-center justify-between md:flex-row">
+                    <div className="flex w-full flex-col gap-2 md:w-1/2">
+                      <label htmlFor="olhoEsquerdoDNP">DNP</label>
+                      <input
+                        type="text"
+                        id="olhoEsquerdoDNP"
+                        className="rounded-md border border-zinc-400 px-2 py-1"
+                        placeholder="DNP"
+                        value={serviceOrderData.olhoEsquerdoDNP}
+                        onChange={(e) => {
+                          setServiceOrderData({
+                            ...serviceOrderData,
+                            olhoEsquerdoDNP: e.target.value,
+                          });
+                        }}
+                      />
+                    </div>
+                    <div className="flex w-full flex-col gap-2 md:w-1/2">
+                      <label htmlFor="olhoEsquerdoAltura">ALT</label>
+                      <input
+                        type="text"
+                        id="olhoEsquerdoAltura"
+                        className="rounded-md border border-zinc-400 px-2 py-1"
+                        placeholder="ALT"
+                        value={serviceOrderData.olhoEsquerdoAltura}
+                        onChange={(e) => {
+                          setServiceOrderData({
+                            ...serviceOrderData,
+                            olhoEsquerdoAltura: e.target.value,
+                          });
+                        }}
+                      />
+                    </div>
+                  </div>
+
                   <div className="flex w-full flex-col gap-2">
-                    <label htmlFor="corLente">Cor da Lente</label>
+                    <label className="font-bold" htmlFor="adicao">
+                      Adição
+                    </label>
                     <input
                       type="text"
-                      id="corLente"
+                      id="adicao"
                       className="rounded-md border border-zinc-400 px-2 py-1"
-                      placeholder="Informações sobre a Cor da Lente"
-                      value={serviceOrderData.corLente}
+                      placeholder="Adição"
+                      value={serviceOrderData.adicao}
                       onChange={(e) => {
                         setServiceOrderData({
                           ...serviceOrderData,
-                          corLente: e.target.value,
+                          adicao: e.target.value,
                         });
                       }}
                     />
@@ -465,6 +605,101 @@ export default function CreateSale() {
                         setServiceOrderData({
                           ...serviceOrderData,
                           modeloLente: e.target.value,
+                        });
+                      }}
+                    />
+                  </div>
+                  <div className="flex w-full flex-col flex-wrap items-center justify-between md:flex-row">
+                    <label htmlFor="tipoLente">Tipo de Lente</label>
+                    <RadioGroup
+                      onValueChange={(e: TipoDeLente) => {
+                        setServiceOrderData({
+                          ...serviceOrderData,
+                          tipoLente: e,
+                        });
+                      }}
+                      value={serviceOrderData.tipoLente}
+                    >
+                      <RadioGroupItem value={"1"}>
+                        <RadioGroupIndicator />
+                        <span className="text-sm font-medium leading-none text-zinc-800">
+                          1
+                        </span>
+                        <img
+                          className="h-12 w-12"
+                          src={tipoLente1}
+                          alt="tipoLente1"
+                        />
+                      </RadioGroupItem>
+                      <RadioGroupItem value={"2"}>
+                        <RadioGroupIndicator />
+                        <span className="text-sm font-medium leading-none text-zinc-800">
+                          2
+                        </span>
+                        <img
+                          className="h-12 w-12"
+                          src={tipoLente2}
+                          alt="tipoLente2"
+                        />
+                      </RadioGroupItem>
+                      <RadioGroupItem value={"3"}>
+                        <RadioGroupIndicator />
+                        <span className="text-sm font-medium leading-none text-zinc-800">
+                          3
+                        </span>
+                        <img
+                          className="h-12 w-12"
+                          src={tipoLente3}
+                          alt="tipoLente3"
+                        />
+                      </RadioGroupItem>
+                      <RadioGroupItem value={"4"}>
+                        <RadioGroupIndicator />
+                        <span className="text-sm font-medium leading-none text-zinc-800">
+                          4
+                        </span>
+                        <img
+                          className="h-12 w-12"
+                          src={tipoLente4}
+                          alt="tipoLente4"
+                        />
+                      </RadioGroupItem>
+                      <RadioGroupItem value={"5"}>
+                        <RadioGroupIndicator />
+                        <span className="text-sm font-medium leading-none text-zinc-800">
+                          5
+                        </span>
+                        <img
+                          className="h-12 w-12"
+                          src={tipoLente5}
+                          alt="tipoLente5"
+                        />
+                      </RadioGroupItem>
+                      <RadioGroupItem value={"6"}>
+                        <RadioGroupIndicator />
+                        <span className="text-sm font-medium leading-none text-zinc-800">
+                          6
+                        </span>
+                        <img
+                          className="h-12 w-12"
+                          src={tipoLente6}
+                          alt="tipoLente6"
+                        />
+                      </RadioGroupItem>
+                    </RadioGroup>
+                  </div>
+                  <div className="flex w-full flex-col gap-2">
+                    <label htmlFor="corLente">Cor da Lente</label>
+                    <input
+                      type="text"
+                      id="corLente"
+                      className="rounded-md border border-zinc-400 px-2 py-1"
+                      placeholder="Informações sobre a Cor da Lente"
+                      value={serviceOrderData.corLente}
+                      onChange={(e) => {
+                        setServiceOrderData({
+                          ...serviceOrderData,
+                          corLente: e.target.value,
                         });
                       }}
                     />
@@ -486,6 +721,158 @@ export default function CreateSale() {
                     />
                   </div>
                   <div className="flex w-full flex-col gap-2">
+                    <label htmlFor="tipoArmacao">Tipo de Armacao</label>
+                    <div className="flex flex-wrap gap-4">
+                      {/* biome-ignore lint/a11y/useKeyWithClickEvents: <explanation> */}
+                      <div
+                        className={`cursor-pointer select-none rounded-md border px-4 py-1 ${serviceOrderData.tipoArmacaoAC === "1" ? "border-blueDeotica text-blueDeotica" : "border-black text-black"}`}
+                        onClick={() => {
+                          setServiceOrderData((state) => {
+                            const newValue =
+                              state.tipoArmacaoAC === "0" ? "1" : "0";
+                            return {
+                              ...state,
+                              tipoArmacaoAC: newValue,
+                            };
+                          });
+                        }}
+                      >
+                        AC
+                      </div>
+                      {/* biome-ignore lint/a11y/useKeyWithClickEvents: <explanation> */}
+                      <div
+                        className={`cursor-pointer select-none rounded-md border px-4 py-1 ${serviceOrderData.tipoArmacaoME === "1" ? "border-blueDeotica text-blueDeotica" : "border-black text-black"}`}
+                        onClick={() => {
+                          setServiceOrderData((state) => {
+                            const newValue =
+                              state.tipoArmacaoME === "0" ? "1" : "0";
+                            return {
+                              ...state,
+                              tipoArmacaoME: newValue,
+                            };
+                          });
+                        }}
+                      >
+                        ME
+                      </div>
+                      {/* biome-ignore lint/a11y/useKeyWithClickEvents: <explanation> */}
+                      <div
+                        className={`cursor-pointer select-none rounded-md border px-4 py-1 ${serviceOrderData.tipoArmacaoNY === "1" ? "border-blueDeotica text-blueDeotica" : "border-black text-black"}`}
+                        onClick={() => {
+                          setServiceOrderData((state) => {
+                            const newValue =
+                              state.tipoArmacaoNY === "0" ? "1" : "0";
+                            return {
+                              ...state,
+                              tipoArmacaoNY: newValue,
+                            };
+                          });
+                        }}
+                      >
+                        NY
+                      </div>
+                      {/* biome-ignore lint/a11y/useKeyWithClickEvents: <explanation> */}
+                      <div
+                        className={`cursor-pointer select-none rounded-md border px-4 py-1 ${serviceOrderData.tipoArmacaoPA === "1" ? "border-blueDeotica text-blueDeotica" : "border-black text-black"}`}
+                        onClick={() => {
+                          setServiceOrderData((state) => {
+                            const newValue =
+                              state.tipoArmacaoPA === "0" ? "1" : "0";
+                            return {
+                              ...state,
+                              tipoArmacaoPA: newValue,
+                            };
+                          });
+                        }}
+                      >
+                        PA
+                      </div>
+                    </div>
+                  </div>
+                  <div className="flex w-full flex-row flex-wrap items-center justify-between">
+                    <div className="flex w-full flex-col gap-2 md:w-1/5">
+                      <label htmlFor="armacaoMD">MD</label>
+                      <input
+                        type="text"
+                        id="armacaoMD"
+                        className="rounded-md border border-zinc-400 px-2 py-1"
+                        placeholder="Maior Diagonal"
+                        value={serviceOrderData.armacaoMD}
+                        onChange={(e) => {
+                          setServiceOrderData({
+                            ...serviceOrderData,
+                            armacaoMD: e.target.value,
+                          });
+                        }}
+                      />
+                    </div>
+                    <div className="flex w-full flex-col gap-2 md:w-1/5">
+                      <label htmlFor="armacaoTA">TA</label>
+                      <input
+                        type="text"
+                        id="armacaoTA"
+                        className="rounded-md border border-zinc-400 px-2 py-1"
+                        placeholder="Tamanho da Armação"
+                        value={serviceOrderData.armacaoTA}
+                        onChange={(e) => {
+                          setServiceOrderData({
+                            ...serviceOrderData,
+                            armacaoTA: e.target.value,
+                          });
+                        }}
+                      />
+                    </div>
+                    <div className="flex w-full flex-col gap-2 md:w-1/5">
+                      <label htmlFor="armacaoHoriz">Horiz.</label>
+                      <input
+                        type="text"
+                        id="armacaoHoriz"
+                        className="rounded-md border border-zinc-400 px-2 py-1"
+                        placeholder="Horizontal"
+                        value={serviceOrderData.armacaoHoriz}
+                        onChange={(e) => {
+                          setServiceOrderData({
+                            ...serviceOrderData,
+                            armacaoHoriz: e.target.value,
+                          });
+                        }}
+                      />
+                    </div>
+                    <div className="flex w-full flex-col gap-2 md:w-1/5">
+                      <label htmlFor="armacaoPonte">Ponte</label>
+                      <input
+                        type="text"
+                        id="armacaoPonte"
+                        className="rounded-md border border-zinc-400 px-2 py-1"
+                        placeholder="Ponte"
+                        value={serviceOrderData.armacaoPonte}
+                        onChange={(e) => {
+                          setServiceOrderData({
+                            ...serviceOrderData,
+                            armacaoPonte: e.target.value,
+                          });
+                        }}
+                      />
+                    </div>
+                    <div className="flex w-full flex-col gap-2 md:w-1/5">
+                      <label htmlFor="armacaoVert">Vert.&#40;h&#41;</label>
+                      <input
+                        type="text"
+                        id="armacaoVert"
+                        className="rounded-md border border-zinc-400 px-2 py-1"
+                        placeholder="Vertical "
+                        value={serviceOrderData.armacaoVert}
+                        onChange={(e) => {
+                          setServiceOrderData({
+                            ...serviceOrderData,
+                            armacaoVert: e.target.value,
+                          });
+                        }}
+                      />
+                    </div>
+                  </div>
+
+                  <div className="flex w-full flex-col gap-2">
                     <label htmlFor="observacoes">Observações</label>
                     <input
                       type="text"
@@ -501,55 +888,60 @@ export default function CreateSale() {
                       }}
                     />
                   </div>
-                  <div className="flex w-full flex-row gap-2 md:justify-start">
-                    <input
-                      id="somenteLente"
-                      type="checkbox"
-                      checked={serviceOrderData.somenteLente}
-                      onChange={() => {
-                        setServiceOrderData((state) => {
-                          return {
-                            ...serviceOrderData,
-                            somenteLente: !state.somenteLente,
-                          };
-                        });
-                      }}
-                    />
-                    <label htmlFor="hasOS">Somente Lente</label>
+                  {/* biome-ignore lint/a11y/useKeyWithClickEvents: <explanation> */}
+                  <div
+                    className="flex w-full cursor-pointer flex-row gap-2"
+                    onClick={() => {
+                      setServiceOrderData((state) => {
+                        const newValue = state.somenteLente === "0" ? "1" : "0";
+                        return {
+                          ...state,
+                          somenteLente: newValue,
+                        };
+                      });
+                    }}
+                  >
+                    <div
+                      className={`flex h-6 w-6 cursor-pointer select-none items-start justify-center rounded-md border ${serviceOrderData.somenteLente === "1" ? "border-blueDeotica text-blueDeotica" : "border-black text-black"}`}
+                    >
+                      {serviceOrderData.somenteLente === "1" && (
+                        <Check className="h-6 w-6" />
+                      )}
+                    </div>
+                    <label
+                      className={`cursor-pointer select-none ${serviceOrderData.somenteLente === "1" ? "text-blueDeotica" : "text-black"}`}
+                      htmlFor="armacao"
+                    >
+                      Somente Lente
+                    </label>
                   </div>
-                  <div className="flex w-full flex-col gap-2">
-                    <label htmlFor="armacao">Armação</label>
-                    <input
-                      type="text"
-                      id="armacao"
-                      disabled={serviceOrderData.somenteLente}
-                      className="rounded-md border border-zinc-400 px-2 py-1"
-                      placeholder="Armação"
-                      value={serviceOrderData.armacao}
-                      onChange={(e) => {
-                        setServiceOrderData({
-                          ...serviceOrderData,
-                          armacao: e.target.value,
-                        });
-                      }}
-                    />
-                  </div>
-                  <div className="flex w-full flex-col gap-2">
-                    <label htmlFor="tipoArmacao">Tipo de Armacao</label>
-                    <input
-                      type="text"
-                      id="tipoArmacao"
-                      disabled={serviceOrderData.somenteLente}
-                      className="rounded-md border border-zinc-400 px-2 py-1"
-                      placeholder="Tipo de Armação"
-                      value={serviceOrderData.tipoArmacao}
-                      onChange={(e) => {
-                        setServiceOrderData({
-                          ...serviceOrderData,
-                          tipoArmacao: e.target.value,
-                        });
-                      }}
-                    />
+                  {/* biome-ignore lint/a11y/useKeyWithClickEvents: <explanation> */}
+                  <div
+                    className="flex w-full cursor-pointer flex-row gap-2"
+                    onClick={() => {
+                      setServiceOrderData((state) => {
+                        const newValue =
+                          state.vaiTrazerArmacao === "0" ? "1" : "0";
+                        return {
+                          ...state,
+                          vaiTrazerArmacao: newValue,
+                        };
+                      });
+                    }}
+                  >
+                    <div
+                      className={`flex h-6 w-6 cursor-pointer select-none items-start justify-center rounded-md border ${serviceOrderData.vaiTrazerArmacao === "1" ? "border-blueDeotica text-blueDeotica" : "border-black text-black"}`}
+                    >
+                      {serviceOrderData.vaiTrazerArmacao === "1" && (
+                        <Check className="h-6 w-6" />
+                      )}
+                    </div>
+                    <label
+                      className={`cursor-pointer select-none ${serviceOrderData.vaiTrazerArmacao === "1" ? "text-blueDeotica" : "text-black"}`}
+                      htmlFor="vaiTrazerArmacao"
+                    >
+                      Vai Trazer Armacao
+                    </label>
                   </div>
                 </>
               )}

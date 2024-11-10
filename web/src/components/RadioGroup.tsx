@@ -5,7 +5,7 @@ export function RadioGroup(props: RadioGroupPrimitive.RadioGroupProps) {
   return (
     <RadioGroupPrimitive.RadioGroup
       {...props}
-      className="flex flex-row gap-2"
+      className="flex flex-row flex-wrap gap-2"
     />
   );
 }
