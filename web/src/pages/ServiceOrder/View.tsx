@@ -16,16 +16,22 @@ import type { TipoDeLente } from "../../interfaces/serviceOrder.interface";
 import type { ReactNode } from "react";
 
 function handleTipoLente(tipoLente: TipoDeLente) {
-  // biome-ignore lint/style/useConst: <explanation>
-  let image = tipoLente1;
-  tipoLente === "1" && image === tipoLente1;
-  tipoLente === "2" && image === tipoLente2;
-  tipoLente === "3" && image === tipoLente3;
-  tipoLente === "4" && image === tipoLente4;
-  tipoLente === "5" && image === tipoLente5;
-  tipoLente === "6" && image === tipoLente6;
-
-  return image;
+  switch (tipoLente) {
+    case "1":
+      return tipoLente1;
+    case "2":
+      return tipoLente2;
+    case "3":
+      return tipoLente3;
+    case "4":
+      return tipoLente4;
+    case "5":
+      return tipoLente5;
+    case "6":
+      return tipoLente6;
+    default:
+      return tipoLente1;
+  }
 }
 
 export default function ViewServiceOrder() {
