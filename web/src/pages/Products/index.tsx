@@ -18,6 +18,10 @@ export default function Products() {
           title="Meus Produtos"
           link="/produtos/novo"
           btnTitle="Novo Produto"
+          secondBtn={{
+            btnTitle: "Atualizar Estoque",
+            link: "/produtos/estoque/atualizar",
+          }}
         />
         <section className="mx-4 flex flex-col gap-1 pb-8 md:flex-1 md:overflow-y-scroll">
           {data

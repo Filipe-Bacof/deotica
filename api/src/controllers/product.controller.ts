@@ -13,6 +13,11 @@ export async function productGETALL(_req: Request, res: Response) {
   res.status(200).send(result);
 }
 
+export async function productLowDataGETALL(_req: Request, res: Response) {
+  const result = await productService.getAllLowData();
+  res.status(200).send(result);
+}
+
 export async function productLowStockGET(_req: Request, res: Response) {
   const result = await productService.getProductsWithLowQuantity();
   res.status(200).send(result);

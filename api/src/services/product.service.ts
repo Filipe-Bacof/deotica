@@ -12,6 +12,11 @@ async function getAll() {
   return result;
 }
 
+async function getAllLowData() {
+  const result = await productRepository.getAllLowData();
+  return result;
+}
+
 async function getProductsWithLowQuantity() {
   const data = await productRepository.getProductsWithLowQuantity();
   const total = await productRepository.getTotalProductsCount();
@@ -193,6 +198,7 @@ async function deleteProduct(id: string) {
 
 const productService = {
   getAll,
+  getAllLowData,
   getProductsWithLowQuantity,
   getById,
   insert,

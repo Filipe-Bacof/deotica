@@ -36,6 +36,13 @@ async function getAll() {
   });
 }
 
+async function getAllLowData() {
+  return prisma.produtos.findMany({
+    orderBy: { quantidade: "asc" },
+    select: { id: true, nome: true, quantidade: true },
+  });
+}
+
 async function getProductsWithLowQuantity() {
   return prisma.produtos.findMany({
     where: { AND: { status: { equals: true }, quantidade: { lt: 30 } } },
@@ -100,6 +107,7 @@ async function deleteProduct(id: string) {
 
 const productRepository = {
   getAll,
+  getAllLowData,
   getProductsWithLowQuantity,
   getTotalProductsCount,
   getTotalProductsLowStockCount,

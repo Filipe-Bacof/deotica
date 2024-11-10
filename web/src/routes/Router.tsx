@@ -11,6 +11,7 @@ import Products from "../pages/Products";
 import CreateProduct from "../pages/Products/Create";
 import EditProduct from "../pages/Products/Edit";
 import ViewProduct from "../pages/Products/View";
+import UpdateStock from "../pages/Products/UpdateStock";
 import PaymentMethods from "../pages/Payment";
 import CreatePaymentMethod from "../pages/Payment/Create";
 import EditPaymentMethod from "../pages/Payment/Edit";
@@ -43,6 +44,10 @@ export default function Router() {
             <Route path="/produtos/novo" element={<CreateProduct />} />
             <Route path="/produtos/edit/:id" element={<EditProduct />} />
             <Route path="/produtos/view/:id" element={<ViewProduct />} />
+            <Route
+              path="/produtos/estoque/atualizar"
+              element={<UpdateStock />}
+            />
 
             <Route path="/forma-de-pagamento" element={<PaymentMethods />} />
             <Route

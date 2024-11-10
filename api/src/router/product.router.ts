@@ -1,6 +1,7 @@
 import { Router } from "express";
 import {
   productGETALL,
+  productLowDataGETALL,
   productLowStockGET,
   productGETBYID,
   productPOST,
@@ -23,6 +24,8 @@ import {
 const productRouter = Router();
 
 productRouter.get("/product", validateHeaderToken, productGETALL);
+
+productRouter.get("/productLowData", validateHeaderToken, productLowDataGETALL);
 
 productRouter.get(
   "/products/lowStock",

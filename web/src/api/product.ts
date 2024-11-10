@@ -4,6 +4,7 @@ import type {
   CreatedProductResponse,
   CriarProduto,
   EditarProduto,
+  ProductLowStock,
   ProductResponse,
   ProductsLowStockResponse,
   UpdatedProductResponse,
@@ -63,6 +64,11 @@ export async function deleteProduct(id: string) {
 
 export async function getAllProducts(): Promise<ProductResponse[]> {
   const result = await Api.get("/product");
+  return result.data;
+}
+
+export async function getAllProductsLowData(): Promise<ProductLowStock[]> {
+  const result = await Api.get("/productLowData");
   return result.data;
 }
 

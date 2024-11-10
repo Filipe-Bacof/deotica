@@ -17,7 +17,7 @@ export interface Produto {
 
 export type AtualizarQuantidadeProduto = Pick<Produto, "quantidade">;
 
-type ProdutoAtualizarEstoque = Pick<Produto, "id" | "quantidade">;
+export type ProdutoAtualizarEstoque = Pick<Produto, "id" | "quantidade">;
 
 export type AtualizarQuantidadeEstoque = {
   produtos: ProdutoAtualizarEstoque[];
@@ -50,7 +50,10 @@ export interface ProductResponse {
   criador: Criador;
 }
 
-type ProductLowStock = Pick<ProductResponse, "id" | "nome" | "quantidade">;
+export type ProductLowStock = Pick<
+  ProductResponse,
+  "id" | "nome" | "quantidade"
+>;
 
 export type ProductsLowStockResponse = {
   data: ProductLowStock[];
