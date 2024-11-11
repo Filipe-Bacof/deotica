@@ -131,6 +131,9 @@ export default function CreateSale() {
           queryClient.invalidateQueries({ queryKey: ["sales"] });
           queryClient.invalidateQueries({ queryKey: ["sale"] });
           queryClient.invalidateQueries({ queryKey: ["salesLastMonth"] });
+          queryClient.invalidateQueries({ queryKey: ["products"] });
+          queryClient.invalidateQueries({ queryKey: ["product"] });
+          queryClient.invalidateQueries({ queryKey: ["productsLowStock"] });
           if (hasOS) {
             queryClient.invalidateQueries({ queryKey: ["serviceOrders"] });
             queryClient.invalidateQueries({ queryKey: ["serviceOrder"] });
