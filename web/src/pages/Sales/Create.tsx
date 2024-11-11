@@ -40,6 +40,7 @@ export default function CreateSale() {
   const [serviceOrderData, setServiceOrderData] =
     useState<CriarOS>(ordemServicoDefault);
   const [hasOS, setHasOS] = useState<boolean>(false);
+  // const [discountPercent, setDiscountPercent] = useState(0); // adicionar depois
 
   const { data: clients } = useQuery({
     queryKey: ["clients"],
@@ -130,6 +131,11 @@ export default function CreateSale() {
           queryClient.invalidateQueries({ queryKey: ["sales"] });
           queryClient.invalidateQueries({ queryKey: ["sale"] });
           queryClient.invalidateQueries({ queryKey: ["salesLastMonth"] });
+          if (hasOS) {
+            queryClient.invalidateQueries({ queryKey: ["serviceOrders"] });
+            queryClient.invalidateQueries({ queryKey: ["serviceOrder"] });
+            queryClient.invalidateQueries({ queryKey: ["osInfo"] });
+          }
           toast.success("Venda efetuada com sucesso!");
           navigate(`/vendas/view/${data.venda.id}`);
         })
