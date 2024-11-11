@@ -4,5 +4,10 @@
       "source": "/(.*)",
       "destination": "/"
     }
-  ]
+  ],
+  "framework": {
+    "overrides": {
+      "toolbar": false
+    }
+  }
 }
