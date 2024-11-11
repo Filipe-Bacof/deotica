@@ -105,6 +105,8 @@ export default function UpdateStock() {
             <p>Carregando produtos...</p>
           ) : isError ? (
             <p>Erro ao buscar produtos...</p>
+          ) : products && products.length === 0 ? (
+            <p>Nenhum produto cadastrado ainda!</p>
           ) : (
             <div className="mx-4 flex flex-1 flex-col justify-between gap-2">
               <div className="flex w-full flex-col gap-2">
