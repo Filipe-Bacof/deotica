@@ -14,6 +14,7 @@ import { X } from "lucide-react";
 import { Button } from "../../components/Button";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import Select from "react-select";
 
 export default function UpdateStock() {
   const navigate = useNavigate();
@@ -111,18 +112,16 @@ export default function UpdateStock() {
             <div className="mx-4 flex flex-1 flex-col justify-between gap-2">
               <div className="flex w-full flex-col gap-2">
                 <h3 className="text-lg font-semibold">Selecione o Produto</h3>
-                <select
-                  className="rounded-md border border-zinc-400 px-2 py-1"
-                  value={selectedProductId}
-                  onChange={(e) => setSelectedProductId(e.target.value)}
-                >
-                  <option value="">Selecione um produto</option>
-                  {availableProducts.map((product) => (
-                    <option key={product.id} value={product.id}>
-                      {product.nome} - Quantidade atual: {product.quantidade}
-                    </option>
-                  ))}
-                </select>
+                <Select
+                  options={availableProducts.map((product) => ({
+                    value: product.id,
+                    label: `${product.nome} | Quantidade atual: ${product.quantidade}`,
+                  }))}
+                  placeholder="Selecione um produto"
+                  onChange={(selectedOption) =>
+                    setSelectedProductId(selectedOption?.value || "")
+                  }
+                />
                 <Button
                   type="button"
                   variant="creation"
